@@ -2074,7 +2074,7 @@ static	void	process_incoming_chat (DCC_list *Client)
 
 	if (Client->flags & DCC_MY_OFFER)
 	{
-		sra = sizeof(struct sockaddr_in);
+		sra = sizeof(remaddr);
 		fd = my_accept(Client->socket, (SA *) &remaddr, &sra);
 		Client->socket = new_close(Client->socket);
 		if ((Client->socket = fd) > 0)

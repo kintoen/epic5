@@ -231,7 +231,7 @@ int	bsd_putenv (const char *);
 int	bsd_setenv (const char *, const char *, int);
 void	bsd_unsetenv (const char *);
 #ifndef HAVE_INET_ATON
-int	inet_aton (const char *, struct in_addr *);
+int	inet_aton (const char *, IA *);
 #endif
 #ifndef HAVE_STRLCPY
 size_t	strlcpy (char *, const char *, size_t);
