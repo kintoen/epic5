@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.86 2004/01/08 20:14:57 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.87 2004/01/27 04:41:39 crazyed Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -1483,11 +1483,15 @@ static	void	dcc_getfile (char *args, int resume)
 			/* Just in case we have to fool the protocol enforcement. */
 			proto = get_server_protocol_state(from_server);
 			set_server_protocol_state(from_server, 0);
-			send_ctcp(CTCP_PRIVMSG, user, CTCP_DCC, "RESUME %s %s %ld", 
+			send_ctcp(CTCP_PRIVMSG, user, CTCP_DCC, 
 #if 1
+				strchr(dcc->description, space)
+				? "RESUME \"%s\" %s %ld"
+				: "RESUME %s %s %ld", 
 				dcc->description,
 #else
-				"file.ext",  /* This is just for testing. */
+				/* This is for testing mirc compatibility. */
+				"RESUME file.ext %s %ld",
 #endif
 				dcc->othername, (long)sb.st_size);
 			set_server_protocol_state(from_server, proto);
