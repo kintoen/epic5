@@ -194,6 +194,9 @@ extern	unsigned char isspace_table[256];
 #define my_isdigit(x) \
 	(isdigit(*x) || ((*x == '-' || *x == '+') && isdigit(x[1])))
 
+
+int vmy_strnicmp(int, char *, ...);
+
 /* Used for the inbound mangling stuff */
 #define MANGLE_ESCAPES		1 << 0
 #define MANGLE_ANSI_CODES	1 << 1
