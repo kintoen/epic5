@@ -245,7 +245,7 @@ CTCP_HANDLER(do_dcc)
 	char	*size;
 	char	*extra_flags;
 
-	if (!is_me(from_server, to))
+	if (!is_me(from_server, to) && *from != '=')
 		return NULL;
 
 	if     (!(type = next_arg(cmd, &cmd)) ||

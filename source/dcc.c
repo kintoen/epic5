@@ -264,7 +264,6 @@ static 	void		dcc_erase (DCC_list *erased)
 		unsigned my_type = erased->flags & DCC_TYPES;
 		char	*dummy_ptr = NULL;
 		char 	*nopath;
-		char	*dummy_nick = NULL;
 		static time_t	last_reject = 0;
 		time_t	now;
 
@@ -280,13 +279,14 @@ static 	void		dcc_erase (DCC_list *erased)
 		else
 			nopath = erased->description;
 
+#if 0
 		if (*(erased->user) == '=')
 			dummy_nick = erased->user + 1;
 		else
 			dummy_nick = erased->user;
-
+#endif
 		dummy_ptr = m_sprintf("%s %s %s", 
-			dummy_nick,
+			erased->user,
 			(my_type == DCC_FILEOFFER ? "GET" :
 			 (my_type == DCC_FILEREAD  ? "SEND" : 
 			   dcc_types[my_type])),
@@ -297,7 +297,7 @@ static 	void		dcc_erase (DCC_list *erased)
 		/*
 		 * And output it to the user
 		 */
-		if (!dead)
+		if (!dead && *(erased->user) != '=')
 			isonbase(dummy_ptr, output_reject_ctcp);
 		else
 			output_reject_ctcp(dummy_ptr, erased->user);
@@ -2197,7 +2197,7 @@ static	void	process_incoming_chat (DCC_list *Client)
 			/* See above for why these are safe. */
 			strcpy(tmp2, tmp);
 			strcpy(tmp, do_notice_ctcp(equal_nickname, nickname,
-				tmp2 + ((*tmp2 == CTCP_DELIM_CHAR) ? 0 : CTCP_MESSAGE_LEN)));
+				tmp2 + ((*tmp2 == CTCP_DELIM_CHAR) ? 0 : CTCP_REPLY_LEN)));
 			FromUserHost = empty_string;
 		}
 

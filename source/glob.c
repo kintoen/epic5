@@ -76,7 +76,11 @@
 #include <unistd.h>
 #include "irc.h"
 #ifndef MAXPATHLEN
-#define MAXPATHLEN PATHSIZE
+# ifndef PATHSIZE
+#  define MAXPATHLEN 1024
+# else
+#  define MAXPATHLEN PATHSIZE
+# endif
 #endif
 
 #undef EOS
