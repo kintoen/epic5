@@ -1,5 +1,80 @@
 EPIC4-2.2
 
+*** News -- 11/09/2004 -- Changes to way spaces are handled *** IMPORTANT ***
+	Up until this point, the technical definition of what is a "space"
+	(the term used for an Internal Field Separator (IFS), that is, the 
+	thing that separates one word from another word)
+
+	EPIC has always had three sets of IFSs
+	1) Character 32 only ("space")
+	2) Characters 9, 10, 11, 12, 13, and 32 ("my_isspace()")
+	3) Whatever your locale says is a space ("isspace")
+
+	In the C locale (the default for unix users), sets #2 and #3 are
+	exactly the same.  I don't know about other locales.
+
+	Now we are going to only use set #3.  Changing Set #2 to Set #3 is
+	easy, and nobody should notice any difference there.  The one that
+	is going to cause pain is Set #1.  Consider this situation:
+
+		One<tab>Two
+
+	Is this one word, or two words?  In some places in epic, it is one
+	word, and in other places it is two words.  As a result of this
+	change, it will now always be two words every place.
+
+	Here is a list of the places that were using Set #1 that will change
+	to use Set #3, and you should be on the lookout for changes!
+
+	*) /AWAY separated the end of its flags with spaces.
+	   This means 
+		/AWAY -ALL<tab>Hi there!
+	   will now work properly.
+	*) $pop(....) removes the last word from the argument list.
+	   Whereas $pop(one two<tab>three) used to return "two<tab>three"
+	   is will now only return "three"
+	*) Commands are separated from the argument list by a "space".
+	   Whereas 
+		/one<tab>two blah blah blah
+	   parsed "one<tab>two" as the command, now "one" is the command
+	   and "two" is part of the argument list.
+	*) In expressions, a variable name may be separated from an
+	   operator with a space.  Whereas things like
+		@var<tab> =foo
+	   might have failed because <tab> is not a valid character in 
+	   a variable name, it will now treat <tab> the same as a space.
+	*) Places that expect a number did not accept a string that contained
+	   a <tab> so that things like
+		<tab><tab>9
+	   was not accepted as a number.  Now it will be.
+	*) The /IGNORE command used to consider a string containing a <tab>
+	   to not be empty.  This means that
+		/IGNORE <tab>
+	   would not list the ignorance list, but rather would try to show
+	   the ban value for an ignore matching <tab> which isn't reasonable.
+	*) The % wildcard pattern stopped matching only when it saw char 32.
+	   Now it will stop whenever it seems a Set 3 type space.  
+	   So whereas before "%" matched "one<tab>two" now it won't,
+	   because "one<tab>two" is two words, not one word.
+	*) In /xdebug extractw mode, tabs before or after double quotes were 
+	   not considered to start or end a double quoted word.  So previously 
+	   this string:
+		one <tab>"two three" four
+	   contained four words, because the <tab> before "two nullified
+	   the double quoting.  Now that <tab> is treated like any other
+	   space, the above word has three words, not four.
+
+	Places that use Set 1 and will NOT be changing to Set 3, because 
+	they are parsing IRC protocol data, which stipulates that the IFS
+	MUST be a space solely:
+
+	*) CTCP requests and replies are formatted only with spaces
+	*) Words in protocol messages are separated only with spaces
+
+*** News -- 11/09/2004 -- You may now mangle ALT_CHAR characters
+	And ALT_CHAR mangling is included in ALL.  This was an oversight
+	that was fixed in epic5.
+
 *** News -- 11/02/2004 -- Mangling "ALL,-BOLD" no longer mangles "ALL_OFF"
 	In general, if you use ANSI (ALL includes ANSI), the mangled string
 	has its six attributes (COLOR, REVERSE, UNDERLINE, BOLD, BLINK, 

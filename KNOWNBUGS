@@ -31,3 +31,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Also fix a bug with % followed by \ i wildcard patterns.
 * Change mangling so ANSI turns off ALL_OFF unless all attributes are on
 * Fix brain-damage per above.
+* Fix space-related panic.  See UPDATES for all the gruesome details.
+* Add ALT_CHAR to the list of things that can be mangled.

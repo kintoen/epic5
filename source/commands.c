@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.83 2004/08/07 18:33:35 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.84 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -395,11 +395,11 @@ BUILT_IN_COMMAND(away)
 	{
 		if ((*args == '-') || (*args == '/'))
 		{
-			arg = strchr(args, ' ');
+			arg = args;
+			while (*arg && !isspace(*arg))
+				arg++;
 			if (arg)
-				*arg++ = '\0';
-			else
-				arg = empty_string;
+				*arg++ = 0;
 
 			if (0 == my_strnicmp(args+1, "A", 1))	/* all */
 			{
@@ -876,8 +876,6 @@ BUILT_IN_COMMAND(echocmd)
 BUILT_IN_COMMAND(xechocmd)
 {
 	unsigned display;
-	int	lastlog_level = 0;
-	int	from_level = 0;
 	char	*flag_arg;
 	int	temp = 0;
 	Window *old_to_window;
@@ -3726,7 +3724,7 @@ static	unsigned 	level = 0;
 	}
 	else
 	{
-		char		*rest,
+		char 		*rest,
 				*alias = NULL,
 				*alias_name = NULL;
 		char		*cline;
@@ -3735,20 +3733,13 @@ static	unsigned 	level = 0;
 		IrcCommand	*command;
 		void		*arglist = NULL;
 
-		if ((rest = strchr(line, ' ')))
-		{
-			size_t size;
+		cline = LOCAL_COPY(line);
 
-			size = (rest - line) + 1;
-			cline = alloca(size);
-			strlcpy(cline, line, size);
+		rest = cline;
+		while (*rest && !isspace(*rest))
 			rest++;
-		}
-		else
-		{
-			cline = LOCAL_COPY(line);
-			rest = empty_string;
-		}
+		if (*rest)
+			*rest++ = 0;
 
 		upper(cline);
 

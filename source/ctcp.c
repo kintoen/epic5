@@ -1,4 +1,4 @@
-/* $EPIC: ctcp.c,v 1.33 2004/01/27 04:41:39 crazyed Exp $ */
+/* $EPIC: ctcp.c,v 1.34 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * ctcp.c:handles the client-to-client protocol(ctcp). 
  *
@@ -686,6 +686,7 @@ static	time_t	last_ctcp_parsed = 0;
 		/*
 		 * Now its ok to parse the CTCP.
 		 * First we remove the argument.
+		 * XXX - CTCP spec says word delim MUST be space.
 		 */
 		ctcp_command = the_ctcp;
 		ctcp_argument = strchr(the_ctcp, ' ');
@@ -872,8 +873,8 @@ char *	do_notice_ctcp (const char *from, const char *to, char *str)
 
 		/*
 		 * Parse CTCP message
+		 * CTCP spec says word delim MUST be space.
 		 */
-
 		ctcp_command = the_ctcp;
 		ctcp_argument = strchr(the_ctcp, ' ');
 		if (ctcp_argument)

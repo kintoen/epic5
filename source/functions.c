@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.154 2004/07/24 00:02:31 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.155 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -2620,8 +2620,10 @@ char *function_pop (char *word)
 
 	if (word && *word)
 	{
-		pointer = strrchr(word, ' ');
-		RETURN_STR(pointer ? pointer : word);
+		pointer = word + strlen(word);
+		while (pointer > word && !isspace(*pointer))
+			pointer--;
+		RETURN_STR(pointer > word ? pointer : word);
 	}
 
 	upper(var);
@@ -2632,7 +2634,10 @@ char *function_pop (char *word)
 		RETURN_EMPTY;
 	}
 
-	if (!(pointer = strrchr(value, ' ')))
+	pointer = value + strlen(value);
+	while (pointer > value && !isspace(*pointer))
+		pointer--;
+	if (pointer == value)
 	{
 		add_var_alias(var, empty_string, 0); /* dont forget this! */
 		return value;	/* one word -- return it */
@@ -3293,7 +3298,7 @@ BUILT_IN_FUNCTION(function_truncate, words)
 	else
 		RETURN_EMPTY;
 
-	while (*buffer == ' ')
+	while (*buffer && isspace(*buffer))
 		ov_strcpy(buffer, buffer+1);
 
 	RETURN_STR(buffer);
@@ -3489,11 +3494,7 @@ BUILT_IN_FUNCTION(function_winserv, input)
 
 BUILT_IN_FUNCTION(function_numwords, input)
 {
-#if 0
-	RETURN_INT(word_count(input));
-#else
 	RETURN_INT(count_words(input, DWORD_YES, "\""));
-#endif
 }
 
 BUILT_IN_FUNCTION(function_strlen, input)
@@ -6127,11 +6128,7 @@ BUILT_IN_FUNCTION(function_indextoword, input)
 		input[pos] = 'x';
 		input[pos + 1] = 0;
 	}
-#if 0
-	RETURN_INT(word_count(input) - 1);
-#else
 	RETURN_INT(count_words(input, DWORD_YES, "\"") - 1);
-#endif
 }
 
 BUILT_IN_FUNCTION(function_realpath, input)

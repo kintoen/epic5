@@ -7,7 +7,7 @@
  *
  * See the COPYRIGHT file, or do a HELP IRCII COPYRIGHT 
  *
- * @(#)$Id: ircaux.h,v 1.60 2004/01/08 20:14:57 jnelson Exp $
+ * @(#)$Id: ircaux.h,v 1.61 2004/11/10 03:20:35 jnelson Exp $
  */
 
 #ifndef _IRCAUX_H_
@@ -133,7 +133,6 @@ char *	pullstr 		(char *, char *);
 int 	empty 			(const char *);
 char *	safe_new_next_arg	(char *, char **);
 ssize_t	MatchingBracket 	(const char *, char, char);
-int	word_count 		(const char *);
 int	parse_number 		(char **);
 char *	remove_brackets 	(const char *, const char *, int *);
 long	my_atol 		(const char *);
@@ -205,8 +204,7 @@ char *  universal_next_arg_count (char *, char **, int, int, int, const char *);
 #define new_next_arg_count(a,b) universal_next_arg_count((a),(b),(c),DWORD_ALWAYS,1,"\"")
 void    dequoter                (char **, size_t *, int, int, const char *);
 
-extern	unsigned char isspace_table[256];
-#define my_isspace(x) isspace_table[(unsigned)(unsigned char)(x)]
+#define my_isspace(x) isspace(x)
 #define my_isdigit(x) \
 	(isdigit(*x) || ((*x == '-' || *x == '+') && isdigit(x[1])))
 

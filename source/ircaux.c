@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.107 2004/11/02 01:39:30 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.108 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -48,8 +48,6 @@
 #include "if.h"
 #include "words.h"
 #include "ctcp.h"
-
-#define risspace(c) (c == ' ')
 
 /*
  * This is the basic overhead for every malloc allocation (8 bytes).
@@ -983,7 +981,7 @@ int	is_number (const char *str)
 	if (!str || !*str)
 		return 0;
 
-	while (*str == ' ')
+	while (*str && isspace(*str))
 		str++;
 
 	if (*str == '-')
@@ -1010,7 +1008,7 @@ int	is_real_number (const char *str)
 	if (!str || !*str)
 		return 0;
 
-	while (*str == ' ')
+	while (*str && isspace(*str))
 		str++;
 
 	if (*str == '-')
@@ -3454,102 +3452,6 @@ char	*dequote_it (char *str, size_t *len)
 	return (buffer);
 }
 
-unsigned char isspace_table [256] = 
-{
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	1,	1,	1,	1,	1,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	1,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-	0,	0,	0,	0,	0,	0,	0,	0,
-};
-
-
-/* 
- * XXX XXX XXX -- This is expensive, and ugly, but it counts words
- * in the same way as new_next_arg, and that is all that counts for now.
- */
-int	word_count (const char *ptr)
-{
-	int	count = 0;
-
-	if (!ptr || !*ptr)
-		return 0;
-
-	/* Skip any leading whitespace */
-	while (*ptr && risspace(*ptr))
-		ptr++;
-
-	while (*ptr)
-	{
-		/* Always pre-count words */
-		count++;
-
-		/* 
-		 * If this is an extended word, then skip everything
-		 * up to the first un-backslashed double quote.
-		 */
-		if (*ptr == '"')
-		{
-			for (ptr++; *ptr; ptr++)
-			{
-				if (*ptr == '\\' && ptr[1])
-					ptr++;
-				else if (ptr[1] && !risspace(ptr[1]))
-				{}
-				else if (*ptr == '"')
-				{
-					ptr++;
-					break;
-				}
-			}
-		}
-
-		/* 
-		 * This is a regular word, skip all of the non-whitespace
-		 * characters.
-		 */
-		else
-		{
-			while (*ptr && !risspace(*ptr))
-				ptr++;
-		}
-
-		/* Skip any leading whitespace before the next word */
-		while (*ptr && risspace(*ptr))
-			ptr++;
-	}
-
-	return count;
-}
-
 const char *	my_strerror (int err1, int err2)
 {
 static	char	buffer[1024];
@@ -3747,7 +3649,7 @@ char *	strlopencat_c (char *dest, size_t maxlen, size_t *cluep, ...)
 
 int     is_string_empty (const char *str) 
 {
-        while (str && *str && *str == ' ')
+        while (str && *str && isspace(*str))
                 str++;
  
         if (str && *str)

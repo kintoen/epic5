@@ -1,4 +1,4 @@
-/* $EPIC: expr.c,v 1.23 2004/01/31 22:15:01 jnelson Exp $ */
+/* $EPIC: expr.c,v 1.24 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * expr.c -- The expression mode parser and the textual mode parser
  * #included by alias.c -- DO NOT DELETE
@@ -175,8 +175,8 @@ static	char	*next_unit (char *str, const char *args, int *arg_flag, int stage)
 	/* Figure out the variable name were working on */		\
 	varname = expand_alias(str, args, arg_flag, NULL);		\
 	lastc = varname + strlen(varname) - 1;				\
-	while (lastc > varname && *lastc == ' ')			\
-		*lastc-- = '\0';					\
+	while (lastc > varname && isspace(*lastc))			\
+		*lastc-- = 0;						\
 	while (my_isspace(*varname))					\
 		 varname++;						\
 									\
@@ -279,8 +279,8 @@ static	char	*next_unit (char *str, const char *args, int *arg_flag, int stage)
 		lastc--;
 
 	/* and remove trailing spaces */
-	while (my_isspace(*lastc))
-		*lastc-- = '\0';
+	while (lastc > str && my_isspace(*lastc))
+		*lastc-- = 0;
 
 	/* Must have arguments.  Fill in if not supplied */
 	if (!args)
@@ -1027,7 +1027,7 @@ static	char	*next_unit (char *str, const char *args, int *arg_flag, int stage)
 				result2 = next_unit(ptr, args, arg_flag, stage);
 
 				lastc = result1 + strlen(result1) - 1;
-				while (lastc > result1 && *lastc == ' ')
+				while (lastc > result1 && isspace(*lastc))
 					*lastc-- = '\0';
 				for (varname = result1; my_isspace(*varname);)
 					varname++;

@@ -1,4 +1,4 @@
-/* $EPIC: expr2.c,v 1.18 2003/12/03 05:21:11 jnelson Exp $ */
+/* $EPIC: expr2.c,v 1.19 2004/11/10 03:20:35 jnelson Exp $ */
 /*
  * Zsh: math.c,v 3.1.2.1 1997/06/01 06:13:15 hzoli Exp 
  * math.c - mathematical expression evaluation
@@ -2008,9 +2008,9 @@ static int	zzlex (expr_info *c)
 			c->operand = 0;
 			return ID;
 		}
-		case ' ':
-		case '\t':
-		case '\n':
+
+		/* The "space" characters. */
+		case 9: case 10: case 11: case 12: case 13: case ' ':
 			start++;
 			break;
 
