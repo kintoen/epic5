@@ -122,7 +122,7 @@ extern int getnameinfo__compat (
 	int flags);
 
 extern void freeaddrinfo__compat (struct addrinfo *);
-const extern char *gai_strerror__compat (int);
+extern const char *gai_strerror__compat (int);
 
 /* In case there is no definition of offsetof() provided - though any proper
 Standard C system should have one. */
