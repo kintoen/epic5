@@ -664,7 +664,7 @@ static	int		dcc_open (DCC_list *dcc)
 	 */
 	else
 	{
-		unsigned short	port = 0;
+		unsigned short	port = dcc->local_port;
 
 		/*
 		 * Mark that we're waiting for the remote peer to answer,
