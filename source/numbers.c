@@ -502,11 +502,11 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 
 	case 367:		/* #define RPL_BANLIST */
 	{
-		if (!ArgList[0] || !ArgList[1] || !ArgList[2])
+		if (!ArgList[0] || !ArgList[1])
 			return;		/* Larneproofing */
 
 		number_of_bans++;
-		if (ArgList[2])
+		if (ArgList[2] && ArgList[3])
 		{
 			time_t tme = (time_t) strtoul(ArgList[3], NULL, 10);
 			if (do_hook(current_numeric, "%s %s %s %s %s", 
