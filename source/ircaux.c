@@ -1496,6 +1496,8 @@ int 	end_strcmp (const char *one, const char *two, int bytes)
  * Potential Bugs:
  *   - If the program in question locks up for any reason, so will epic.
  *     This can be fixed with an appropriate timeout in the select call.
+ *   - If the program in question outputs enough data, epic will run out
+ *     of memory and dump core.
  *   - Although input and the return values are char*'s, they are only
  *     treated as blocks of data, the size of *len.
  *
