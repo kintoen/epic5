@@ -820,13 +820,8 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 	case 464:		/* #define ERR_PASSWDMISMATCH   464 */
 	{
 		PasteArgs(ArgList, 0);
-		if (!is_server_connected(from_server))
-		{
-			say("Odd server stuff from %s: %s", from, ArgList[0]);
-			break;
-		}
-
 		flag = do_hook(current_numeric, "%s %s", from, ArgList[0]);
+
 		if (oper_command)
 		{
 			if (flag)
