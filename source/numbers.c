@@ -240,7 +240,8 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		PasteArgs(ArgList, 2);
 
 		/* Must do these things before calling "display_msg" */
-		add_to_server_list(new_server, new_port, NULL, NULL, NULL, NULL, 0);
+		add_to_server_list(new_server, new_port, NULL, NULL,
+				get_server_group(from_server), NULL, 0);
 		server_reconnects_to(old_server, from_server);
 		from_server = old_server;
 
