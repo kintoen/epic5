@@ -271,7 +271,7 @@ CTCP_HANDLER(do_dcc)
 	size = next_arg(cmd, &cmd);
 	extra_flags = next_arg(cmd, &cmd);
 
-	register_dcc_offer(from, type, description, inetaddr, port, size, extra_flags);
+	register_dcc_offer(from, type, description, inetaddr, port, size, extra_flags, cmd);
 	return NULL;
 }
 
