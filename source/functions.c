@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.151 2004/01/18 10:14:01 crazyed Exp $ */
+/* $EPIC: functions.c,v 1.152 2004/01/25 19:03:09 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6747,10 +6747,10 @@ BUILT_IN_FUNCTION(function_joinstr, input)
 {
 	char	*sep, *word;
 	char	*retval = NULL, *sub = NULL;
-	char	**free = NULL, **vals = NULL;
+	char	**freeit = NULL, **vals = NULL;
 	size_t	valc = 0;
 	size_t  retclue = 0;
-	int	foo;
+	size_t	foo;
 
 	GET_STR_ARG(sep, input)
 
@@ -6758,10 +6758,10 @@ BUILT_IN_FUNCTION(function_joinstr, input)
 		char *var;
 
 		RESIZE(vals, vals, valc + 1);
-		RESIZE(free, free, valc + 1);
+		RESIZE(freeit, freeit, valc + 1);
 
 		GET_STR_ARG(var, input)
-		free[valc] = vals[valc] = get_variable(var);
+		freeit[valc] = vals[valc] = get_variable(var);
 	}
 
 	for (;;) {
@@ -6782,9 +6782,9 @@ BUILT_IN_FUNCTION(function_joinstr, input)
 	}
 
 	for (foo = 0; foo < valc; foo++)
-		new_free(&free[foo]);
+		new_free(&freeit[foo]);
 
-	new_free(&free);
+	new_free(&freeit);
 	new_free(&vals);
 	new_free(&sub);
 

@@ -1,5 +1,13 @@
 EPIC4-1.2.0
 
+*** News -- 01/25/2004 -- Slight changes to /ON SSL_SERVER_CERT
+	|Rain| pointed out that /ON SSL_SERVER_CERT was not terribly useful
+	because $1 (cert subject) and $2 (cert issuer) could contain spaces,
+	and so you couldn't really use $1 and $2 to fetch them.  He proposed
+	that we hook a url-encoded version of the subject and issuer (so they
+	won't contain any spaces) and you can use $urldecode($1) to get the
+	subject and $urldecode($2) to get the issuer.
+
 *** News -- 01/18/2004 -- New functions $cofilter() and $corfilter().
 	These are compliments of $copattern().
 
