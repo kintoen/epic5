@@ -614,10 +614,11 @@ AC_ARG_WITH(tcl,
 )
 test "xno" != "x$withval" && for base in $withval /usr/local /usr
 do
-	for ver in 8.3 83 8.2 82 8.1 81 8.0 80
+	for ver in 8.3 8.2 8.1 8.0
 	do
 		incdir="$base/include/tcl$ver"
 		test -r $incdir/tcl.h || continue
+		test -r $base/lib/libtcl$ver.so || ver="`echo $ver | sed -e 's/\.//g'`"
 		test -r $base/lib/libtcl$ver.so || continue
 		AC_MSG_RESULT(yes)
 		CFLAGS="$CFLAGS -I $incdir"
