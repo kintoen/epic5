@@ -2012,7 +2012,7 @@ char *	ftoa (double foo)
 {
 	static char buffer [BIG_BUFFER_SIZE + 1];
 
-	sprintf(buffer, "%f", foo);
+	sprintf(buffer, "%.999g", foo);
 	return buffer;
 }
 
