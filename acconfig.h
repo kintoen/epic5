@@ -239,6 +239,10 @@
 /* Define this if you have hstrerror, for h_errno use */
 #undef HAVE_HSTRERROR
 
+/* Define this if you want OPENSSL support */
+#undef HAVE_SSL
+/* Define this if you want OPENSSL support */
+#undef HAVE_SSL
 /* Define this if you have sysctlbyname() */
 #undef HAVE_SYSCTLBYNAME
 
