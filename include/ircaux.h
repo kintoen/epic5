@@ -25,6 +25,7 @@ typedef int 	comp_func 		(char *, char *);
 #define RESIZE(x, y, z) new_realloc	((void **)& (x), sizeof(y) * (z))
 #define LOCAL_COPY(y) strcpy(alloca(strlen((y)) + 1), y)
 
+extern	int	need_delayed_free;
 void	fatal_malloc_check	(void *, const char *, char *, int);
 void *	really_new_malloc 	(size_t, char *, int);
 void *	really_new_free 	(void **, char *, int);
