@@ -1,4 +1,4 @@
-/* $EPIC: reg.c,v 1.5 2003/04/24 21:49:25 jnelson Exp $ */
+/* $EPIC: reg.c,v 1.6 2003/05/09 04:29:52 jnelson Exp $ */
 /*
  * reg.c - "glob"-like wildcard pattern matching (not regexes)
  *
@@ -711,9 +711,8 @@ char *	pattern2regex (const char *pattern, int *weight)
 	    }
 	}
 
-#if 0
-	yell("[%s] -> [%s]", pattern, retval);
-#endif
+	if (x_debug & DEBUG_REGEX_DEBUG)
+		yell("[%s] -> [%s]", pattern, retval);
 	return retval;
 }
 
