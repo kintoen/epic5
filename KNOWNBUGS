@@ -96,3 +96,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Performance optimisation for $shufflef() (script/functions).
 * Minor bug fix for script/data_struct.
 * Rolled in changes to 005 processing as per discussions with Larne.
+* Fix bug with nicks ending with \ in the 353 numeric which has trailing space
+* Auto-close DCC's that can't send handshakes due to family mismatch.

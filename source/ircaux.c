@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.105 2003/12/26 19:14:49 crazyed Exp $ */
+/* $EPIC: ircaux.c,v 1.106 2004/01/08 20:14:58 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -436,6 +436,23 @@ char *	remove_trailing_spaces (char *foo, size_t *cluep)
 	/* If this is a \, then it was a \ before a space.  Go forward */
 	if (end[0] == '\\' && my_isspace(end[1]))
 		end++;
+	end[1] = 0;
+	if (cluep) 
+		*cluep = end - foo;
+	return foo;
+}
+
+char *	forcibly_remove_trailing_spaces (char *foo, size_t *cluep)
+{
+	char *end;
+	size_t clue = cluep?*cluep:0;
+	if (!*foo)
+		return foo;
+
+	end = clue + foo + strlen(clue + foo) - 1;
+	while (end > foo && my_isspace(*end))
+		end--;
+	/* Do not save spaces after \ at end of words! */
 	end[1] = 0;
 	if (cluep) 
 		*cluep = end - foo;

@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.58 2004/01/03 19:57:25 crazyed Exp $ */
+/* $EPIC: numbers.c,v 1.59 2004/01/08 20:14:58 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -497,6 +497,9 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 
 		    while ((nick = next_arg(line_copy, &line_copy)) != NULL)
 		    {
+			/* XXX - Hack to work around space at end of 353 */
+			forcibly_remove_trailing_spaces(nick, NULL);
+
 			/*
 			 * 1999 Oct 29 -- This is a hack to compensate for
 			 * a bug in older ircd implementations that can result
