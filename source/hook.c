@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.23 2003/11/07 23:43:47 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.24 2003/12/01 03:21:19 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -199,6 +199,7 @@ hook_functions[] =
 	{ "WINDOW",		(Hook *) 0,	2,	0,	HF_NORECURSE },
 	{ "WINDOW_COMMAND",	(Hook *) 0,	1, 	0,	0 },
 	{ "WINDOW_CREATE",	(Hook *) 0,	1, 	0,	0 },
+	{ "WINDOW_BEFOREKILL",	(Hook *) 0,	1,	0,	0 },
 	{ "WINDOW_KILL",	(Hook *) 0,	2,	0,	0 },
 	{ "YELL",		(Hook *) 0,	1,	0,	0 },
 };
