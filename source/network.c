@@ -1,4 +1,4 @@
-/* $EPIC: network.c,v 1.56 2004/03/18 01:04:03 jnelson Exp $ */
+/* $EPIC: network.c,v 1.57 2005/01/06 23:54:13 jnelson Exp $ */
 /*
  * network.c -- handles stuff dealing with connecting and name resolving
  *
@@ -298,6 +298,8 @@ int	inet_vhostsockaddr (int family, int port, SS *storage, socklen_t *len)
 		lhn = LocalIPv4HostName;
 	else if (family == AF_INET6)
 		lhn = LocalIPv6HostName;
+	else
+		lhn = NULL;
 
 	/*
 	 * Can it really be this simple?
