@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.67 2004/03/25 04:26:59 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.68 2004/03/29 15:27:29 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -1800,7 +1800,11 @@ const 	u_char	*ptr;
 				int	lhs_count = 0;
 				int	continued_count = 0;
 
-				if (do_indent && (indent < (max_cols / 3)) &&
+                                /* Because Blackjac asked me to */
+                                if (indent > max_cols / 3)
+                                        indent = max_cols / 3;
+
+				if (do_indent &&
 					((int)strlen(cont_ptr) < indent))
 				{
 					size_t size = indent + 10;;
