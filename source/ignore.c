@@ -1,4 +1,4 @@
-/* $EPIC: ignore.c,v 1.22 2004/04/13 00:19:48 jnelson Exp $ */
+/* $EPIC: ignore.c,v 1.23 2004/05/11 02:43:14 jnelson Exp $ */
 /*
  * ignore.c: handles the ingore command for irc 
  *
@@ -92,6 +92,8 @@
  * If an ignore does not declare a disposition for a level, it "passes" on 
  * that message and further ignore rules will be checked.
  */
+#define WANT_LEVEL_NAMES
+
 #include "irc.h"
 #include "ignore.h"
 #include "ircaux.h"
