@@ -92,7 +92,7 @@ struct timeval get_time 	(struct timeval *);
 double 	time_diff 		(struct timeval, struct timeval);
 char *	plural 			(int);
 int	time_to_next_minute 	(void);
-char *	remove_trailing_spaces 	(char *);
+char *	remove_trailing_spaces 	(char *, size_t *cluep);
 char *	ltoa 			(long);
 char *	ftoa			(double);
 char *	strformat 		(char *, const char *, int, int);
