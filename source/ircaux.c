@@ -2012,8 +2012,8 @@ struct timeval 	get_time (struct timeval *timer)
 
 	if (timer)
 	{
-		timer.tv_sec = time2;
-		timer.tv_usec = 0;
+		timer->tv_sec = time2;
+		timer->tv_usec = 0;
 		return *timer;
 	}
 	timer2.tv_sec = time2;
