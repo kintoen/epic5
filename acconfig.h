@@ -266,3 +266,6 @@
 /* Define this if you have gethostbyname2() */
 #undef HAVE_GETHOSTBYNAME2
 
+/* Define this if you don't have siglen_t */
+#undef HAVE_SOCKLEN_T
+

@@ -1836,7 +1836,7 @@ void	register_dcc_offer (char *user, char *type, char *description, char *addres
 
 		fromhost++;
 		irc_addr.sin_family = AF_INET;
-		if (inet_anyton(fromhost, (SS *)&irc_addr))
+		if (inet_anyton(fromhost, (SA *)&irc_addr))
 		{
 			yell("### Incoming handshake has an address [%s] that could not be figured out!", fromhost);
 			yell("### Please use caution in deciding whether to accept it or not");
