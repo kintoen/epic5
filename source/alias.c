@@ -1,4 +1,4 @@
-/* $EPIC: alias.c,v 1.14 2003/01/11 04:26:52 jnelson Exp $ */
+/* $EPIC: alias.c,v 1.15 2003/02/17 23:48:48 crazyed Exp $ */
 /*
  * alias.c -- Handles the whole kit and caboodle for aliases.
  *
@@ -2587,7 +2587,10 @@ void	do_stack_alias (int type, char *args, int which)
 					prev->next = aptr->next;
 
 				/* throw away anything we already have */
-				delete_cmd_alias(args, 0);
+				if (which == STACK_DO_ALIAS)
+					delete_cmd_alias(args, 0);
+				else
+					delete_var_alias(args, 0);
 
 				/* put the new one in. */
 				if (aptr->list)
