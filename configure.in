@@ -637,7 +637,7 @@ AC_ARG_WITH(tcl,
 )
 test "xno" != "x$withval" && for base in $withval /usr/local /usr
 do
-	for ver in 8.3 8.2 8.1 8.0
+	for ver in 8.4 8.3 8.2 8.1 8.0
 	do
 		incdir="$base/include/tcl$ver"
 		test -r $incdir/tcl.h || continue
