@@ -116,3 +116,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add 'urlgrab' script contributed by wc.
 * Fix /WHO arg handling.  The old code was crap and wouldn't do /who -oper
 * Fix \\ handling after * and %.  This is probably still broken....
+* Fix configure to find tcl 8.4.
+* Fix bug with $ at end of string (ie, echo $($))

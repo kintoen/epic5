@@ -1,4 +1,4 @@
-/* $EPIC: expr.c,v 1.22 2003/10/28 05:53:57 jnelson Exp $ */
+/* $EPIC: expr.c,v 1.23 2004/01/31 22:15:01 jnelson Exp $ */
 /*
  * expr.c -- The expression mode parser and the textual mode parser
  * #included by alias.c -- DO NOT DELETE
@@ -1379,8 +1379,13 @@ char	*expand_alias	(const char *string, const char *args, int *args_flag, ssize_
 				break;
 			}
 			*ptr++ = 0;
+
+			/* Just a lonely old $ at the end of string. */
 			if (!*ptr)
+			{
+				malloc_strcat_c(&buffer, empty_string, &buffclue);
 				break;		/* Hrm. */
+			}
 
 			malloc_strcat_ues_c(&buffer, stuff, unescape, &buffclue);
 
@@ -1465,6 +1470,11 @@ char	*expand_alias	(const char *string, const char *args, int *args_flag, ssize_
 
 	if (get_int_var(DEBUG_VAR) & DEBUG_EXPANSIONS)
 		privileged_yell("Expanded [%s] to [%s]", string, buffer);
+
+#if 0					/* Maybe a good idea later? */
+	if (!buffer && !more_text)
+		panic("expand_alias [%s] returning NULL!", string);
+#endif
 
 	return buffer;
 }
