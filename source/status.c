@@ -1,4 +1,4 @@
-/* $EPIC: status.c,v 1.35 2003/12/07 20:16:52 jnelson Exp $ */
+/* $EPIC: status.c,v 1.36 2004/08/14 18:41:54 jnelson Exp $ */
 /*
  * status.c: handles the status line updating, etc for IRCII 
  *
@@ -962,8 +962,8 @@ STATUS_FUNCTION(status_right_justify)
 STATUS_FUNCTION(status_notify_windows)
 {
 	int	doneone = 0;
-	char	buf2[81];
-static	char	my_buffer[81];
+	char	buf2[BIG_BUFFER_SIZE];
+static	char	my_buffer[BIG_BUFFER_SIZE];
 
 	/*
 	 * This only goes to a current-type window.

@@ -137,3 +137,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * You can use $servertctl([SET|GET] <refnum> UNIQUE_ID) for ircnet.
 * Allow /userhost <uniqueid> for ircnet.
 * Allow 'epic 0 <servername' for ircnet.
+* Increase buffer for %F (and %{1}F) from 80 bytes to 2k.
