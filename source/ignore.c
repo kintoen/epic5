@@ -1,4 +1,4 @@
-/* $EPIC: ignore.c,v 1.24 2004/07/29 16:59:03 jnelson Exp $ */
+/* $EPIC: ignore.c,v 1.25 2005/03/19 03:55:55 jnelson Exp $ */
 /*
  * ignore.c: handles the ingore command for irc 
  *
@@ -664,12 +664,12 @@ static int	ignore_list (Ignore *item, int type, void *data)
 	{
 	    if (!expiring)
 	    {
-		say("[%d]\t%s:\t%s (%s)", item->refnum, item->nick, 
+		say("[%d] %s:\t%s (%s)", item->refnum, item->nick, 
 				get_ignore_types(item, 1), item->reason);
 	    }
 	    else
 	    {
-		say("[%d]\t%s:\t%s (%s) (%f seconds left)", 
+		say("[%d] %s:\t%s (%s) (%f seconds left)", 
 				item->refnum, item->nick, 
 				get_ignore_types(item, 1), item->reason,
 				time_to_expire);
@@ -679,12 +679,12 @@ static int	ignore_list (Ignore *item, int type, void *data)
 	{
 	    if (!expiring)
 	    {
-		say("[%d]\t%s:\t%s", item->refnum, item->nick, 
+		say("[%d] %s:\t%s", item->refnum, item->nick, 
 				get_ignore_types(item, 1));
 	    }
 	    else
 	    {
-		say("[%d]\t%s:\t%s (%f seconds left)", item->refnum, 
+		say("[%d] %s:\t%s (%f seconds left)", item->refnum, 
 				item->nick, get_ignore_types(item, 1),
 				time_to_expire);
 	    }
