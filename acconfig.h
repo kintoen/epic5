@@ -307,3 +307,7 @@
 
 /* Define this if you have intptr_t */
 #undef HAVE_INTPTR_T
+
+/* Define this if you have a (long long) */
+#undef HAVE_LONG_LONG
+
