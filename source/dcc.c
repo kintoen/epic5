@@ -753,6 +753,13 @@ static void	dcc_send_booster_ctcp (DCC_list *dcc)
 
 	if (family == AF_INET)
 		V4PORT(my_sockaddr) = V4PORT(dcc->local_sockaddr);
+	else if (family == AF_INET6)
+		V6PORT(my_sockaddr) = V6PORT(dcc->local_sockaddr);
+	else
+	{
+		yell("Could not send a CTCP handshake becuase the address family is not supported.");
+		return;
+	}
 
 	if (inet_ntostr((SA *)&my_sockaddr, p_host, 128, p_port, 24, GNI_INTEGER | NI_NUMERICHOST)) {
 		yell("Couldn't get host/port for address!");
