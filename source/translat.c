@@ -1,3 +1,4 @@
+/* $EPIC$ */
 /*
  * translat.c:  Stuff for handling character translation tables
  * and a digraph entry facility.  Support an international IRC!

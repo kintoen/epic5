@@ -1,3 +1,4 @@
+/* $EPIC$ */
 #include "config.h"
 #if defined(NEED_GLOB)
 
@@ -34,7 +35,6 @@
  */
 
 /* from: static char sccsid[] = "@(#)glob.c	8.3 (Berkeley) 10/13/93"; */
-/* $Id$ */
 
 /*
  * glob(3) -- a superset of the one defined in POSIX 1003.2.

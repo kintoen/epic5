@@ -1,4 +1,4 @@
-/* $EPIC$ */
+/* $EPIC: funny.c,v 1.6 2002/07/06 03:50:11 jnelson Exp $ */
 /*
  * funny.c: Handles the /LIST and /NAMES replies.  Also deals with the
  * /NAMES and /MODE replies that we have automatically sent to us when
@@ -7,7 +7,7 @@
  * Copyright (c) 1990 Michael Sandroff.
  * Copyright (c) 1991, 1992 Troy Rollo.
  * Copyright (c) 1992-1996 Matthew Green.
- * Copyright © 1995, 2002 Jeremy Nelson and others ("EPIC Software Labs").
+ * Copyright © 1995, 2002 EPIC Software Labs
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
