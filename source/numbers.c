@@ -1018,6 +1018,7 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		case 474:		/* #define ERR_BANNEDFROMCHAN   474 */
 		case 475: 		/* #define ERR_BADCHANNELKEY    475 */
 		case 476:		/* #define ERR_BADCHANMASK      476 */
+		case 477:		/* #define ERR_NEEDREGGEDNICK	477 */
 		{
 			char buffer[BIG_BUFFER_SIZE + 1];
 
@@ -1041,6 +1042,9 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 					break;
 				case 476:
 					strmcat(buffer, " (Bad channel mask)", BIG_BUFFER_SIZE);
+					break;
+				case 477:
+					strmcat(buffer, " (You must use a registered nickname", BIG_BUFFER_SIZE);
 					break;
 			}
 			put_it("%s %s", numeric_banner(), buffer);
