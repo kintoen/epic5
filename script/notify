@@ -312,7 +312,7 @@ alias notify (nicklist) {
 
 				@remove_notify_entry($nickname $refnum)
 
-				xecho -b -c -- $nickname has been removed from the local notify list for server $refnum
+				xecho -b -c -- $nickname has been removed from the local notify list for server $serv
 			} elsif (separators == 2) {
 				@:groupname = after(-1 : $nickname)
 				@:nickname = before(: $nickname)
