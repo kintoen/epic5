@@ -53,7 +53,7 @@ char *	new_next_arg 		(char *, char **);
 char *	new_new_next_arg 	(char *, char **, char *);
 char *	s_next_arg		(char **);
 char *	last_arg 		(char **, size_t *cluep);
-char *	expand_twiddle 		(char *);
+char *	expand_twiddle 		(const char *);
 char *	upper 			(char *);
 char *	lower 			(char *);
 char *	sindex			(char *, char *);

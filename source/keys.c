@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.12 2002/08/19 17:09:06 wd Exp $ */
+/* $EPIC: keys.c,v 1.13 2002/08/23 22:45:30 wd Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -463,11 +463,9 @@ unsigned char *bind_string_decompress (unsigned char *dst, unsigned char
 	if (*src < 32) {
 	    *dst++ = '^';
 	    *dst++ = *src + 64;
-	    src;
 	} else if (*src == 127) {
 	    *dst++ = '^';
 	    *dst++ = '?';
-	    src;
 	} else
 	    *dst++ = *src;
 	src++;
