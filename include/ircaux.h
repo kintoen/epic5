@@ -187,9 +187,9 @@ char *		real_extract2 		(const char *, int, int, int);
 
 /* Used from network.c */
 int 	connect_by_number 	(char *, unsigned short *, int, int);
-char 	*inet_hntop 		(int, const char *);
-char 	*inet_ptohn 		(int, const char *);
-char 	*one_to_another 	(int, const char *);
+char 	*inet_hntop 		(int, const char *, char *, int);
+char 	*inet_ptohn 		(int, const char *, char *, int);
+char 	*one_to_another 	(int, const char *, char *, int);
 int	my_accept		(int, SA *, int *);
 int	inet_anyton		(const char *, SA *);
 const char *switch_hostname	(const char *);
