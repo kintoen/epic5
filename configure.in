@@ -522,7 +522,7 @@ main()
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = 0;
 
-	retval = getaddrinfo("/tmp/.ircd/6667", 0, &hints, &results);
+	retval = getaddrinfo(0, "/tmp/.ircd/6667", &hints, &results);
 	if (retval != 0)
 		exit(1);
 	else

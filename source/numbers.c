@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.42 2003/02/08 06:38:30 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.43 2003/02/10 21:41:15 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -439,7 +439,9 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 		{
 			update_channel_mode(channel, mode);
 			update_all_status();
+#if 0
 			goto END;
+#endif
 		}
 
 		break;
