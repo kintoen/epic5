@@ -41,11 +41,9 @@ alias change_notify_status (refnum, newstatus, nicklist) {
 
 		if (notify_userhost_automatic == [on]) {
 			xeval -server $refnum {
-				wait for {
-					fe ($nicklist) n1 n2 n3 n4 n5 {
-						userhost $n1 $n2 $n3 $n4 $n5 -cmd {
-							shook notify_signon $0 $3@$4
-						}
+				fe ($nicklist) n1 n2 n3 n4 n5 {
+					userhost $n1 $n2 $n3 $n4 $n5 -cmd {
+						shook notify_signon $0 $3@$4
 					}
 				}
 			}
@@ -540,7 +538,7 @@ on ^set "NOTIFY *" {
 
 		@clear_notify_records()
 		@establish_notify_hooks()
-		^eval timer -refnum notcheck -rep -1 $notify_interval @detect_signons()
+		^timer -refnum notcheck -rep -1 $notify_interval @detect_signons()
 
 		xecho -b Value of NOTIFY set to ON
 	} else {
@@ -559,7 +557,7 @@ on ^set "NOTIFY_INTERVAL *" {
 		@notify_interval = [$1]
 
 		^timer -del notcheck
-		^eval timer -refnum notcheck -rep -1 $notify_interval @detect_signons()
+		^timer -refnum notcheck -rep -1 $notify_interval @detect_signons()
 
 		xecho -b Value of NOTIFY_INTERVAL set to $notify_interval
 	}
