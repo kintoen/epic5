@@ -14,6 +14,24 @@ static	char	rcsid[] = "@(#)$Id$";
 #include "irc.h"
 #include "irc_std.h"
 
+int	block_signal (int sig_no)
+{
+	sigset_t set;
+
+	sigemptyset(&set);
+	sigaddset(&set, sig_no);
+	return sigprocmask(SIG_BLOCK, &set, NULL);
+}
+
+int	unblock_signal (int sig_no)
+{
+	sigset_t set;
+
+	sigemptyset(&set);
+	sigaddset(&set, sig_no);
+	return sigprocmask(SIG_UNBLOCK, &set, NULL);
+}
+
 sigfunc *my_signal (int sig_no, sigfunc *sig_handler)
 {
         struct sigaction sa, osa;
