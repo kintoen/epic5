@@ -366,7 +366,7 @@ sig_name="ZERO $*"
 if test -f source/sig.inc; then
   /bin/rm -f source/sig.inc
 fi
-[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/char *sys_siglist[] = { "/' >> source/sig.inc]
+[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> source/sig.inc]
 fi
 
 dnl ----------------------------------------------------------
