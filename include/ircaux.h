@@ -36,6 +36,7 @@ void *	really_new_malloc 	(size_t, char *, int);
 void *	really_new_free 	(void **, char *, int);
 int	debug_new_free		(void **, char *, int);
 void *	really_new_realloc 	(void **, size_t, char *, int);
+void	malloc_dump		(char *);
 
 char *	check_nickname 		(char *, int);
 char *	next_arg 		(char *, char **);

@@ -481,7 +481,7 @@ CTCP_HANDLER(do_ping_reply)
 
 	tsec = t.tv_sec - orig;
 
-	if ((ptr = strchr(cmd, ' ')))
+	if ((ptr = sindex(cmd, " .")))
 	{
 		*ptr++ = 0;
 		tusec = t.tv_usec - my_atol(ptr);
