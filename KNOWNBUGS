@@ -25,3 +25,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add support for +e and +I numeric replies for efnet.
 * Fix a compile error when doing password protection (bug 12)
 * When creating the 'epic' symlink, use a relative path for jm. (bug 9)
+* Fix compile warning for alloca on freebsd-current for blackjac. bleh.
