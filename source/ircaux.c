@@ -888,6 +888,25 @@ char *	next_in_comma_list (char *str, char **after)
 	return str;
 }
 
+/* Find the next instance of 'what' that isn't backslashed. */
+char *	findchar (char *str, int what)
+{
+	char *p;
+
+	for (p = str; *p; p++)
+	{
+		if (p[0] == '\\' && p[1])
+			p++;
+		else if (p[0] == what)
+			break;
+	}
+
+	if (*p == what)
+		return p;
+	else
+		return NULL;
+}
+
 unsigned char stricmp_table [] = 
 {
 	0,	1,	2,	3,	4,	5,	6,	7,

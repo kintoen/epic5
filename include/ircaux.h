@@ -81,6 +81,7 @@ char *	m_strcat_ues 		(char **, char *, int);
 char *	strmopencat		(char *, int, ...);
 char *	stristr 		(const char *, const char *);
 char *	rstristr 		(const char *, const char *);
+char *	findchar		(char *, int);
 FILE *	uzfopen 		(char **, char *, int);
 int	end_strcmp 		(const char *, const char *, int);
 char*   exec_pipe		(char *, char *, size_t *, char**);
