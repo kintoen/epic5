@@ -303,6 +303,27 @@ main ()
 
 dnl ----------------------------------------------------------
 dnl
+dnl Check for a realpath() that works.
+dnl
+AC_MSG_CHECKING(for useful realpath)
+AC_TRY_RUN([
+#include <sys/param.h>
+#include <stdlib.h>
+main ()
+{
+	char resolved_path[MAXPATHLEN];
+
+	if (realpath("/etc/filethatdoesnotexist", resolved_path) == NULL)
+		exit(1);
+	exit(0);
+}
+],
+  AC_MSG_RESULT(yes),
+  AC_MSG_RESULT(no, your realpath is broken and/or worthless)
+  AC_DEFINE(HAVE_BROKEN_REALPATH), :)
+
+dnl ----------------------------------------------------------
+dnl
 dnl Check for sys_siglist declaration
 dnl
 

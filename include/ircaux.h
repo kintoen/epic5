@@ -270,5 +270,6 @@ int	setsid (void);
 #ifndef STPCPY_DECLARED
 char *	stpcpy (char *, const char *);
 #endif
+char *	my_realpath (const char *pathname, char resolved_path[]);
 
 #endif /* _IRCAUX_H_ */

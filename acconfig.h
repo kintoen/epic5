@@ -292,3 +292,7 @@
 
 /* Define this if you have sys_siglist declared */
 #undef SYS_SIGLIST_DECLARED
+
+/* Define this if you have a broken realpath */
+#undef HAVE_BROKEN_REALPATH
+
