@@ -157,7 +157,7 @@ int	charcount		(const char *, char);
 void	beep_em			(int);
 void	strip_control		(const char *, char *);
 const char *strfill		(char, int);
-char *	encode			(const char *, int);
+char *	encode			(const char *, size_t);
 char *	decode			(const char *);
 char *	chomp			(char *);
 int 	opento			(const char *, int, off_t);
