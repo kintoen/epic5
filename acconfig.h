@@ -269,3 +269,6 @@
 /* Define this if you don't have siglen_t */
 #undef HAVE_SOCKLEN_T
 
+/* Define this if you have a getaddrinfo() with missing functionality */
+#undef GETADDRINFO_DOES_NOT_DO_AF_UNIX
+

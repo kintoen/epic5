@@ -194,18 +194,19 @@ char *		real_extract2 		(const char *, int, int, int);
 #define V4ADDR(x) (V4(x)->sin_addr)
 #define V4PORT(x) (V4(x)->sin_port)
 
-int 	connect_by_number 	(char *, unsigned short *, int, int);
 char 	*inet_hntop 		(int, const char *, char *, int);
 char 	*inet_ptohn 		(int, const char *, char *, int);
 char 	*one_to_another 	(int, const char *, char *, int);
-int	my_accept		(int, SA *, int *);
-int	inet_anyton		(const char *, SA *);
+int	Accept			(int, SA *, int *);
+int	inet_anyton		(const char *, const char *, SA *);
 const char *switch_hostname	(const char *);
 int	ip_bindery		(int family, u_short port, SS *storage);
 int	client_bind		(SA *, socklen_t);
 int	client_connect		(SA *, socklen_t, SA *, socklen_t);
-int	connectory		(int, const char *, u_short);
+int	connectory		(int, const char *, const char *);
 char *	inet_ntohn		(SA *, char *, int);
+int	Getaddrinfo		(const char *, const char *, const AI *, AI **);
+void    Freeaddrinfo 		(AI *ai);
 
 extern	unsigned char isspace_table[256];
 #define my_isspace(x) isspace_table[(unsigned)(unsigned char)(x)]
