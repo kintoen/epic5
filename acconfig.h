@@ -332,3 +332,6 @@
 /* Define this to use pthreads */
 #undef USE_PTHREAD
 
+/* Define this if you have arc4random() */
+#undef HAVE_ARC4RANDOM
+
