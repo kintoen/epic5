@@ -139,20 +139,6 @@ dnl A whole whack of possible places where this might be
       LIBS="$LIBS -lssl -lcrypto"],,-lcrypto)
 ])
 
-AC_ARG_WITH(ssl-ver,
-[  --with-ssl-ver[=vX]       Use SSLvX instead of default SSLv3 (v2 is supported)],
-[
-  case "$withval" in
-    v2)
-      AC_MSG_CHECKING(for SSL version)
-      AC_DEFINE(WANT_SSL2)
-      AC_MSG_RESULT(version 2)
-      ;;
-    esac
-
-])
-
-
 dnl this is for isc.  need the nsl_s library as well.
 if test -z "$libinet"; then
 	AC_CHECK_LIB(inet, socket, libnsl=1; LIBS="$LIBS -linet -lnsl_s",)
