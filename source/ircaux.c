@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.52 2002/10/21 15:21:43 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.53 2002/10/22 23:23:22 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -1123,10 +1123,10 @@ char *	strmcat_ue (char *dest, const char *src, int maxlen)
  * This uses a cheating, "not-as-efficient-as-possible" algorithm,
  * And boy do we pay for it.
  */
-char *	m_strcat_ues_c (char **dest, char *src, int unescape, size_t *cluep)
+char *	m_strcat_ues_c (char **dest, const char *src, int unescape, size_t *cluep)
 {
 	int 	total_length;
-	char *	ptr;
+	const char *	ptr;
 	char *	ptr2;
 	int	z;
 	size_t	clue = cluep ? *cluep : 0;

@@ -87,7 +87,7 @@ char *	chop 			(char *, size_t);
 char *	strmcpy 		(char *, const char *, int);
 char *	strmcat 		(char *, const char *, int);
 char *	strmcat_ue 		(char *, const char *, int);
-char *	m_strcat_ues_c 		(char **, char *, int, size_t *);
+char *	m_strcat_ues_c 		(char **, const char *, int, size_t *);
 char *	strmopencat		(char *, int, ...);
 char *	stristr 		(const char *, const char *);
 char *	rstristr 		(const char *, const char *);
