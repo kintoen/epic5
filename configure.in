@@ -408,6 +408,18 @@ fi
 
 dnl ----------------------------------------------------------
 dnl
+dnl checks for ipv6-related things
+dnl
+
+AC_MSG_CHECKING(for struct sockaddr_storage)
+AC_EGREP_HEADER([struct( |	)*sockaddr_storage], sys/socket.h, 
+  AC_MSG_RESULT(yes) 
+  AC_DEFINE(HAVE_STRUCT_SOCKADDR_STORAGE),
+  AC_MSG_RESULT(no))
+
+
+dnl ----------------------------------------------------------
+dnl
 dnl Socks4 or Socks5 or neither?
 dnl
 

@@ -251,3 +251,6 @@
 /* Define this if you have SO_SNDLOWAT */
 #undef HAVE_SO_SNDLOWAT
 
+/* Define this if you have struct sockaddr_storage */
+#undef HAVE_STRUCT_SOCKADDR_STORAGE
+
