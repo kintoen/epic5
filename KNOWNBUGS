@@ -9,37 +9,6 @@ KNOWN ERRATA (eg, bugs, or unresolved requests):
 
 THE CHANGELOG SINCE THE LAST RELEASE:
 -------------------------------------
-* Fix bug with TOGGLE_STOP_SCREEN for Brian Feldman
-* Fix bug with not redrawing help window for Zlonix
-* Fix bug with not being able to bind character 255 for Zlonix
-* Fix bug with indent > screen / 3 truncating to 0 for BlackJac
-* Implement "unique id" support for ircnet (042 numeric)
-* You can /nick 0 or /nick <unique_id> for ircnet.
-* You can use $servertctl([SET|GET] <refnum> UNIQUE_ID) for ircnet.
-* Allow /userhost <uniqueid> for ircnet.
-* Allow 'epic 0 <servername>' for ircnet.
-* Increase buffer for %F (and %{1}F) from 80 bytes to 2k for fudd.
-* Avoid NULL deref on brok^H^H^H^Hempty numeric replies.
-* Add %{2}W and %{3}W from epic5 for blackjac.
-* Fix $stripcrap(ALL,-<type> ...) from epic5 for blackjac.
-* Add support for +e and +I numeric replies for efnet.
-* Fix a compile error when doing password protection (bug 12)
-* When creating the 'epic' symlink, use a relative path for jm. (bug 9)
-* Fix compile warning for alloca on freebsd-current for blackjac. bleh.
-* Fix color bleeding with color changes in middle of long words that wrap.
-* Fix $logctl().
-* Also fix a bug with % followed by \ i wildcard patterns.
-* Change mangling so ANSI turns off ALL_OFF unless all attributes are on
-* Fix brain-damage per above.
-* Fix space-related panic.  See UPDATES for all the gruesome details.
-* Add ALT_CHAR to the list of things that can be mangled.
-* Fix wording of default messages for 347 and 349 numerics.
-* Fix column alignment for /timer list.
-* Fix add_to_window() to stop runaway recursion through /set output_rewrite.
-* Fix bug in expand_alias() -- all output must be privileged_yell()!
-* Change /on send_to_server so it can't be hooked recursively.
-* Use 'numeric' not 'current_numeric' in the numeric handler, doh!
-* EPIC4-2.2 was released here
 * Fix null deref when you do /window flush while not in hold mode.
 * Fix /away -all
 * Fix /window <refnum> scroll_[backwards|forwards]
