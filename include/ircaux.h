@@ -75,7 +75,6 @@ char *	m_opendup 		(const char *, ...) __A(1);
 char *	m_strdup 		(const char *);
 void	wait_new_free 		(char **);
 char *	malloc_sprintf 		(char **, const char *, ...) __A(2);
-char *	m_sprintf 		(const char *, ...) __A(1);
 int	is_number 		(const char *);
 int	is_real_number 		(const char *);
 char *	my_ctime 		(time_t);

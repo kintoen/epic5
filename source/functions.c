@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.123 2003/07/08 22:36:51 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.124 2003/07/09 05:45:22 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6762,9 +6762,6 @@ BUILT_IN_FUNCTION(function_serverwin, input)
 
 	if (*input)
 		GET_INT_ARG(sval, input);
-
-	if (sval < 0 || sval >= server_list_size())
-		RETURN_STR(NULL);
 
 	winref = get_winref_by_servref(sval);
 	RETURN_INT(winref);
