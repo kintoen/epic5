@@ -1,0 +1,26 @@
+#
+# "altchan" -- a script to implement ALT-<number> key bindings
+# BitchX I guess does this by default.  So here is a compatability script.
+# It does require that your meta key actually work.
+#
+
+bind meta1-1 parse_command to_window 1
+bind meta1-2 parse_command to_window 2
+bind meta1-3 parse_command to_window 3
+bind meta1-4 parse_command to_window 4
+bind meta1-5 parse_command to_window 5
+bind meta1-6 parse_command to_window 6
+bind meta1-7 parse_command to_window 7
+bind meta1-8 parse_command to_window 8
+bind meta1-9 parse_command to_window 9
+bind meta1-0 parse_command to_window 10
+
+alias to_window (window default 0) {
+	if (winnum($window) == -1) {
+		xecho -c -b SWAP: No such window: $window
+	} {
+		window refnum_or_swap $window
+	}
+}
+
+#hop'y2k+1
