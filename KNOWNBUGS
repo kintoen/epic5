@@ -126,4 +126,3 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix some bugs with /dcc send <nick> <non-existant file>
 * Fix my_realpath() for linux users.
 * Fix many errors using realpath() and normalize_filename().
-* Add /xecho -f, which suppress window notify events (%F)
