@@ -1,4 +1,4 @@
-/* $EPIC: crypt.c,v 1.14 2003/07/09 21:10:24 jnelson Exp $ */
+/* $EPIC: crypt.c,v 1.15 2003/07/10 13:08:56 jnelson Exp $ */
 /*
  * crypt.c: handles some encryption of messages stuff. 
  *
@@ -41,6 +41,7 @@
 #include "list.h"
 #include "output.h"
 #include "vars.h"
+#include "words.h"
 
 #define CRYPT_BUFFER_SIZE (IRCD_BUFFER_SIZE - 50)	/* Make this less than
 							 * the transmittable
