@@ -48,6 +48,7 @@ void *	really_new_realloc 	(void **, size_t, char *, int);
 void	malloc_dump		(char *);
 
 char *	check_nickname 		(char *, int);
+char *	dequote			(char *);
 #define next_arg(a,b) next_arg_count((a),(b),1)
 char *	next_arg_count 		(char *, char **, int);
 char *	new_next_arg		(char *, char **);
