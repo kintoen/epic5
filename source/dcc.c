@@ -2007,6 +2007,7 @@ void	dcc_check (fd_set *Readables)
 
 		if (Readables && Client->read != -1 && FD_ISSET(Client->read, Readables))
 		{
+			FD_CLR(Client->read, Readables);	/* No more! */
 			previous_server = from_server;
 			from_server = -1;
 			message_from(NULL, LOG_DCC);
