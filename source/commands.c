@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.52 2003/01/13 17:42:00 crazyed Exp $ */
+/* $EPIC: commands.c,v 1.53 2003/01/26 03:25:38 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -2454,9 +2454,17 @@ BUILT_IN_COMMAND(shift_cmd)
 BUILT_IN_COMMAND(sleepcmd)
 {
 	char	*arg;
+	Timeval	pause;
+	float	nms;
+	time_t	sec;
 
 	if ((arg = next_arg(args, &args)) != NULL)
-		sleep(my_atol(arg));
+	{
+		nms = atof(arg);
+		pause.tv_sec = sec = (int)nms;
+		pause.tv_usec = (nms-sec) * 1000000;
+		select(0, NULL, NULL, NULL, &pause);
+	}
 	else
 		say("Usage: SLEEP <seconds>");
 }
