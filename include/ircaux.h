@@ -212,4 +212,21 @@ extern	int	inbound_line_mangler;
 extern	int	logfile_line_mangler;
 size_t	mangle_line		(char *, int, size_t);
 
+struct BucketItem {
+	const char *name;
+	void *stuff;
+};
+typedef struct BucketItem BucketItem;
+
+struct Bucket {
+	int numitems;
+	int max;
+	BucketItem *list;
+};
+typedef struct Bucket Bucket;
+
+	Bucket *new_bucket (void);
+	void	free_bucket (Bucket **);
+	void	add_to_bucket (Bucket *, const char *, void *);
+
 #endif /* _IRCAUX_H_ */

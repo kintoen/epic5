@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.171 2004/06/28 23:48:15 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.172 2004/07/23 00:49:46 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6257,7 +6257,7 @@ BUILT_IN_FUNCTION(function_getset, input)
 BUILT_IN_FUNCTION(function_builtin, input)
 {
 	char *(*efunc) (void) = NULL;
-	void (*sfunc) (const void *) = NULL;
+	IrcVariable *sfunc;
 
 	get_var_alias(input, &efunc, &sfunc);
 	if (efunc == NULL)
