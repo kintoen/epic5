@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.64 2004/08/15 03:28:23 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.65 2004/10/01 20:37:30 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -589,10 +589,15 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 		xwhoreply(from_server, NULL, comm, ArgList);
 		goto END;
 
+	/* XXX Yea yea, these are out of order. so shoot me. */
+	case 346:		/* #define RPL_INVITELIST (+I for erf) */
+	case 348:		/* #define RPL_EXCEPTLIST (+e for erf) */
 	case 367:		/* #define RPL_BANLIST */
 		number_of_bans++;
 		break;
 
+	case 347:		/* #define END_OF_INVITELIST */
+	case 349:		/* #define END_OF_EXCEPTLIST */
 	case 368:		/* #define END_OF_BANLIST */
 	{
 		const char	*channel;
@@ -1397,7 +1402,9 @@ DISPLAY:
 		break;
 	}
 
-	case 367:
+	case 346:		/* +I on erf */
+	case 348:		/* +e on erf */
+	case 367:		/* +b */
 	{
 		const char	*channel, *ban, *perp, *when_str;
 		time_t	howlong;
@@ -1537,6 +1544,8 @@ END:
 	 */
 	switch (numeric)
 	{
+	case 347:		/* #define END_OF_INVITELIST */
+	case 349:		/* #define END_OF_EXCEPTLIST */
 	case 368:
 		number_of_bans = 0;
 		break;
