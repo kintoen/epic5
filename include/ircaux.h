@@ -205,6 +205,7 @@ int	ip_bindery		(int family, u_short port, SS *storage);
 int	client_bind		(SA *, socklen_t);
 int	client_connect		(SA *, socklen_t, SA *, socklen_t);
 int	connectory		(int, const char *, u_short);
+char *	inet_ntohn		(SA *, char *, int);
 
 extern	unsigned char isspace_table[256];
 #define my_isspace(x) isspace_table[(unsigned)(unsigned char)(x)]
