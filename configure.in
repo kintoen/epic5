@@ -80,7 +80,7 @@ dnl ----------------------------------------------------------
 dnl   Where does this belong?
 AC_MSG_CHECKING(which multiplexer function to use)
 AC_ARG_WITH(multiplex,
-[  --with-multiplex[=TYPE]   Multiplexer type (TYPE=select,poll,kqueue,pthread)
+[  --with-multiplex[=TYPE]   Multiplexer type (TYPE=select,poll,freebsd-kqueue,pthread)
 ],[
 	if test "x$withval" = "x"; then
 		with_multiplex="select"
@@ -88,7 +88,7 @@ AC_ARG_WITH(multiplex,
 		with_multiplex="select"
 	elif test "x$withval" = "xpoll"; then
 		with_multiplex="poll"
-	elif test "x$withval" = "xkqueue"; then
+	elif test "x$withval" = "xfreebsd-kqueue"; then
 		with_multiplex="kqueue"
 	elif test "x$withval" = "xpthread"; then
 		with_multiplex="pthread_create"
@@ -108,7 +108,7 @@ AC_CHECK_FUNC($with_multiplex, [
 		AC_DEFINE(USE_POLL)
 		threading=0
 	elif test "x$with_multiplex" = "xkqueue" ; then
-		AC_DEFINE(USE_KQUEUE)
+		AC_DEFINE(USE_FREEBSD_KQUEUE)
 		threading=0
 	elif test "x$with_multiplex" = "xpthread_create" ; then
 		AC_DEFINE(USE_PTHREAD)
