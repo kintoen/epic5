@@ -125,7 +125,7 @@ installepic installirc: epic installdirs test
 			$(MV) $(IP)$(EPIC_LINK) $(IP)$(EPIC_OLD); \
 		fi; \
 		$(RM) $(IP)$(EPIC_LINK); \
-		ln -s $(IP)$(EPIC) $(IP)$(EPIC_LINK); \
+		ln -s $(epic)-$(VERSION) $(IP)$(EPIC_LINK); \
 	fi
 
 #
