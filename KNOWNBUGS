@@ -115,3 +115,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Updates from nsx and howl for their scripts
 * Add 'urlgrab' script contributed by wc.
 * Fix /WHO arg handling.  The old code was crap and wouldn't do /who -oper
+* Fix \\ handling after * and %.  This is probably still broken....
