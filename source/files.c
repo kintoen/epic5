@@ -1,4 +1,4 @@
-/* $EPIC: files.c,v 1.13 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: files.c,v 1.14 2002/10/18 21:10:22 jnelson Exp $ */
 /*
  * files.c -- allows you to read/write files. Wow.
  *
@@ -107,7 +107,6 @@ int open_file_for_read (char *filename)
 	char *dummy_filename = (char *) 0;
 	FILE *file;
 
-	/* XXXX - this looks like a memory leak */
 	malloc_strcpy(&dummy_filename, filename);
 	file = uzfopen(&dummy_filename, ".", 1);
 	new_free(&dummy_filename);
