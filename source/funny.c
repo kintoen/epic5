@@ -324,7 +324,7 @@ void	funny_mode (char *from, char **ArgList)
 {
 	char	*mode, *channel;
 
-	if (!ArgList[0]) 
+	if (!ArgList[0] || !ArgList[1])
 		return;
 
 	channel = ArgList[0];
