@@ -885,6 +885,15 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 	{
 		char *reason;
 
+		/* ircnet has a different 477 numeric. */
+		if (comm == 477 && ArgList[0] && *ArgList[0] == '+')
+		{
+			PasteArgs(ArgList, 0);
+			if (do_hook(current_numeric, "%s %s", from, ArgList[0]))
+				display_msg(from, ArgList);
+			break;
+		}
+
 		if (ArgList[0])
 			cant_join_channel(ArgList[0], from_server);
 
