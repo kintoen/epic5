@@ -1126,28 +1126,6 @@ char *	m_strcat_ues (char **dest, char *src, int unescape)
 	return *dest;
 }
 
-
-/*
- * scanstr: looks for an occurrence of str in source.  If not found, returns
- * 0.  If it is found, returns the position in source (1 being the first
- * position).  Not the best way to handle this, but what the hell 
- */
-int	scanstr (char *str, char *source)
-{
-	int	i,
-		max,
-		len;
-
-	len = strlen(str);
-	max = strlen(source) - len;
-	for (i = 0; i <= max; i++, source++)
-	{
-		if (!my_strnicmp(source, str, len))
-			return (i + 1);
-	}
-	return (0);
-}
-
 /* expand_twiddle: expands ~ in pathnames. */
 char *	expand_twiddle (char *str)
 {
