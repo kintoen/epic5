@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.41 2003/03/17 19:39:39 crazyed Exp $ */
+/* $EPIC: screen.c,v 1.42 2003/03/21 00:36:56 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -809,7 +809,7 @@ u_char *	normalize_string (const u_char *str, int logical)
 	{
 	    if (pos > maxpos)
 	    {
-		maxpos += 19; /* Extend 192 chars at a time */
+		maxpos += 192; /* Extend 192 chars at a time */
 		RESIZE(output, unsigned char, maxpos + 192);
 	    }
 
