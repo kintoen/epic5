@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.79 2004/03/19 04:38:19 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.80 2004/04/30 18:34:29 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -2159,7 +2159,7 @@ void 	add_to_screen (const unsigned char *buffer)
 		while (traverse_all_windows(&tmp))
 		{
 		    /* Must be for our server */
-		    if (tmp->server != from_server)
+		    if (who_level != LEVEL_DCC && (tmp->server != from_server))
 			continue;
 
 		    /* Must be on the nick list */
