@@ -1,4 +1,4 @@
-/* $EPIC: output.c,v 1.14 2005/01/13 16:06:06 jnelson Exp $ */
+/* $EPIC: output.c,v 1.15 2005/03/03 02:10:40 jnelson Exp $ */
 /*
  * output.c: handles a variety of tasks dealing with the output from the irc
  * program 
@@ -353,7 +353,7 @@ static void 	vsyserr (const char *format, va_list args)
 			else
 			    strlcpy(putbuf, str, sizeof putbuf);
 
-			strlcat(putbuf, " ERROR -- ", sizeof putbuf);
+			strlcat(putbuf, " INFO -- ", sizeof putbuf);
 		}
 
 		vsnprintf(putbuf + strlen(putbuf), 

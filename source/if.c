@@ -1,4 +1,4 @@
-/* $EPIC: if.c,v 1.30 2004/04/13 00:19:48 jnelson Exp $ */
+/* $EPIC: if.c,v 1.31 2004/06/28 23:48:15 jnelson Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -412,8 +412,7 @@ BUILT_IN_COMMAND(foreach)
 }
 
 /*
- * FE:  Written by Jeremy Nelson (jnelson@acronet.net)
- * When you need to iteratively loop rather than recursively loop.
+ * FE:  When you need to iteratively loop rather than recursively loop.
  */
 BUILT_IN_COMMAND(fe)
 {

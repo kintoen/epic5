@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.28 2004/08/11 23:58:39 jnelson Exp $ */
+/* $EPIC: notify.c,v 1.29 2005/01/06 23:54:13 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -36,8 +36,8 @@
 
 /*
  * Revamped by lynX - Dec '91
- * Expanded to allow notify on every server by hop, Feb 1996.
- * Mostly rewritten by jfn (esl), Dec 1997.
+ * Expanded to allow notify on every server in Feb 1996.
+ * Mostly rewritten in Dec 1997.
  */
 
 #define NEED_SERVER_LIST
