@@ -22,6 +22,7 @@ struct ScreenStru;
 	void	say 			(const char *, ...) __A(1);
 	void	yell 			(const char *, ...) __A(1);
 	void    privileged_yell 	(const char *, ...) __A(1);
+	void	syserr 			(const char *, ...) __A(1);
 
 	void	error			(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);
@@ -29,4 +30,5 @@ struct ScreenStru;
 	BUILT_IN_KEYBINDING(refresh_screen);
 	int	init_screen 		(void);
 	void   	file_put_it 		(FILE *fp, const char *format, ...);
+
 #endif /* _OUTPUT_H_ */

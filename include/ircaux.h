@@ -144,7 +144,6 @@ char *	urlencode		(const char *);
 char *	urldecode		(char *, size_t *);
 char *	enquote_it		(char *str, size_t len);
 char *	dequote_it		(char *str, size_t *len);
-const char *	my_strerror	(int, int);
 int	slurp_file		(char **buffer, char *filename);
 char *	endstr			(char *);
 ssize_t searchbuf		(const unsigned char *, size_t, size_t, int);
