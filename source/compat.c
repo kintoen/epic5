@@ -1,4 +1,4 @@
-/* $EPIC: compat.c,v 1.16 2003/04/24 21:49:25 jnelson Exp $ */
+/* $EPIC: compat.c,v 1.17 2003/05/02 20:22:26 jnelson Exp $ */
 /*
  * Everything that im not directly responsible for I put in here.  Almost
  * all of this stuff is either borrowed from somewhere else (for you poor
@@ -48,6 +48,7 @@
 
 #include "defs.h"
 #include "irc_std.h"
+#include "ircaux.h"
 
 /*****************************************************************************/
 /* ------------------------------- start of tparm.c ------------------------ */

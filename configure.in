@@ -672,6 +672,24 @@ AC_ARG_WITH(bc,
    AC_MSG_RESULT(no)
 )
 
+AC_MSG_CHECKING(whether to turn on FreeBSD WARNS-like compiler warnings)
+AC_ARG_WITH(warns,
+[  --with-warns          You wish to use FreeBSD WARNS-like compiler warnings.],
+[   case "$withval" in
+   no)
+        AC_MSG_RESULT(no);
+        ;;
+   *)
+        if test "x$withval" != "xyes" ; then
+                CFLAGS="$CFLAGS $withval"
+        fi
+
+        CFLAGS="$CFLAGS -W -Wall -Wstrict-prototypes -Wmissing-prototypes -Wuninitialized -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wshadow -Wformat-extra-args -Wno-unused -ansi -fno-builtin"
+        AC_MSG_RESULT(yes)
+        ;;
+   esac ],
+   AC_MSG_RESULT(no)
+)
 
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
