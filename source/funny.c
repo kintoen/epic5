@@ -377,9 +377,6 @@ void	update_user_mode (char *modes)
 			size_t 	idx;
 			int 	c = *modes;
 
-			if (c == 'O')
-				c = 'o';		/* XXXXX */
-
 			idx = ccspan(p_umodes, c);
 			if (p_umodes[idx] == 0)
 				yell("WARNING: Invalid user mode %c referenced on server %d",
@@ -387,7 +384,7 @@ void	update_user_mode (char *modes)
 			else
 				set_server_flag(from_server, idx, onoff);
 
-			if (c == 'o')
+			if (c == 'O' || c == 'o')
 				set_server_operator(from_server, onoff);
 		}
 	}
