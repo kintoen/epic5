@@ -1,4 +1,4 @@
-/* $EPIC: help.c,v 1.11 2003/10/10 06:09:01 jnelson Exp $ */
+/* $EPIC: help.c,v 1.12 2004/02/20 23:40:23 jnelson Exp $ */
 /*
  * help.c: handles the help stuff for irc 
  *
@@ -690,7 +690,7 @@ BUILT_IN_COMMAND(help)
 
 	if (!help_path || !*help_path || access(help_path, R_OK | X_OK))
 	{
-		help_put_it(no_help, "*** HELP_PATH variable not set or set to an invalid path");
+		help_put_it(no_help, "*** HELP_PATH variable not set or set to an invalid directory");
 		return;
 	}
 

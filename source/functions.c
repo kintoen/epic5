@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.152 2004/01/25 19:03:09 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.153 2004/02/20 23:40:22 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -3228,10 +3228,12 @@ BUILT_IN_FUNCTION(function_rename, words)
 	Filename expanded2;
 
 	GET_STR_ARG(filename1, words)
-	normalize_filename(filename1, expanded1);
+	if (normalize_filename(filename1, expanded1))
+		RETURN_INT(-1);
 
 	GET_STR_ARG(filename2, words)
-	normalize_filename(filename2, expanded2);
+	if (normalize_filename(filename2, expanded2))
+		RETURN_INT(-1);
 
 	RETURN_INT(rename(expanded1, expanded2));
 }
@@ -3932,7 +3934,8 @@ BUILT_IN_FUNCTION(function_mkdir, words)
 		char *fn = new_next_arg(words, &words);
 		if (!fn || !*fn)
 			fn = words, words = NULL;
-		normalize_filename(fn, expanded);
+		if (normalize_filename(fn, expanded))
+			failure++;
 		if (mkdir(expanded, 0777))
 			failure++;
 	}

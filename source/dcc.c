@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.90 2004/02/20 19:48:11 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.91 2004/02/20 23:40:22 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -1449,7 +1449,7 @@ static	void	dcc_getfile (char *args, int resume)
 
 		if (*pathname && normalize_filename(pathname, fullname))
 		{
-			say("%s is not a valid directory", fullname);
+			say("%s contains an invalid directory", pathname);
 			return;
 		}
 
@@ -1873,7 +1873,7 @@ static	void	dcc_filesend (char *args)
 		 */
                 if (normalize_filename(this_arg, fullname))
                 {
-                        say("%s is not a valid directory", fullname);
+                        say("%s contains an invalid directory", this_arg);
                         continue;
                 }
 #else
@@ -3479,7 +3479,7 @@ static	void	dcc_getfile_resume_start (const char *nick, char *filename, char *po
 
 	if (normalize_filename(pathname, fullname))
 	{
-		say("%s is not a valid directory", fullname);
+		say("%s contains an invalid directory", pathname);
 		Client->flags |= DCC_DELETE;
 		return;
 	}
