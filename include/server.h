@@ -46,6 +46,7 @@ typedef	struct
 	char	*nickname;		/* Authoritative nickname for us */
 	char	*s_nickname;		/* last NICK command sent */
 	char	*d_nickname;		/* Default nickname to use */
+	char	*unique_id;		/* Unique ID (for ircnet) */
 	size_t	fudge_factor;		/* How much s_nickname's fudged */
 	int	nickname_pending;	/* Is a NICK command pending? */
 	int	resetting_nickname;	/* Is a nickname reset in progress? */
@@ -339,6 +340,8 @@ const char *    get_server_quit_message		(int);
 const char *	get_server_cookie         	(int);
 	void	set_server_last_notify_nick	(int, const char *);
 const char *	get_server_last_notify_nick    	(int);
+	void	set_server_unique_id		(int, const char *);
+const char *	get_server_unique_id    	(int);
 
 	void	set_server_funny_min         	(int, int);
 	int	get_server_funny_min         	(int);

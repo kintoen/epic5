@@ -48,12 +48,8 @@ EPIC is complete:  EPIC supplies over 100 various functions and commands
 which allow you to do things very quickly that required very large or slow 
 scripts in the past.
 
-EPIC uses ANSI function declarations.  Most current versions of the stock 
-client do have full prototyping for all functions, which has the same net 
-effect as the work we have done.  We, however, chose to move all our function 
-headers to the ANSI style, rather than relying on K&R with function 
-prototypes.  We provide a function declaration in a header file for every
-extern function.
+EPIC is written in ISO C.  The standard client is written in K&R C.  This
+has helped us in porting it to systems without a K&R compiler.
 
 EPIC is getting smaller and faster.  Changes are continually underway
 to provide a faster client with more functionality while using less CPU 

@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.82 2004/03/25 04:26:59 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.83 2004/08/07 18:33:35 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -679,6 +679,7 @@ BUILT_IN_COMMAND(e_channel)
 BUILT_IN_COMMAND(e_nick)
 {
 	char	*nick;
+	const char *id;
 
 	if (!(nick = next_arg(args, &args)))
 	{
@@ -688,10 +689,14 @@ BUILT_IN_COMMAND(e_nick)
 		return;
 	}
 
-	if (!(nick = check_nickname(nick, 1)))
+	id = get_server_unique_id(from_server);
+	if (id == NULL || (my_stricmp(nick, id) && strcmp(nick, "0")))
 	{
+	    if (!(nick = check_nickname(nick, 1)))
+	    {
 		say("The nickname you specified is not a legal nickname.");
 		return;
+	    }
 	}
 
 	if (from_server == NOSERV)

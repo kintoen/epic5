@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.109 2004/01/24 15:00:53 crazyed Exp $ */
+/* $EPIC: server.c,v 1.110 2004/08/07 18:33:35 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -140,6 +140,7 @@ void 	add_to_server_list (const char *server, int port, const char *password, co
 		s->nickname = (char *) 0;
 		s->s_nickname = (char *) 0;
 		s->d_nickname = (char *) 0;
+		s->unique_id = NULL;
 		s->userhost = (char *) 0;
 		s->registered = 0;
 		s->eof = 0;
@@ -281,6 +282,7 @@ static 	void 	remove_from_server_list (int i, int override)
 	new_free(&s->ison_queue);		/* XXX Aren't these free? */
 	new_free(&s->who_queue);
 	new_free(&s->invite_channel);
+	new_free(&s->unique_id);
 	new_free(&s->last_notify_nick);
 	new_free(&s->joined_nick);
 	new_free(&s->public_nick);
@@ -2311,6 +2313,7 @@ void	change_server_nickname (int refnum, const char *nick)
 {
 	Server *s;
 	char *	n;
+	const char *id;
 
 	if (!(s = get_server(refnum)))
 		return;			/* Uh, no. */
@@ -2318,14 +2321,17 @@ void	change_server_nickname (int refnum, const char *nick)
 	s->resetting_nickname = 0;
 	if (nick)
 	{
-		n = LOCAL_COPY(nick);
-		if ((n = check_nickname(n, 1)) != NULL)
-		{
-		    malloc_strcpy(&s->d_nickname, n);
-		    malloc_strcpy(&s->s_nickname, n);
-		}
-		else
+	    n = LOCAL_COPY(nick);
+
+	    id = get_server_unique_id(refnum);
+            if (id == NULL || (my_stricmp(n, id) && strcmp(n, "0")))
+            {
+                if (!(n = check_nickname(n, 1)))
 			reset_nickname(refnum);
+	    }
+
+	    malloc_strcpy(&s->d_nickname, n);
+	    malloc_strcpy(&s->s_nickname, n);
 	}
 
 	if (s->s_nickname)
@@ -2627,6 +2633,7 @@ IACCESSOR(v, line_length)
 IACCESSOR(v, max_cached_chan_size)
 SACCESSOR(chan, invite_channel, NULL)
 SACCESSOR(nick, last_notify_nick, NULL)
+SACCESSOR(id, unique_id, NULL)
 SACCESSOR(nick, joined_nick, NULL)
 SACCESSOR(nick, public_nick, NULL)
 SACCESSOR(nick, recv_nick, NULL)
@@ -3020,6 +3027,9 @@ char 	*serverctl 	(char *input)
 		} else if (!my_strnicmp(listc, "UMODES", len)) {
 			ret = get_possible_umodes(refnum);
 			RETURN_STR(ret);
+		} else if (!my_strnicmp(listc, "UNIQUE_ID", len)) {
+			ret = get_server_unique_id(refnum);
+			RETURN_STR(ret);
 		} else if (!my_strnicmp(listc, "USERHOST", len)) {
 			ret = get_server_userhost(refnum);
 			RETURN_STR(ret);
@@ -3096,6 +3106,8 @@ char 	*serverctl 	(char *input)
 			RETURN_EMPTY;		/* Read only for now */
 		} else if (!my_strnicmp(listc, "UMODES", len)) {
 			set_possible_umodes (refnum, input);
+		} else if (!my_strnicmp(listc, "UNIQUE_ID", len)) {
+			set_server_unique_id(refnum, input);
 		} else if (!my_strnicmp(listc, "USERHOST", len)) {
 			set_server_userhost(refnum, input);
 		} else if (!my_strnicmp(listc, "VERSION", len)) {

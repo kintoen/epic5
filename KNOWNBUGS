@@ -131,4 +131,6 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix bug with not redrawing help window for Zlonix
 * Fix bug with not being able to bind character 255 for Zlonix
 * Fix bug with indent > screen / 3 truncating to 0 for BlackJac
-
+* Implement "unique id" support for ircnet (042 numeric)
+* You can /nick 0 or /nick <unique_id>
+* You can use $servertctl([SET|GET] <refnum> UNIQUE_ID)
