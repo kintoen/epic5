@@ -10,8 +10,8 @@
 # define __translat_h_
 
 extern	void	set_translation (char *);
-extern	unsigned char	transToClient[256];
-extern	unsigned char	transFromClient[256];
-extern	char	translation;
+extern	int	translation;
+extern	void	translate_from_server (unsigned char *);
+extern	void	translate_to_server (unsigned char *);
 
 #endif /* __translat_h_ */
