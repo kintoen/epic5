@@ -3036,12 +3036,12 @@ size_t	mangle_line	(char *incoming, int how, size_t how_much)
 
 	if (stuff & MANGLE_ANSI_CODES)
 	{
-		/* strip_ansi can expand up to three times */
+		/* normalize_string can expand up to three times */
 		char *output;
 
-		strip_ansi_never_xlate = 1;	/* XXXXX */
-		output = strip_ansi(incoming);
-		strip_ansi_never_xlate = 0;	/* XXXXX */
+		normalize_never_xlate = 1;	/* XXXXX */
+		output = normalize_string(incoming, 1);	/* Should be ok */
+		normalize_never_xlate = 0;	/* XXXXX */
 		if (strlcpy(incoming, output, how_much) > how_much)
 			say("Mangle_line truncating results. #1 -- "
 				"Email jnelson@acronet.net [%d] [%d]",
