@@ -305,8 +305,14 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		break;
 	}
 
+#if 0
+	/* 
+	 * At the specific request of Kev, don't just eat this, but
+	 * treat it as Just Another Numeric.
+	 */
 	case 316:		/* supported, but deprecated */
 		break;
+#endif
 
 	/* XXX Doesn't belong here */
 	case 317:		/* #define RPL_WHOISIDLE        317 */
@@ -403,7 +409,12 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		funny_mode(from, ArgList);
 		break;
 
-	/* XXX Doesn't belong here */
+#if 0
+	/* 
+	 * At the specific request of Kev, I am suspending support 
+	 * for this aircd feature, as it has been re-used by one of the
+	 * big four.  XXX - It didn't belong here anyways.
+	 */
 	case 340:		/* #define RPL_INVITING_OTHER	340 */
 	{
 		if (ArgList[2])
@@ -414,6 +425,7 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		}
 		break;
 	}
+#endif
 
 	/* XXX Doesn't belong here */
 	case 341:		/* #define RPL_INVITING         341 */
