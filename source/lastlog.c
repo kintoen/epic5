@@ -19,6 +19,7 @@ static	char	rcsid[] = "@(#)$Id$";
 #include "vars.h"
 #include "ircaux.h"
 #include "output.h"
+#include "numbers.h"
 #include <regex.h>
 
 static int	show_lastlog (Lastlog **l, int *skip, int *number, int, char *match, regex_t *reg, int *max);
@@ -553,7 +554,7 @@ BUILT_IN_COMMAND(lastlog)
 
 	/* Iterate over the lastlog here */
 	if (header)
-		file_put_it(outfp, "%s Lastlog:", get_string_var(BANNER_VAR));
+		file_put_it(outfp, "%s Lastlog:", numeric_banner());
 
 	/*
 	 * Ugh.  This is way too complicated for its own good.  Let's
@@ -676,7 +677,7 @@ BUILT_IN_COMMAND(lastlog)
 	    }
 	}
 	if (header)
-		file_put_it(outfp, "%s End of Lastlog", get_string_var(BANNER_VAR));
+		file_put_it(outfp, "%s End of Lastlog", numeric_banner());
 bail:
 	if (outfp)
 		fclose(outfp);
