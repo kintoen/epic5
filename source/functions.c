@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.112 2003/04/07 18:48:53 crazyed Exp $ */
+/* $EPIC: functions.c,v 1.113 2003/04/24 21:49:25 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -5839,7 +5839,7 @@ BUILT_IN_FUNCTION(function_prefix, input)
 		if (my_strnicmp(words[0], words[word_index], len_index))
 		{
 			retval = new_malloc(len_index + 1);
-			strlcpy(retval, words[0], len_index + 1);
+			strlcpy(retval, words[0], len_index);
 			new_free((char **)&words);
 			return retval;
 		}
