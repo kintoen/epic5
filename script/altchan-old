@@ -1,6 +1,6 @@
 #
 # "altchan" -- a script to implement ALT-<number> key bindings
-# BitchX I guess does this by default.  So here is a compatability script.
+# BitchX I guess does this by default.  So here is a compatibility script.
 # It does require that your meta key actually work.
 #
 

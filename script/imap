@@ -57,7 +57,7 @@ alias gomap {
 }
 
 # used internally to build the actual map data list.  Takes no args.
-# This also constucts a list of hostmasks to be used by map.cleanmasks
+# This also constructs a list of hostmasks to be used by map.cleanmasks
 alias map.buildlist 
 {
 	^on ^364 * {
@@ -92,7 +92,7 @@ alias map.buildlist
 	//links $*
 }
 
-# called after the initial list is constucted.  no args.
+# called after the initial list is constructed.  no args.
 # This go through the main list of hubs and strips the names down to 
 # the hostmask so..  hub goren.u.washington.edu becomes *.washington.edu
 # the mask are determined from the servername field so this step cannot
