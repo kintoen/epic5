@@ -382,8 +382,10 @@ void	update_user_mode (char *modes)
 
 			idx = ccspan(p_umodes, c);
 			if (p_umodes[idx] == 0)
-				panic("Invalid user mode referenced");
-			set_server_flag(from_server, idx, onoff);
+				yell("WARNING: Invalid user mode %c referenced on server %d",
+						*modes, last_server);
+			else
+				set_server_flag(from_server, idx, onoff);
 
 			if (c == 'o')
 				set_server_operator(from_server, onoff);
