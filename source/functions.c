@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.107 2003/03/17 19:39:39 crazyed Exp $ */
+/* $EPIC: functions.c,v 1.108 2003/03/21 07:46:58 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6146,7 +6146,7 @@ BUILT_IN_FUNCTION(function_notifywindows, input)
 
 BUILT_IN_FUNCTION(function_loadinfo, input)
 {
-	return m_sprintf("%d %s", current_line(), current_filename());
+	return m_sprintf("%d %s %s", current_line(), current_filename(), current_loader());
 }
 
 BUILT_IN_FUNCTION(function_wordtoindex, input)
