@@ -14,6 +14,7 @@
 #define __output_h__
 
 extern	FILE	*irclog_fp;
+struct ScreenStru;
 
 	BUILT_IN_COMMAND(extern_write);
 	void	put_echo		(const unsigned char *);
@@ -22,6 +23,7 @@ extern	FILE	*irclog_fp;
 	void	yell 			(const char *, ...) __A(1);
 	void	error			(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);
+	void	refresh_a_screen 	(struct ScreenStru *);
 	void	refresh_screen 		(char, char *);
 	int	init_screen 		(void);
 
