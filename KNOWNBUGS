@@ -2,6 +2,7 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
+* /xecho -l does not seem to be overriding who_from (!)
 <none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]

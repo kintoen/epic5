@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.92 2003/12/13 17:25:58 jnelson Exp $ */
+/* $EPIC: window.c,v 1.93 2004/01/18 15:33:55 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -5637,6 +5637,8 @@ char 	*windowctl 	(char *input)
 		RETURN_INT(w->last_server);
 	    } else if (!my_strnicmp(listc, "PRIORITY", len)) {
 		RETURN_INT(w->priority);
+	    } else if (!my_strnicmp(listc, "VISIBLE", len)) {
+		RETURN_INT(w->screen ? 1 : 0);
 	    } else if (!my_strnicmp(listc, "TOP", len)) {
 		RETURN_INT(w->top);
 	    } else if (!my_strnicmp(listc, "BOTTOM", len)) {
