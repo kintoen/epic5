@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.156 2005/03/03 02:10:40 jnelson Exp $ */
+/* $EPIC: server.c,v 1.157 2005/03/04 00:57:45 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -893,7 +893,10 @@ something_broke:
 		    *(SA *)&s->remote_sockname = *(SA *)&name;
 
 		    if (get_server_try_ssl(i) == TRUE)
+		    {
+			startup_ssl(des, des);
 			new_open(des, do_server, NEWIO_SSL_READ);
+		    }
 		    else
 			new_open(des, do_server, NEWIO_RECV);
 

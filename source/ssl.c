@@ -1,4 +1,4 @@
-/* $EPIC: ssl.c,v 1.12 2005/02/28 14:23:30 jnelson Exp $ */
+/* $EPIC: ssl.c,v 1.13 2005/03/04 00:57:45 jnelson Exp $ */
 /*
  * ssl.c: SSL connection functions
  *
@@ -340,9 +340,9 @@ static void	ssl_setup_locking (void)
 # endif
 #else
 
-int	startup_ssl (int vfd)
+int	startup_ssl (int vfd, int channel)
 {
-	panic("startup_ssl(%d) called on non-ssl client", vfd);
+	return;
 }
 
 int	shutdown_ssl (int vfd)
