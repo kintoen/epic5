@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.94 2004/02/16 21:46:27 jnelson Exp $ */
+/* $EPIC: window.c,v 1.95 2004/05/28 15:32:33 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -5278,10 +5278,10 @@ void 	unstop_all_windows (char dumb, char *dumber)
 /* toggle_stop_screen: the BIND function TOGGLE_STOP_SCREEN */
 void 	toggle_stop_screen (char unused, char *not_used)
 {
-	char toggle[7];
+	char toggle[7], *p = toggle;
 
 	strlcpy(toggle, "TOGGLE", sizeof toggle);
-	window_hold_mode(current_window, (char **)&toggle);
+	window_hold_mode(current_window, (char **)&p);
 	update_all_windows();
 }
 
