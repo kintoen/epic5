@@ -1,4 +1,4 @@
-/* $EPIC$ */
+/* $EPIC: if.c,v 1.12 2002/07/17 22:52:52 jnelson Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -517,7 +517,7 @@ BUILT_IN_COMMAND(fe)
 		if (mapvar)
 			for ( y = 0 ; y < ind ; y++ ) {
 				char *foo = get_variable(var[y]);
-				m_sc3cat(&map, mapsep, foo, &mapclue);
+				m_sc3cat_s(&map, mapsep, foo, &mapclue);
 				new_free(&foo);
 			}
 
