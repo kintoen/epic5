@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.62 2003/11/14 21:23:41 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.63 2003/11/15 22:15:59 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -2429,7 +2429,7 @@ static int	ok_to_output (Window *window)
 	 */
 	if (window->scrollback_top_of_display)
 	{
-	    if (window->scrolling_distance_from_display_ip >=
+	    if (window->scrollback_distance_from_display_ip >
 				window->display_size)
 		return 0;	/* Definitely no output here */
 	}
