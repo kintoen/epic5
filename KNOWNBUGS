@@ -29,3 +29,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix color bleeding with color changes in middle of long words that wrap.
 * Fix $logctl().
 * Also fix a bug with % followed by \ i wildcard patterns.
+* Change mangling so ANSI turns off ALL_OFF unless all attributes are on
