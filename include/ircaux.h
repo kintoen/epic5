@@ -70,17 +70,6 @@ char *	rsindex 		(char *, char *, char *, int);
 int	path_search 		(const char *, const char *, Filename);
 char *	double_quote 		(const char *, const char *, char *);
 char *	malloc_strcat_c		(char **, const char *, size_t *);
-#if 0
-char *	malloc_str2cpy		(char **, const char *, const char *);
-char *	malloc_strcpy 		(char **, const char *);
-char *	m_sc3cat_s 		(char **, const char *, const char *, size_t *clue);
-char *	m_sc3cat 		(char **, const char *, const char *, size_t *clue);
-char *	m_c3cat			(char **, const char *, const char *, size_t *clue);
-char *	m_ec3cat 		(char **, const char *, const char *, size_t *clue);
-char *	m_2dup 			(const char *, const char *);
-char *	m_3dup 			(const char *, const char *, const char *);
-char *	m_opendup 		(const char *, ...) __A(1);
-#endif
 void	wait_new_free 		(char **);
 char *	malloc_sprintf 		(char **, const char *, ...) __A(2);
 int	is_number 		(const char *);
@@ -175,6 +164,7 @@ char *	enquote_it		(char *str, size_t len);
 char *	dequote_it		(char *str, size_t *len);
 const char *	my_strerror	(int, int);
 int	slurp_file		(char **buffer, char *filename);
+char *	endstr			(char *);
 
 size_t	strlcpy_c		(char *, const char *, size_t, size_t *);
 size_t	strlcat_c		(char *, const char *, size_t, size_t *);

@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.47 2003/12/15 05:41:02 jnelson Exp $ */
+/* $EPIC: names.c,v 1.48 2003/12/16 23:25:45 jnelson Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -1119,7 +1119,7 @@ const char 	*get_channel_key (const char *channel, int server)
 }
 
 
-char	*get_channel_mode (const char *channel, int server)
+const char	*get_channel_mode (const char *channel, int server)
 {
 	Channel *tmp = find_channel(channel, server);
 

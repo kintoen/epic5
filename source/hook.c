@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.28 2003/12/15 23:23:02 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.29 2003/12/16 23:25:45 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -1220,7 +1220,7 @@ BUILT_IN_COMMAND(oncmd)
 			 * to take any action for it.
 			 */
 			if (not)
-				args = empty_string;
+				args = endstr(args);
 
 
 			/*
