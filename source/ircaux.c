@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.121 2004/10/13 23:25:55 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.122 2004/10/30 14:56:16 crazyed Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -3056,6 +3056,18 @@ size_t	mangle_line	(char *incoming, int how, size_t how_much)
 				"Email jnelson@acronet.net [%d] [%d]",
 				strlen(output), how_much);
 		new_free(&output);
+
+		/* 
+		 * Turn off ALL_OFF if ANSI is used, unless all of the
+		 * "ATTRIBUTES" are being stripped.
+		 */
+#define ATTRIBUTES (STRIP_COLOR | STRIP_REVERSE | STRIP_UNDERLINE | \
+			STRIP_BOLD | STRIP_BLINK | STRIP_ALT_CHAR)
+		if (stuff & STRIP_ALL_OFF)
+		{
+			if ((stuff & ATTRIBUTES) != ATTRIBUTES)
+				stuff &= ~(STRIP_ALL_OFF);
+		}
 	}
 
 	/*
