@@ -3228,7 +3228,7 @@ size_t	mangle_line	(char *incoming, int how, size_t how_much)
 		if (strlcpy(incoming, output, how_much) > how_much)
 			say("Mangle_line truncating results. #1 -- "
 				"Email jnelson@acronet.net [%d] [%d]",
-				strlen(buffer), how_much);
+				strlen(output), how_much);
 		new_free(&output);
 	}
 
