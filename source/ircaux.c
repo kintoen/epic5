@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.48 2002/07/30 16:12:59 crazyed Exp $ */
+/* $EPIC: ircaux.c,v 1.49 2002/09/01 18:27:52 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -3833,6 +3833,23 @@ const char *	switch_hostname (const char *new_hostname)
 #endif
 	char	v6_name[1024];
 	int	accept6 = 0;
+
+
+	if (new_hostname == NULL)
+	{
+		new_free(&LocalIPv4Addr);
+#ifdef INET6
+		new_free(&LocalIPv6Addr);
+#endif
+
+		if (LocalHostName)
+			retval = m_sprintf("Virtual Hostname [%s] will no longer be used", LocalHostName);
+		else
+			retval = m_sprintf("Virtual Hostname support is not activated");
+
+		new_free(&LocalHostName);
+		return retval;
+	}
 
 	strcpy(v4_name, "<none>");
 	new_4.sin_family = AF_INET;
