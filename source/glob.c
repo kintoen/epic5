@@ -1,4 +1,4 @@
-/* $EPIC: glob.c,v 1.7 2003/05/09 04:29:52 jnelson Exp $ */
+/* $EPIC: glob.c,v 1.8 2003/07/09 14:43:50 jnelson Exp $ */
 #include "config.h"
 #if defined(NEED_GLOB)
 
@@ -108,6 +108,9 @@
 #define	M_MASK		0xffff
 #define	M_ASCII		0x00ff
 
+#ifdef Char
+#undef Char
+#endif
 typedef unsigned short Char;
 
 #define	CHAR(c)		((Char)((c)&M_ASCII))
