@@ -55,6 +55,9 @@
 #undef AI_V4MAPPED
 #undef AI_DEFAULT
 
+#undef NI_MAXHOST
+#undef NI_MAXSERV
+
 #undef NI_NOFQDN
 #undef NI_NUMERICHOST
 #undef NI_NAMEREQD
