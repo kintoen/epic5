@@ -434,7 +434,7 @@ BUILT_IN_COMMAND(lastlog)
 		int	i;
 		for (i = 0; i < NUMBER_OF_LEVELS; i++)
 		{
-		    if (!my_strnicmp(levels[i], arg+2, len-2));
+		    if (!my_strnicmp(levels[i], arg+2, len-2))
 		    {
 			level_mask &= ~(1 << i);
 			break;
@@ -451,7 +451,7 @@ BUILT_IN_COMMAND(lastlog)
 		int	i;
 		for (i = 0; i < NUMBER_OF_LEVELS; i++)
 		{
-		    if (!my_strnicmp(levels[i], arg+2, len-2));
+		    if (!my_strnicmp(levels[i], arg+1, len-1))
 		    {
 			level_mask |= (1 << i);
 			break;
@@ -533,6 +533,7 @@ BUILT_IN_COMMAND(lastlog)
 		yell("Skip: %d", skip);
 		yell("Number: %d", number);
 		yell("Max: %d", max);
+		yell("Mask: %d", level_mask);
 	}
 
 	/* Iterate over the lastlog here */
