@@ -192,8 +192,8 @@ int 	connect_by_number 	(char *, unsigned short *, int, int);
 char 	*host_to_ip 		(const char *);
 char 	*ip_to_host 		(const char *);
 char 	*one_to_another 	(const char *);
-int	my_accept		(int, struct sockaddr *, int *);
-int	lame_external_resolv	(const char *, struct in_addr *);
+int	my_accept		(int, SA *, int *);
+int	inet_anyton		(const char *, IA *);
 const char *switch_hostname	(const char *);
 
 extern	unsigned char isspace_table[256];
