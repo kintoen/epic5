@@ -1,4 +1,4 @@
-/* $EPIC: status.c,v 1.18 2003/01/23 06:27:22 jnelson Exp $ */
+/* $EPIC: status.c,v 1.19 2003/02/25 23:56:52 crazyed Exp $ */
 /*
  * status.c: handles the status line updating, etc for IRCII 
  *
@@ -561,6 +561,9 @@ int	make_status (Window *window, int must_redraw)
 		 */
 		for (i = 0; i < MAX_FUNCTIONS; i++)
 		{
+			if (window->screen == NULL)
+				return -1;
+
 			if (window->status.line[line].func[i] == NULL)
 				panic("status callback null.  Window [%d], line [%d], function [%d]", window->refnum, line, i);
 			func_value[i] = window->status.line[line].func[i]
