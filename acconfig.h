@@ -281,3 +281,6 @@
 /* Define this if you have struct sockaddr_in6 */
 #undef HAVE_STRUCT_SOCKADDR_IN6
 
+/* Define this if you have getservbyport() */
+#undef HAVE_GETSERVBYPORT
+
