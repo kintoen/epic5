@@ -1628,8 +1628,9 @@ char	*dcc_raw_listen (unsigned short port)
 	}
 
 	Client->want_port = port;
-	if ((Client->socket = ip_bindery(AF_INET, Client->want_port,
-					(SS *)&Client->local_sockaddr)))
+	Client->socket = ip_bindery(AF_INET, Client->want_port, 
+				 &Client->local_sockaddr);
+	if (Client->socket < 0)
 	{
 		Client->flags |= DCC_DELETE; 
 		say("Couldnt establish listening socket: [%d] %s", 
