@@ -1,4 +1,4 @@
-/* $EPIC: alias.c,v 1.69 2005/02/19 04:22:26 jnelson Exp $ */
+/* $EPIC: alias.c,v 1.70 2005/03/04 00:57:44 jnelson Exp $ */
 /*
  * alias.c -- Handles the whole kit and caboodle for aliases.
  *
@@ -930,9 +930,17 @@ char *	print_arglist (ArgList *args)
 	}
 
 	if (args->void_flag)
-	    malloc_strcat_c(&retval, ", void", &cluep);
+	{
+	   if (i > 0)
+	       malloc_strcat_c(&retval, ", ", &cluep);
+	   malloc_strcat_c(&retval, "void", &cluep);
+	}
 	else if (args->dot_flag)
-	    malloc_strcat_c(&retval, ", ...", &cluep);
+	{
+	   if (i > 0)
+	       malloc_strcat_c(&retval, ", ", &cluep);
+	    malloc_strcat_c(&retval, "...", &cluep);
+	}
 
 	return retval;
 }
