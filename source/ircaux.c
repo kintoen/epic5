@@ -2120,7 +2120,11 @@ char *	ftoa (double foo)
 {
 	static char buffer [BIG_BUFFER_SIZE + 1];
 
-	sprintf(buffer, "%.50g", foo);
+	if (get_int_var(FLOATING_POINT_MATH_VAR)) {
+		sprintf(buffer, "%.50g", foo);
+	} else {
+		sprintf(buffer, "%.0f", foo);
+	}
 	return buffer;
 }
 
