@@ -995,7 +995,7 @@ char	*ctcp_quote_it (char *str, int len)
  * convenied, but the returned data may contain nulls!.  The len is modified
  * to contain the size of the data returned. 
  */
-char	*ctcp_unquote_it (char *str, int *len)
+char	*ctcp_unquote_it (char *str, size_t *len)
 {
 	char	*buffer;
 	char	*ptr;
