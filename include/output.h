@@ -26,5 +26,5 @@ struct ScreenStru;
 	void	refresh_a_screen 	(struct ScreenStru *);
 	void	refresh_screen 		(char, char *);
 	int	init_screen 		(void);
-
+	void   	file_put_it 		(FILE *fp, const char *format, ...);
 #endif /* _OUTPUT_H_ */
