@@ -28,3 +28,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix compile warning for alloca on freebsd-current for blackjac. bleh.
 * Fix color bleeding with color changes in middle of long words that wrap.
 * Fix $logctl().
+* Also fix a bug with % followed by \ i wildcard patterns.
