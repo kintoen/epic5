@@ -1,4 +1,4 @@
-/* $EPIC: help.c,v 1.2 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: help.c,v 1.3 2002/12/19 03:22:59 jnelson Exp $ */
 /*
  * help.c: handles the help stuff for irc 
  *
@@ -103,7 +103,7 @@ static	int	use_help_window = 0;
 static	int	show_help (Window *window, char *name)
 {
 	Window	*old_to_window;
-	int	rows = 0;
+	int	rows = -1;
 	char	line[256];
 
 	if (!help_fp)
