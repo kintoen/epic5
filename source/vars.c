@@ -815,34 +815,7 @@ char 	*make_string_var (const char *var_name)
 
 }
 
-/* Written by panasync */
-char	*get_all_sets (void)
-{
-	int	i;
-	char	*ret = NULL;
-	size_t	rclue = 0;
-
-	for (i = 0; irc_variable[i].name; i++)
-		m_sc3cat(&ret, space, irc_variable[i].name, &rclue);
-	return ret;
-}
-
-/* Written by panasync */
-char	*get_set (const char *str)
-{
-	int	i;
-	char	*ret = NULL;
-	size_t	rclue = 0;
-
-	if (!str || !*str)
-		return get_all_sets();
-
-	for (i = 0; irc_variable[i].name; i++)
-		if (wild_match(str, irc_variable[i].name))
-			m_sc3cat(&ret, space, irc_variable[i].name, &rclue);
-
-	return ret ? ret : m_strdup(empty_string);
-}
+GET_FIXED_ARRAY_NAMES_FUNCTION(get_set, irc_variable);
 
 /* returns the size of the character set */
 int 	charset_size (void)
