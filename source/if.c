@@ -1,10 +1,10 @@
-/* $EPIC: if.c,v 1.16 2002/12/19 03:22:59 jnelson Exp $ */
+/* $EPIC: if.c,v 1.17 2003/02/17 23:48:48 crazyed Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
  * Copyright (c) 1991, 1994 Troy Rollo.
  * Copyright (c) 1992-1996 Matthew R. Green.
- * Copyright © 1993, 2002 EPIC Software Labs.
+ * Copyright © 1993, 2003 EPIC Software Labs.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

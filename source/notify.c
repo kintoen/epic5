@@ -1,11 +1,11 @@
-/* $EPIC: notify.c,v 1.13 2002/12/26 16:40:31 jnelson Exp $ */
+/* $EPIC: notify.c,v 1.14 2003/01/26 03:25:38 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
  * Copyright (c) 1990 Michael Sandroff.
  * Copyright (c) 1991, 1992 Troy Rollo.
  * Copyright (c) 1992-1996 Matthew Green.
- * Copyright © 1997, 2002 EPIC Software Labs.
+ * Copyright © 1997, 2003 EPIC Software Labs.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

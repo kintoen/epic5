@@ -1,4 +1,4 @@
-/* $EPIC: newio.c,v 1.13 2003/03/17 19:39:39 crazyed Exp $ */
+/* $EPIC: newio.c,v 1.14 2003/03/23 02:48:33 jnelson Exp $ */
 /*
  * newio.c: This is some handy stuff to deal with file descriptors in a way
  * much like stdio's FILE pointers 
@@ -10,7 +10,7 @@
  * Copyright (c) 1990 Michael Sandroff.
  * Copyright (c) 1991, 1992 Troy Rollo.
  * Copyright (c) 1992-1996 Matthew Green.
- * Copyright © 1997, 2002 EPIC Software Labs.
+ * Copyright © 1997, 2003 EPIC Software Labs.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
