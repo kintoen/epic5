@@ -25,7 +25,7 @@ struct ScreenStru;
 
 	void	error			(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);
-	void	refresh_a_screen 	(struct ScreenStru *);
+	void	redraw_all_screens 	(void);
 	void	refresh_screen 		(char, char *);
 	int	init_screen 		(void);
 	void   	file_put_it 		(FILE *fp, const char *format, ...);
