@@ -41,7 +41,7 @@ __inline__ int	list_match (List *item1, const char *str)
  * struct my_list{ struct my_list *next; char *name; <whatever else you want>}; 
  *
  * The parameters are:  "list" which is a pointer to the head of the list. "add"
- * which is a pre-allocated element to be added to the list.  
+ * which is a pre-allocated element to be added to the list.
  */
 void 	add_to_list (List **list, List *add)
 {

@@ -589,8 +589,8 @@ static int glob3		(	Char *pathbuf,
 
 	*pathend = EOS;
 	errno = 0;
-	    
-	if ((dirp = g_opendir(pathbuf, pglob)) == NULL) 
+
+	if ((dirp = g_opendir(pathbuf, pglob)) == NULL)
 	{
 		/* TODO: don't call for ENOENT or ENOTDIR? */
 		if (pglob->gl_errfunc) 
