@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.29 2003/05/09 04:29:52 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.30 2003/07/09 05:45:22 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -276,8 +276,8 @@ static Timer *clone_timer (Timer *otimer)
 	strlcpy(ntimer->ref, otimer->ref, sizeof ntimer->ref);
 	ntimer->time = otimer->time;
 	ntimer->callback = otimer->callback;
-	ntimer->command = m_strdup(otimer->command);
-	ntimer->subargs = m_strdup(otimer->subargs);
+	ntimer->command = malloc_strdup(otimer->command);
+	ntimer->subargs = malloc_strdup(otimer->subargs);
 	ntimer->prev = NULL;
 	ntimer->next = NULL;
 	ntimer->events = otimer->events;

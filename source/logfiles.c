@@ -1,4 +1,4 @@
-/* $EPIC: logfiles.c,v 1.17 2003/05/09 04:29:52 jnelson Exp $ */
+/* $EPIC: logfiles.c,v 1.18 2003/07/09 05:45:22 jnelson Exp $ */
 /*
  * logfiles.c - General purpose log files
  *
@@ -262,7 +262,7 @@ static Logfile *	logfile_add (Logfile *log, char **args)
                     {
                         say("Added %s to log name list", arg);
                         new_w = (WNickList *)new_malloc(sizeof(WNickList));
-                        new_w->nick = m_strdup(arg);
+                        new_w->nick = malloc_strdup(arg);
                         add_to_list((List **)&(log->targets), (List *)new_w);
                     }
                     else

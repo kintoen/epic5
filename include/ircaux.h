@@ -72,7 +72,6 @@ char *	m_ec3cat 		(char **, const char *, const char *, size_t *clue);
 char *	m_2dup 			(const char *, const char *);
 char *	m_3dup 			(const char *, const char *, const char *);
 char *	m_opendup 		(const char *, ...) __A(1);
-char *	m_strdup 		(const char *);
 void	wait_new_free 		(char **);
 char *	malloc_sprintf 		(char **, const char *, ...) __A(2);
 int	is_number 		(const char *);
