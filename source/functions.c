@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.153 2004/02/20 23:40:22 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.154 2004/07/24 00:02:31 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6433,9 +6433,9 @@ BUILT_IN_FUNCTION(function_winline, input)
 	if (!win)
 		RETURN_INT(-1);
 
-	Line = win->scrollback_top_of_display;
+	Line = win->display_ip;
 	for (; line > 0 && Line; line--)
-		Line = Line->next;
+		Line = Line->prev;
 
 	if (Line && Line->line) {
 		char *ret = denormalize_string(Line->line);

@@ -126,3 +126,9 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix some bugs with /dcc send <nick> <non-existant file>
 * Fix my_realpath() for linux users.
 * Fix many errors using realpath() and normalize_filename().
+* EPIC4-2.0 released here
+* Fix bug with TOGGLE_STOP_SCREEN for Brian Feldman
+* Fix bug with not redrawing help window for Zlonix
+* Fix bug with not being able to bind character 255 for Zlonix
+* Fix bug with indent > screen / 3 truncating to 0 for BlackJac
+

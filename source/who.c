@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.28 2004/01/29 01:32:06 jnelson Exp $ */
+/* $EPIC: who.c,v 1.29 2004/07/24 00:02:31 jnelson Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -276,7 +276,7 @@ void 	whobase (int refnum, char *args, void (*line) (int, const char *, const ch
 			new_w->who_mask |= WHO_AWAY;
 		else if (!strncmp(arg, "chops", MAX(len, 2)))
 			new_w->who_mask |= WHO_CHOPS;
-		else if (!strncmp(arg, "delete", MAX(len, 1)))
+		else if (!strncmp(arg, "diagnose", MAX(len, 1)))
 		{
 			who_queue_list(refnum);
 			delete_who_item(new_w);
