@@ -596,9 +596,14 @@ AC_ARG_WITH(perl,
 [  --with-perl[=PATH]       Compile with perl support.],
 [ test -z "$withval" && withval=yes ],
 )
-test "xno" != "x$withval" && for base in $withval /usr/local /usr
+test "xno" != "x$withval" && for base in $withval /usr/local /usr /
 do
-	test -r $base/lib/libperl.so || continue
+	FOUND=
+	for ext in so a dll ; do
+		test -r $base/lib/libperl.$ext && FOUND=1
+		test -r $base/libperl.$ext && FOUND=1
+	done
+	test -n "$FOUND" || continue
 	AC_MSG_RESULT(yes)
 	LIBS="$LIBS `perl -MExtUtils::Embed -e ldopts`"
 	PERLDOTOH="perl.o"
