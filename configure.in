@@ -413,11 +413,19 @@ dnl
 dnl -----------------------------------------------------------
 
 AC_MSG_CHECKING(to see if your struct sockaddr includes a length field)
-AC_EGREP_CPP([sa_len],
-[
+AC_TRY_RUN([
+#include <sys/types.h>
 #include <sys/socket.h>
-], AC_DEFINE(HAVE_SA_LEN) AC_MSG_RESULT(yes), AC_MSG_RESULT(no))
-
+main()
+{
+	struct sockaddr sa;
+	sa.sa_len = 0;
+	exit(0);
+}
+],
+  AC_DEFINE(HAVE_SA_LEN)
+  AC_MSG_RESULT(yes),
+  AC_MSG_RESULT(no), :)
 
 dnl ----------------------------------------------------------
 dnl
