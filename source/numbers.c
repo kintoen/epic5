@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.59 2004/01/08 20:14:58 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.60 2004/01/18 10:14:01 crazyed Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -273,7 +273,14 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 			if (value && *value) 
 				*value++ = 0;
 
-			if (*set == '-') /* parameter negation */
+			if (*set == '+') /* parameter append */
+			{
+				char *ov = get_server_005(from_server, ++set);
+				value = malloc_strdup2(ov, value);
+				set_server_005(from_server, set, value);
+				new_free(&value);
+			}
+			else if (*set == '-') /* parameter removal */
 				set_server_005(from_server, ++set, NULL);
 			else if (value && *value)
 				set_server_005(from_server, set, value);

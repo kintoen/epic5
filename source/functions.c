@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.150 2003/12/26 19:14:49 crazyed Exp $ */
+/* $EPIC: functions.c,v 1.151 2004/01/18 10:14:01 crazyed Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -213,6 +213,8 @@ static	char
 	*function_chrq 		(char *),
 	*function_cipher	(char *),
 	*function_close 	(char *),
+	*function_cofilter	(char *),
+	*function_corfilter	(char *),
 	*function_common 	(char *),
 	*function_convert 	(char *),
 	*function_copattern 	(char *),
@@ -471,10 +473,12 @@ static BuiltInFunctions	built_in_functions[] =
 	{ "CHRQ",		function_chrq 		},
 	{ "CIPHER",		function_cipher		},
 	{ "CLOSE",		function_close 		},
+	{ "COFILTER",		function_cofilter	},
 	{ "COMMON",             function_common 	},
 	{ "CONNECT",		function_connect 	},
 	{ "CONVERT",		function_convert 	},
-	{ "COPATTERN",          function_copattern 	},
+	{ "COPATTERN",		function_copattern 	},
+	{ "CORFILTER",		function_corfilter	},
 	{ "CORPATTERN",		function_corpattern 	},
 	{ "COS",		function_cos		},
 	{ "COSH",		function_cosh		},
@@ -1391,7 +1395,12 @@ static char	*function_decode (unsigned char *input)
  */
 BUILT_IN_FUNCTION(function_ischannel, input)
 {
-	RETURN_INT(is_channel(input));
+	char	*channel;
+	int	ret;
+
+	channel = new_next_arg(input, &input);
+	ret = is_channel(channel);
+	RETURN_INT(ret);
 }
 
 /*
@@ -1412,10 +1421,13 @@ BUILT_IN_FUNCTION(function_ischannel, input)
  */
 BUILT_IN_FUNCTION(function_ischanop, input)
 {
-	char	*nick;
+	char	*nick, *chan;
+	int	ret;
 
-	GET_STR_ARG(nick, input);
-	RETURN_INT(is_chanop(input, nick));
+	nick = new_next_arg(input, &input);
+	chan = new_next_arg(input, &input);
+	ret = is_chanop(chan, nick);
+	RETURN_INT(ret);
 }
 
 
@@ -2137,71 +2149,42 @@ BUILT_IN_FUNCTION(function_rfilter, word)
  *     $copattern(*@iastate.edu userh nicks) 
  *	returns "hop IRSMan"
  */
-BUILT_IN_FUNCTION(function_copattern, word)
-{
-	char	*booya = (char *) 0,
-		*pattern = (char *) 0,
-		*firstl = (char *) 0, *firstlist = (char *) 0, *firstel = (char *) 0,
-		*secondl = (char *) 0, *secondlist = (char *) 0, *secondel = (char *) 0;
-	char 	*sfirstl, *ssecondl;
-	size_t	rvclue=0;
-
-	GET_STR_ARG(pattern, word);
-	GET_STR_ARG(firstlist, word);
-	GET_STR_ARG(secondlist, word);
-
-	firstl = get_variable(firstlist);
-	secondl = get_variable(secondlist);
-	sfirstl = firstl;
-	ssecondl = secondl;
-
-	while ((firstel = new_next_arg(firstl, &firstl)))
-	{
-		if (!(secondel = new_next_arg(secondl, &secondl)))
-			break;
-
-		if (wild_match(pattern, firstel))
-			malloc_strcat_word_c(&booya, space, secondel, &rvclue);
-	}
-	new_free(&sfirstl);
-	new_free(&ssecondl);
-	RETURN_MSTR(booya);
+#define COPATFUNC(fn, pat, arg, sense)                                                      \
+BUILT_IN_FUNCTION((fn), word)                                                               \
+{                                                                                           \
+	char	*booya = (char *) 0,                                                        \
+		*pattern = (char *) 0,                                                      \
+		*firstl = (char *) 0, *firstlist = (char *) 0, *firstel = (char *) 0,       \
+		*secondl = (char *) 0, *secondlist = (char *) 0, *secondel = (char *) 0;    \
+	char 	*sfirstl, *ssecondl;                                                        \
+	size_t	rvclue=0;                                                                   \
+                                                                                            \
+	GET_STR_ARG(pattern, word);                                                         \
+	GET_STR_ARG(firstlist, word);                                                       \
+	GET_STR_ARG(secondlist, word);                                                      \
+                                                                                            \
+	firstl = get_variable(firstlist);                                                   \
+	secondl = get_variable(secondlist);                                                 \
+	sfirstl = firstl;                                                                   \
+	ssecondl = secondl;                                                                 \
+                                                                                            \
+	while ((firstel = new_next_arg(firstl, &firstl)))                                   \
+	{                                                                                   \
+		if (!(secondel = new_next_arg(secondl, &secondl)))                          \
+			break;                                                              \
+                                                                                            \
+		if ((sense) == !wild_match((pat), (arg)))                                   \
+			malloc_strcat_word_c(&booya, space, secondel, &rvclue);             \
+	}                                                                                   \
+	new_free(&sfirstl);                                                                 \
+	new_free(&ssecondl);                                                                \
+	RETURN_MSTR(booya);                                                                 \
 }
-
-/* $corpattern(pattern var_1 var_2)
- *
- * As per $copattern(), except that the strings in var_1 are wildcard patterns.
- */
-BUILT_IN_FUNCTION(function_corpattern, word)
-{
-	char	*booya = (char *) 0,
-		*pattern = (char *) 0,
-		*firstl = (char *) 0, *firstlist = (char *) 0, *firstel = (char *) 0,
-		*secondl = (char *) 0, *secondlist = (char *) 0, *secondel = (char *) 0;
-	char 	*sfirstl, *ssecondl;
-	size_t	rvclue=0;
-
-	GET_STR_ARG(pattern, word);
-	GET_STR_ARG(firstlist, word);
-	GET_STR_ARG(secondlist, word);
-
-	firstl = get_variable(firstlist);
-	secondl = get_variable(secondlist);
-	sfirstl = firstl;
-	ssecondl = secondl;
-
-	while ((firstel = new_next_arg(firstl, &firstl)))
-	{
-		if (!(secondel = new_next_arg(secondl, &secondl)))
-			break;
-
-		if (wild_match(firstel, pattern))
-			malloc_strcat_word_c(&booya, space, secondel, &rvclue);
-	}
-	new_free(&sfirstl);
-	new_free(&ssecondl);
-	RETURN_MSTR(booya);
-}
+COPATFUNC(function_copattern, pattern, firstel, 0)
+COPATFUNC(function_corpattern, firstel, pattern, 0)
+COPATFUNC(function_cofilter, pattern, firstel, 1)
+COPATFUNC(function_corfilter, firstel, pattern, 1)
+#undef COPATFUNC
 
 /* $beforew(pattern string of words)
  * returns the portion of "string of words" that occurs before the 

@@ -1,5 +1,8 @@
 EPIC4-1.2.0
 
+*** News -- 01/18/2004 -- New functions $cofilter() and $corfilter().
+	These are compliments of $copattern().
+
 *** News -- 12/27/2003 -- New $dccctl() modes.
 	Added $dccctl(get [ref] writable) and $dccctl(writables).  This is
 	useful for sending lots of data out on a raw or chat dcc.  Epic will

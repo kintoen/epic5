@@ -98,3 +98,17 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Rolled in changes to 005 processing as per discussions with Larne.
 * Fix bug with nicks ending with \ in the 353 numeric which has trailing space
 * Auto-close DCC's that can't send handshakes due to family mismatch.
+* Fixed a bug in dcc_spacefix which basically made it inoperable.  Appologies
+  to NSX for insisting that it worked.
+* Added a bit of backstop support for resuming dequoted DCC GETs.  This is not
+  really a fix since both resume and double quoted filenames break protocols.
+  It is only really designed to work with mIRC.
+* Reworked $copattern() so that it could be used with $cofilter().
+* Reworked $ischannel() and $ischanop() to not require args to be precisely
+  spaced.
+* Added 005 + tags which permit a tag to be appended to as per discussions with
+  Larne.  It should be noted that there is no protection in this 005 system
+  against malicious servers sending large amounts of tag data in an attempt to
+  overflow the clients memory.  This + tag modification also makes it possible
+  for a server to do the same thing with a single tag, but at the same time
+  cause epic to use excessive CPU time in strcat().
