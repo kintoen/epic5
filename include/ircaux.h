@@ -148,6 +148,8 @@ char *	dequote_it		(char *str, size_t *len);
 const char *	my_strerror	(int, int);
 int	slurp_file		(char **buffer, char *filename);
 char *	endstr			(char *);
+ssize_t searchbuf		(const unsigned char *, size_t, size_t, int);
+
 void	add_mode_to_str		(char *, size_t, int);
 void	remove_mode_from_str	(char *, size_t, int);
 void	clear_modes		(char *);

@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.47 2003/12/17 09:25:31 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.48 2004/01/29 06:59:55 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -481,6 +481,29 @@ void 	init_variables (void)
  * TOGGLE 
  */
 int 	do_boolean (char *str, int *value)
+{
+	upper(str);
+	if (strcmp(str, var_settings[ON]) == 0)
+		*value = 1;
+	else if (strcmp(str, var_settings[OFF]) == 0)
+		*value = 0;
+	else if (strcmp(str, "TOGGLE") == 0)
+	{
+		if (*value)
+			*value = 0;
+		else
+			*value = 1;
+	}
+	else
+		return (1);
+	return (0);
+}
+
+/*
+ * do_short_boolean: just a handy thing.  Returns 1 if the str is not 
+ * ON, OFF, or TOGGLE.
+ */
+int 	do_short_boolean (char *str, short *value)
 {
 	upper(str);
 	if (strcmp(str, var_settings[ON]) == 0)
