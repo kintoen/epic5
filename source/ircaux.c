@@ -2047,7 +2047,7 @@ int	split_args (char *str, char **to, size_t maxargs)
 		{
 			if (counter > 0)
 				ptr[-1] = 0;
-			to[counter] = next_expr_failok(&ptr, *ptr);
+			to[counter] = next_expr_with_type(&ptr, *ptr);
 		}
 		else
 			to[counter] = new_next_arg(ptr, &ptr);
