@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.50 2002/12/30 13:23:47 crazyed Exp $ */
+/* $EPIC: commands.c,v 1.51 2003/01/11 04:26:52 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -2155,7 +2155,7 @@ BUILT_IN_COMMAND(redirect)
 
 	if ((who = next_arg(args, &args)) == NULL)
 	{
-		say("%s", "Usage: /REDIRECT <nick|channel|%process> <cmd>");
+		say("%s", "Usage: /REDIRECT <nick|channel|=dcc|%process|/command|@filedescriptor|\"|0> <cmd>");
 		return;
 	}
 
