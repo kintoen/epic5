@@ -1,5 +1,9 @@
 EPIC4-1.2.0
 
+*** News -- 02/03/2004 -- ERASE_LINE behavior slightly modified
+	The ERASE_LINE input function has been modified to not overwrite the
+	input buffer when it is called on an empty input line.
+
 *** News -- 01/25/2004 -- Slight changes to /ON SSL_SERVER_CERT
 	|Rain| pointed out that /ON SSL_SERVER_CERT was not terribly useful
 	because $1 (cert subject) and $2 (cert issuer) could contain spaces,
