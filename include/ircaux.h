@@ -226,6 +226,7 @@ extern	unsigned char isspace_table[256];
 #define STRIP_ND_SPACE		1 << 8
 #define STRIP_ALT_CHAR		1 << 9
 #define STRIP_ALL_OFF		1 << 10
+#define STRIP_OTHER		1 << 11
 
 extern	int	outbound_line_mangler;
 extern	int	inbound_line_mangler;

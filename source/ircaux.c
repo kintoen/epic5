@@ -2336,7 +2336,7 @@ int 	splitw (char *str, char ***to)
 	{
 		*to = (char **)new_malloc(sizeof(char *) * numwords);
 		for (counter = 0; counter < numwords; counter++)
-			(*to)[counter] = new_next_arg(str, &str);
+			(*to)[counter] = safe_new_next_arg(str, &str);
 	}
 	else
 		*to = NULL;
@@ -3302,8 +3302,9 @@ size_t	mangle_line	(char *incoming, int how, size_t how_much)
 					buffer[i++] = ALL_OFF;
 				break;
 			}
-			default:
-				buffer[i++] = *s;
+			default:		/* Everything else */
+				if (!(stuff & STRIP_OTHER))
+					buffer[i++] = *s;
 		}
 	}
 
