@@ -13,3 +13,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix /away -all
 * Fix /window <refnum> scroll_[backwards|forwards]
 * Fix 353 numeric so channels w/o users on ratbox aren't "odd"
+* Fix problems with translation, particular for zlonix.
+* A tab between [ref] and pattern in /ignore is visually jarring. Use space.

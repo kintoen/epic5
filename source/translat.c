@@ -1,4 +1,4 @@
-/* $EPIC: translat.c,v 1.4 2003/07/22 21:12:54 jnelson Exp $ */
+/* $EPIC: translat.c,v 1.5 2005/04/03 15:36:08 jnelson Exp $ */
 /*
  * translat.c:  Stuff for handling character translation tables
  * and a digraph entry facility.  Support an international IRC!
@@ -120,7 +120,7 @@ void	set_translation (const void *stuff)
 
 void	translate_from_server (unsigned char *string)
 {
-	char *ptr;
+	unsigned char *ptr;
 
 	for (ptr = string; *ptr; ptr++)
 		*ptr = transToClient[(unsigned)*ptr];
@@ -129,7 +129,7 @@ void	translate_from_server (unsigned char *string)
 
 void	translate_to_server (unsigned char *string)
 {
-	char *ptr;
+	unsigned char *ptr;
 
 	for (ptr = string; *ptr; ptr++)
 		*ptr = transFromClient[(unsigned)*ptr];
