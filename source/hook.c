@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.20 2003/07/10 10:30:45 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.21 2003/07/10 23:56:01 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -122,6 +122,7 @@ hook_functions[] =
 	{ "CTCP",		(Hook *) 0,	4,	0,	0 },
 	{ "CTCP_REPLY",		(Hook *) 0,	4,	0,	0 },
 	{ "CTCP_REQUEST",	(Hook *) 0,	4,	0,	0 },
+	{ "DCC_ACTIVITY",	(Hook *) 0,	1,	0,	0 },
 	{ "DCC_CHAT",		(Hook *) 0,	2,	0,	0 },
         { "DCC_CONNECT",        (Hook *) 0,     2,      0,      0 },
 	{ "DCC_LIST",		(Hook *) 0,	8,	0,	0 },
