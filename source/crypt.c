@@ -85,7 +85,7 @@ Crypt	*is_crypted (char *nick)
 	if (!crypt_list)
 		return NULL;
 	if ((tmp = (Crypt *) list_lookup((List **)&crypt_list, nick,
-			USE_WILDCARDS, !REMOVE_FROM_LIST)) != NULL) {
+			!!strchr(nick, ','), !REMOVE_FROM_LIST)) != NULL) {
 		return tmp;
 	} else {
 		return NULL;
