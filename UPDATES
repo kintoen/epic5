@@ -26,13 +26,6 @@ EPIC4-2.2
 	work the way it has always worked, and $stripcrap(ALL,-BOLD ...)
 	to work the way it *should* work.
 
-*** News -- 10/25/2004 -- $stripcrap(ALL) no longer strips "ALL_OFF"...
-        because the crap-mangler makes liberal use of ALL_OFFs and it is of
-        no harm to leave them in there, and it does great harm to take them
-        out. ;-)  If you want to remove them, do $stripcrap(ALL,ALL_OFF)
-	This applies to the /SET MANGLE_* variables, as well the logfile
-	mangle stuff -- anything that works with the markup codes.
-
 *** News -- 10/06/2004 -- Support for +e and +I numerics from efnet
 	EFNet has +e and +I channel modes, which act like +b does.
 	These numerics are now handled by epic like +b is.
