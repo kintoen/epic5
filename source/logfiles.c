@@ -1,4 +1,4 @@
-/* $EPIC: logfiles.c,v 1.30 2005/03/11 05:02:22 jnelson Exp $ */
+/* $EPIC: logfiles.c,v 1.31 2005/03/12 01:40:22 jnelson Exp $ */
 /*
  * logfiles.c - General purpose log files
  *
@@ -108,7 +108,6 @@ static Logfile *	new_logfile (void)
 	log->active = 0;
 	time(&log->activity);
 
-	logfiles = log;
 	return log;
 }
 
