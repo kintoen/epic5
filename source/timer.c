@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.20 2003/01/12 21:23:04 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.21 2003/02/05 21:48:12 crazyed Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -694,7 +694,7 @@ char *	timerctl (char *input)
 	int	len;
 
 	GET_STR_ARG(listc, input);
-	len = strlen(input);
+	len = strlen(listc);
 	if (!my_strnicmp(listc, "REFNUM", len)) {
 		GET_STR_ARG(refstr, input);
 		if (!(t = get_timer(refstr)))
