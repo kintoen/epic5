@@ -1,4 +1,4 @@
-/* $EPIC: mail.c,v 1.12 2003/07/22 21:12:54 jnelson Exp $ */
+/* $EPIC: mail.c,v 1.13 2003/09/25 03:24:20 jnelson Exp $ */
 /*
  * mail.c -- a gross simplification of mail checking.
  * Only unix maildrops (``mbox'') are supported.
@@ -347,6 +347,7 @@ void	mail_systimer (void)
 
 void    set_mail_interval (const void *stuff)
 {
+	update_system_timer(mail_timeref);
 }
 
 void	set_mail (const void *stuff)

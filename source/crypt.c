@@ -1,4 +1,4 @@
-/* $EPIC: crypt.c,v 1.15 2003/07/10 13:08:56 jnelson Exp $ */
+/* $EPIC: crypt.c,v 1.16 2003/07/10 23:56:01 jnelson Exp $ */
 /*
  * crypt.c: handles some encryption of messages stuff. 
  *
@@ -230,7 +230,7 @@ static char * 	prog_crypt (char *str, size_t *len, Crypt *key, int flag)
 	return ret;
 }
 
-static 	char *do_crypt (char *str, Crypt *key, int flag)
+char	*do_crypt (char *str, Crypt *key, int flag)
 {
 	size_t	c;
 	char	*free_it = NULL;
