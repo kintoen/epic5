@@ -2890,8 +2890,8 @@ static 	char 	*mystuff = NULL;
 				*user = star;
 				*host = star;
 			}
-			}
 		}
+	}
 
 	return 0;
 }
