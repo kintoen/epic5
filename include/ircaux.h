@@ -170,6 +170,11 @@ void	remove_mode_from_str	(char *, size_t, int);
 void	clear_modes		(char *);
 void	update_mode_str		(char *, size_t, const char *);
 
+void	add_mode_to_str		(char *, size_t, int);
+void	remove_mode_from_str	(char *, size_t, int);
+void	clear_modes		(char *);
+void	update_mode_str		(char *, size_t, const char *);
+
 size_t	strlcpy_c		(char *, const char *, size_t, size_t *);
 size_t	strlcat_c		(char *, const char *, size_t, size_t *);
 char *  strlopencat_c		(char *dest, size_t maxlen, size_t *cluep, ...);
