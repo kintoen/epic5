@@ -1,4 +1,4 @@
-/* $EPIC: term.c,v 1.3 2001/11/13 23:04:02 jnelson Exp $ */
+/* $EPIC: term.c,v 1.4 2001/12/18 17:04:36 crazyed Exp $ */
 /*
  * term.c -- termios and (termcap || terminfo) handlers
  *
@@ -63,7 +63,7 @@
 #endif
 #include <sys/ioctl.h>
 
-	int		need_redraw;
+volatile	int		need_redraw;
 static	int		tty_des;		/* descriptor for the tty */
 static	struct	termios	oldb, newb;
 	char		my_PC, *BC, *UP;
