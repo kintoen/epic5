@@ -302,3 +302,5 @@
 /* Define this if you have clock_gettime() */
 #undef HAVE_CLOCK_GETTIME
 
+/* Define this if you have <inntypes.h> */
+#undef HAVE_INTTYPES_H
