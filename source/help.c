@@ -1,4 +1,4 @@
-/* $EPIC: help.c,v 1.10 2003/09/23 21:49:47 jnelson Exp $ */
+/* $EPIC: help.c,v 1.11 2003/10/10 06:09:01 jnelson Exp $ */
 /*
  * help.c: handles the help stuff for irc 
  *
@@ -537,7 +537,6 @@ switch (entries)
 			new_free(&help_paused_path);
 			new_free(&help_paused_name);
 		}
-		message_from(NULL, LOG_CRAP);
 		return;
 	}
 	case 0:
@@ -662,8 +661,6 @@ switch (entries)
 	 */
 	if (!*help_topic_list && finished_help_paging)
 		set_help_screen((Screen *) 0);
-
-	message_from(NULL, LOG_CRAP);
 }
 
 /*
