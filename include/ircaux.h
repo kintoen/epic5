@@ -193,8 +193,8 @@ void    dequoter                (char **, size_t *, int, int, const char *);
 #define my_isdigit(x) \
 	(isdigit(*x) || ((*x == '-' || *x == '+') && isdigit(x[1])))
 
-
-int vmy_strnicmp(int, char *, ...);
+int	vmy_strnicmp		(int, char *, ...);
+char *	substitute_string	(const char *, const char *, const char *, int, int);
 
 /* Used for the inbound mangling stuff */
 #define MANGLE_ESCAPES		1 << 0
