@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.66 2003/03/17 19:39:39 crazyed Exp $ */
+/* $EPIC: ircaux.c,v 1.67 2003/03/23 19:44:17 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -788,7 +788,9 @@ char *	new_next_arg (char *str, char **new_ptr)
 	}
 	else
 	{
+#if 0
 noquotedword:
+#endif
 		str = ptr;
 		while (*str && !risspace(*str))
 			str++;

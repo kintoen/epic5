@@ -1,4 +1,4 @@
-/* $EPIC: array.c,v 1.9 2002/12/25 06:26:45 crazyed Exp $ */
+/* $EPIC: array.c,v 1.10 2003/02/17 23:48:48 crazyed Exp $ */
 /*
  * array.c -- Karll's Array Suite
  *
@@ -267,6 +267,7 @@ long		(fn) (an_array *array, char *find, long item)            \
 {                                                                        \
 	long top, bottom, key, cmp;                                      \
 	int len = (pre);                                                 \
+	(void)len;	/* Eliminate a specious warning from gcc. */	 \
                                                                          \
 	top = array->size - 1;                                           \
 	bottom = 0;                                                      \

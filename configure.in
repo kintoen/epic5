@@ -416,18 +416,6 @@ fi
 
 dnl ----------------------------------------------------------
 dnl
-dnl sun_len in <sys/un.h>?
-dnl
-
-AC_MSG_CHECKING(for sun_len in <sys/un.h>)
-AC_EGREP_CPP([sun_len], 
-[
-#include <sys/un.h>
-], AC_DEFINE(HAVE_SUN_LEN) AC_MSG_RESULT(yes), AC_MSG_RESULT(no))
-
-
-dnl ----------------------------------------------------------
-dnl
 dnl It makes a big difference if your system's (struct sockaddr)
 dnl structures look like this:
 dnl
