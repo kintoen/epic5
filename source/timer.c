@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.42 2004/05/05 16:43:28 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.43 2004/06/28 23:48:15 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -404,7 +404,7 @@ void    dump_timers (void)
         yell("*X*X*X*X*X*X*X*X*X* WARNING *X*X*X*X*X*X*X*X*X*X");
         yell("POLLING LOOP DETECTED -- IMPORTANT DEBUGGING INFO");
         yell("MAKE SURE TO SAVE THIS VERY IMPORTANT INFORMATION!");
-        yell("");
+        yell("%s", empty_string);
         say("Timer     Seconds   Events Command");
 
         get_time(&current);

@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.170 2004/06/27 17:19:37 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.171 2004/06/28 23:48:15 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -108,8 +108,8 @@ static	char
 
 typedef struct
 {
-	char	*name;
-	char	*(*func) (void);
+	const char *	name;
+	char *		(*func) (void);
 }	BuiltIns;
 
 static	BuiltIns built_in[] =
