@@ -39,3 +39,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix bug in expand_alias() -- all output must be privileged_yell()!
 * Change /on send_to_server so it can't be hooked recursively.
 * Use 'numeric' not 'current_numeric' in the numeric handler, doh!
+* EPIC4-2.2 was released here
+* Fix null deref when you do /window flush while not in hold mode.
