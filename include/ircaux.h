@@ -154,7 +154,7 @@ char *  strmpcat		(char *, size_t, const char *, ...) __A(3);
 u_char *strcpy_nocolorcodes	(u_char *, const u_char *);
 u_long	random_number		(u_long);
 char *	urlencode		(const char *);
-char *	urldecode		(char *);
+char *	urldecode		(char *, size_t *);
 const char *	find_forward_quote	(const char *, const char *);
 const char *	find_backward_quote	(const char *, const char *);
 const char *	my_strerror		(int);

@@ -2775,7 +2775,7 @@ static	char *	dcc_urldecode (const char *s)
 	char *str, *p1;
 
 	str = m_strdup(s);
-	urldecode(str);
+	urldecode(str, NULL);
 
 	for (p1 = str; *p1; p1++)
 	{
