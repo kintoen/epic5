@@ -1,4 +1,4 @@
-/* $EPIC: if.c,v 1.14 2002/08/26 17:20:14 crazyed Exp $ */
+/* $EPIC: if.c,v 1.15 2002/12/11 19:20:23 crazyed Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -647,7 +647,7 @@ void	for_pattern_cmd (int argc, char **argv, const char *subargs)
 BUILT_IN_COMMAND(loopcmd)
 {
 	int	argc;
-	char	*argv[9];
+	char	*argv[10];
 
 	if (!subargs)
 		subargs = empty_string;
