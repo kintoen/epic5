@@ -118,3 +118,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix \\ handling after * and %.  This is probably still broken....
 * Fix configure to find tcl 8.4.
 * Fix bug with $ at end of string (ie, echo $($))
+* Fix bug with lines containing only /, from |rain|.

@@ -1,4 +1,4 @@
-/* $EPIC: history.c,v 1.11 2003/07/22 21:12:54 jnelson Exp $ */
+/* $EPIC: history.c,v 1.12 2004/02/02 18:00:12 jnelson Exp $ */
 /*
  * history.c: stuff to handle command line history 
  *
@@ -233,7 +233,7 @@ static	char	*last_com = NULL;
 			for (; tmp; tmp = tmp->next)
 			{
 				ptr = tmp->stuff;
-				while (ptr && strchr(cmdc, *ptr))
+				while (ptr && *ptr && strchr(cmdc, *ptr))
 					ptr++;
 
 				if (wild_match(match_str, ptr))
