@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.70 2003/07/18 01:36:34 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.71 2003/07/20 15:23:49 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -1180,13 +1180,13 @@ static void	dcc_chat (char *args)
 			    portnum = my_atol(next_arg(args, &args));
 		}
 #ifdef INET6
-		if (args[1] == '6')
+		else if (args[1] == '6')
 		{
 			next_arg(args, &args);
 			family = AF_INET6;
 		}
 #endif
-		if (args[1] == '4')
+		else if (args[1] == '4')
 		{
 			next_arg(args, &args);
 			family = AF_INET;
