@@ -21,6 +21,8 @@ struct ScreenStru;
 	void	put_it 			(const char *, ...) __A(1);
 	void	say 			(const char *, ...) __A(1);
 	void	yell 			(const char *, ...) __A(1);
+	void    privileged_yell 	(const char *, ...) __A(1);
+
 	void	error			(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);
 	void	refresh_a_screen 	(struct ScreenStru *);

@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.136 2003/10/06 03:00:05 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.137 2003/10/10 06:09:01 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -813,7 +813,7 @@ char	*call_function (char *name, const char *args, int *args_flag)
 	MUST_BE_MALLOCED(result, buf);
 
 	if (debugging & DEBUG_FUNCTIONS)
-		yell("Function %s(%s) returned %s", name, debug_copy, result);
+		privileged_yell("Function %s(%s) returned %s", name, debug_copy, result);
 
 	new_free(&tmp);
 	return result;

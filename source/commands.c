@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.71 2003/09/12 01:42:47 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.72 2003/10/10 06:09:01 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -3604,7 +3604,7 @@ static	unsigned 	level = 0;
 		return 0;
 
 	if (get_int_var(DEBUG_VAR) & DEBUG_COMMANDS)
-		yell("Executing [%d] %s", level, line);
+		privileged_yell("Executing [%d] %s", level, line);
 	level++;
 	if (!(cmdchars = get_string_var(CMDCHARS_VAR)))
 		cmdchars = DEFAULT_CMDCHARS;
