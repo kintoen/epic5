@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.27 2004/07/08 08:27:59 crazyed Exp $ */
+/* $EPIC: notify.c,v 1.28 2004/08/11 23:58:39 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -495,7 +495,7 @@ void 	notify_userhost_reply (int refnum, const char *nick, const char *uh)
 	{
 		if (do_hook(NOTIFY_SIGNON_LIST, "%s %s", nick, uh))
 		{
-			if (!*uh)
+			if (*uh)
 				say("Signon by %s!%s detected", nick, uh);
 			else
 				say("Signon by %s detected", nick);
