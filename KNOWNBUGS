@@ -2,7 +2,6 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
-* /xecho -l does not seem to be overriding who_from (!)
 <none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
@@ -113,3 +112,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
   overflow the clients memory.  This + tag modification also makes it possible
   for a server to do the same thing with a single tag, but at the same time
   cause epic to use excessive CPU time in strcat().
+* Updates from nsx and howl for their scripts
+* Add 'urlgrab' script contributed by wc.

@@ -1,0 +1,76 @@
+#$EPIC: urlgrab,v 1.1 2004/01/19 04:10:57 jnelson Exp $
+package urlgrab
+#
+# urlgrab - URL Grabber Script for EPIC
+# Copyright 2004 Brian Hauber
+# Originally written for WC's Toolbox (WCTB)
+# Please use and distribute this script like crazy!
+#
+#
+# Why this script:
+# With mIRC dominating the IRC scene these days, people paste long URLs
+# that those of us with a text-based IRC client can't just click on. Add
+# to that EPIC's line breaks, cutting and pasting these URLs to your browser 
+# can be a pain.
+#
+# What it does:
+# Save a URL sent to a channel or sent via msg to a file as a hyperlink
+# in your ~/public_html that you can then browse and click in a web browser
+# of your choice.
+#
+# Usage:
+#		/URLGRAB toggles the script on and off
+
+# Change this file to whatever you want.
+@ urlfile = [$HOME/public_html/urls.html]
+
+# Create file if it doesn't exist
+if (fexists($urlfile) == -1) {
+	@ fd = open($urlfile W)
+	@ close($fd)
+}
+
+# Make sure perms are correct so you can browse it
+if (fexists($urlfile) == 1) {
+	@ chmod($urlfile 644)
+}
+
+# Converts boolean numbers to words
+alias onoff return ${([$0] == 1) ? [ON] : [OFF]}
+
+# Turn URL grabber on/off
+alias urlgrab {
+	@ urlgrab = (urlgrab) ? 0 : 1
+	xecho -b URL grabber is $onoff($urlgrab).
+}
+
+# Grabs URL out of message and writes it as a hypertext link to a file.
+alias grabit {
+	if (urlgrab) {
+		@ :fd = open($urlfile W)
+		@ :wordno = match("\\[http:% *www.%\\]" $1-)
+		@ :wordno = wordno - 1
+		@ :url = word($wordno $1-)
+		if (!match(http% $url)) {
+			@ :url = [http://] ## url
+		}
+		@ :datetime = strftime(%m-%d-%Y %H:%M)
+		@ :link = [<a href="] ## url ## [">] ## url ## [</a><br>]
+		@ write($fd [$datetime] &lt;$0\&gt; $link)
+		@ close($fd)
+	}
+}
+
+on #-public 7763 '% * \\[http:% *www.%\\]' {
+	grabit $*
+}
+
+on #-msg 7763 '* \\[http:% *www.%\\]' {
+	grabit $0 MSG $1-
+}
+
+on #-public_other 7763 '% * \\[http:% *www.%\\]' {
+	grabit $*
+}
+
+#wc'y2k4
