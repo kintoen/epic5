@@ -913,7 +913,9 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 			reason = "Because the server said so";
 			break;
 		}	
-		put_it("%s %s (%s)", numeric_banner(), ArgList[0], reason);
+
+		if (do_hook(current_numeric, "%s %s", from, ArgList[0]))
+			put_it("%s %s (%s)", numeric_banner(), ArgList[0], reason);
 		break;
 	}
 
