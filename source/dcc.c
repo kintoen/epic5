@@ -1355,7 +1355,7 @@ static	char		*format =
 		/*
 		 * Figure out something sane for the xfer speed.
 		 */
-		if (Client->bytes_sent)
+		if (act_sent)
 		{
 			strlcpy(speed, calc_speed(act_sent, 
 				Client->starttime, get_time(NULL)), 9);
