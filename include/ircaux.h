@@ -71,7 +71,7 @@ char *	strlopencat		(char *, size_t, ...);
 ssize_t	stristr 		(const char *, const char *);
 ssize_t	rstristr 		(const char *, const char *);
 char *	findchar		(char *, int);
-FILE *	uzfopen 		(char **, const char *, int);
+FILE *	uzfopen 		(char **, const char *, int, struct stat *);
 int	end_strcmp 		(const char *, const char *, size_t);
 char*   exec_pipe		(const char *, char *, size_t *, char *const *);
 FILE **	open_exec		(const char *executable, char * const *args);
