@@ -296,3 +296,6 @@
 /* Define this if you have a broken realpath */
 #undef HAVE_BROKEN_REALPATH
 
+/* Define this if you have TCL */
+#undef TCL
+

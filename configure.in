@@ -504,6 +504,7 @@ AC_TRY_RUN([
 #include <sys/socket.h>
 #include <netdb.h>
 #include <sys/un.h>
+#include <stdlib.h>
 
 main()
 {
@@ -517,8 +518,8 @@ main()
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = 0;
 
-	retval = getaddrinfo("/tmp/.ircd/6667", NULL, &hints, &results);
-	if (retval == EA_ADDRFAMILY)
+	retval = getaddrinfo("/tmp/.ircd/6667", 0, &hints, &results);
+	if (retval == EAI_ADDRFAMILY)
 		exit(1);
 	else
 		exit(0);
