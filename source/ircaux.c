@@ -2736,8 +2736,8 @@ char *	encode(const char *str, int len)
 
 	while (len)
 	{
-		*ptr++ = (*str >> 4) + 0x41;
-		*ptr++ = (*str & 0x0f) + 0x41;
+		*ptr++ = ((unsigned char)*str >> 4) + 0x41;
+		*ptr++ = ((unsigned char)*str & 0x0f) + 0x41;
 		str++;
 		len--;
  	}
