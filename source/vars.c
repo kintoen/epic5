@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.60 2004/08/12 16:48:01 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.61 2004/08/12 16:59:29 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -803,7 +803,7 @@ char 	*make_string_var (const char *var_name)
 	copy = LOCAL_COPY(var_name);
 	upper(copy);
 
-	get_var_alias(var_name, &dummy, &thevar);
+	get_var_alias(copy, &dummy, &thevar);
 	if (thevar == NULL)
 		return NULL;
 
