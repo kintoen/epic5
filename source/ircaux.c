@@ -3790,3 +3790,26 @@ const char *	my_strerror (int number)
 	return strerror(errno);
 }
 
+const char *	switch_hostname (const char *new_hostname)
+{
+	struct hostent *hp;
+	char *retval;
+
+	if ((hp = gethostbyname(new_hostname)))
+	{
+		LocalHostAddr = *(IA *)hp->h_addr;
+
+		LocalIPv4Addr.sin_family = AF_INET;
+		LocalIPv4Addr.sin_port = 0;
+		LocalIPv4Addr.sin_addr = LocalHostAddr;
+
+		malloc_strcpy(&LocalHostName, new_hostname);
+		retval = m_sprintf("Local address changed to [%s] (%s)",
+			LocalHostName, inet_ntoa(LocalHostAddr));
+	}
+	else
+		retval = m_sprintf("I cannot configure [%s] -- local address not changed.", new_hostname);
+
+	return retval;
+}
+

@@ -194,6 +194,7 @@ char 	*ip_to_host 		(const char *);
 char 	*one_to_another 	(const char *);
 int	my_accept		(int, struct sockaddr *, int *);
 int	lame_external_resolv	(const char *, struct in_addr *);
+const char *switch_hostname	(const char *);
 
 extern	unsigned char isspace_table[256];
 #define my_isspace(x) isspace_table[(unsigned)(unsigned char)(x)]
