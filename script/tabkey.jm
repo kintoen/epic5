@@ -362,8 +362,8 @@ alias do_tabkey (cycle_direction) {
 	@:match_prefix = prefix($matches)
 
 	if (@match_prefix <= fraglen && #matches > 1) {
-		^eval xecho -c -- $tab_completion_matches_header_format
-		^eval xecho -c -- $tab_completion_matches_format
+		xecho -c Possible matches:
+		xecho -c -- $matches
 		xecho -c
 		return
 	}
@@ -647,7 +647,7 @@ alias tclear {
 	@target_cycle_list = []
 	@target_index = -2
 
-	^eval xecho -- $tab_target_history_cleared_format
+	xecho target history cleared 
 }
 
 
