@@ -1,4 +1,4 @@
-/* $EPIC: log.c,v 1.6 2002/09/03 11:43:12 jnelson Exp $ */
+/* $EPIC: log.c,v 1.7 2002/10/18 21:10:23 jnelson Exp $ */
 /*
  * log.c: handles the irc session logging functions 
  *
@@ -69,8 +69,10 @@ static FILE *open_log (const char *logfile, FILE **fp)
 			
 	if (normalize_filename(logfile, fullname))
 	{
+#if 0
 		say("SET LOGFILE: %s is not a valid directory", logfile);
 		return NULL;
+#endif
 	}
 
 	if ((*fp = fopen(fullname, "a")) != NULL)
