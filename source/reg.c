@@ -1,4 +1,4 @@
-/* $EPIC: reg.c,v 1.10 2004/01/06 05:43:23 jnelson Exp $ */
+/* $EPIC: reg.c,v 1.11 2004/01/29 06:59:55 jnelson Exp $ */
 /*
  * reg.c - "glob"-like wildcard pattern matching (not regexes)
  *
@@ -53,6 +53,7 @@
 #include "irc.h"
 #include "ircaux.h"
 #include "output.h"
+#include "reg.h"
 
 static	int	total_explicit;
 

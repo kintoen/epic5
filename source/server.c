@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.129 2004/03/17 03:51:53 jnelson Exp $ */
+/* $EPIC: server.c,v 1.130 2004/03/18 01:04:03 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -56,6 +56,7 @@
 #include "vars.h"
 #include "newio.h"
 #include "translat.h"
+#include "reg.h"
 
 static 	void 	remove_from_server_list (int i, int override);
 	void 	reset_nickname (int);

@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.48 2004/01/29 06:59:55 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.49 2004/03/18 01:04:03 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -56,6 +56,7 @@
 #include "timer.h"
 #include "clock.h"
 #include "mail.h"
+#include "reg.h"
 
 /* IrcVariable: structure for each variable in the variable table */
 typedef struct

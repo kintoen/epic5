@@ -1,4 +1,4 @@
-/* $EPIC: ignore.c,v 1.20 2004/03/15 03:24:51 jnelson Exp $ */
+/* $EPIC: ignore.c,v 1.21 2004/03/16 00:24:33 jnelson Exp $ */
 /*
  * ignore.c: handles the ingore command for irc 
  *
@@ -102,6 +102,7 @@
 #include "timer.h"
 #include "functions.h"
 #include "window.h"
+#include "reg.h"
 
 #define IGNORE_REMOVE 	-1
 #define IGNORE_SUPPRESS  0

@@ -1,4 +1,4 @@
-/* $EPIC: flood.c,v 1.19 2004/03/13 17:57:01 jnelson Exp $ */
+/* $EPIC: flood.c,v 1.20 2004/03/15 03:24:51 jnelson Exp $ */
 /*
  * flood.c: handle channel flooding.
  *
@@ -50,6 +50,7 @@
 #include "functions.h"
 #include "lastlog.h"
 #include "window.h"
+#include "reg.h"
 
 typedef struct flood_stru
 {

@@ -1,4 +1,4 @@
-/* $EPIC: list.c,v 1.3 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: list.c,v 1.4 2003/05/09 04:29:52 jnelson Exp $ */
 /*
  * list.c: some generic linked list managing stuff 
  *
@@ -36,6 +36,7 @@
 #include "irc.h"
 #include "list.h"
 #include "ircaux.h"
+#include "reg.h"
 
 static __inline__ int	add_list_strcmp (List *item1, List *item2)
 {

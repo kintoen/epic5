@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.59 2004/03/19 06:05:13 jnelson Exp $ */
+/* $EPIC: names.c,v 1.60 2004/03/19 06:12:56 jnelson Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -1141,7 +1141,7 @@ void 	list_channels (void)
 
 
 /* This is a keybinding */
-void 	switch_channels (char dumb, char *dumber)
+BUILT_IN_KEYBINDING(switch_channels)
 {
 	int	lowcount = current_channel_counter;
 	Char *	winner = NULL;

@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.163 2004/03/19 06:05:13 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.164 2004/03/25 04:41:18 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -73,6 +73,7 @@
 #include "functions.h"
 #include "options"
 #include "words.h"
+#include "reg.h"
 
 #ifdef HAVE_REGEX_H
 # include <regex.h>
