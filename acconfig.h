@@ -241,8 +241,13 @@
 
 /* Define this if you want OPENSSL support */
 #undef HAVE_SSL
+
 /* Define this if you want OPENSSL2 support */
 #undef WANT_SSL2
+
 /* Define this if you have sysctlbyname() */
 #undef HAVE_SYSCTLBYNAME
+
+/* Define this if you have SO_SNDLOWAT */
+#undef HAVE_SO_SNDLOWAT
 

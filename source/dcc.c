@@ -2359,7 +2359,7 @@ static void		process_outgoing_file (DCC_list *Client)
 		Client->flags |= DCC_ACTIVE;
 		get_time(&Client->starttime);
 
-#ifdef SO_SNDLOWAT
+#ifdef HAVE_SO_SNDLOWAT
 		/*
 		 * Give a hint to the OS how many bytes we need to send
 		 * for each write()
