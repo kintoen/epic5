@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.118 2004/09/13 18:29:57 crazyed Exp $ */
+/* $EPIC: ircaux.c,v 1.119 2004/10/04 23:56:20 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -494,6 +494,7 @@ int	remove_from_comma_list (char *str, const char *what)
 	else
 		*str = 0;
 
+	new_free(&result);
 	return removed;
 }
 
