@@ -272,3 +272,12 @@
 /* Define this if you have a getaddrinfo() with missing functionality */
 #undef GETADDRINFO_DOES_NOT_DO_AF_UNIX
 
+/* Define this if you do not want INET6 support */
+#undef DO_NOT_USE_IPV6
+
+/* Define this if you have struct addrinfo */
+#undef HAVE_STRUCT_ADDRINFO
+
+/* Define this if you have struct sockaddr_in6 */
+#undef HAVE_STRUCT_SOCKADDR_IN6
+
