@@ -1,4 +1,4 @@
-/* $EPIC: logfiles.c,v 1.28 2004/11/02 23:17:34 jnelson Exp $ */
+/* $EPIC: logfiles.c,v 1.29 2005/01/13 16:06:06 jnelson Exp $ */
 /*
  * logfiles.c - General purpose log files
  *
@@ -683,7 +683,7 @@ BUILT_IN_COMMAND(logcmd)
 }
 
 /****************************************************************************/
-void	add_to_logs (int winref, int servref, const char *target, int level, const char *orig_str)
+void	add_to_logs (long winref, int servref, const char *target, int level, const char *orig_str)
 {
 	Logfile *log;
 	int	i;

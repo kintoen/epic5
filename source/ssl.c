@@ -1,4 +1,4 @@
-/* $EPIC: ssl.c,v 1.14 2005/03/04 05:09:01 jnelson Exp $ */
+/* $EPIC: ssl.c,v 1.15 2005/03/04 05:30:59 jnelson Exp $ */
 /*
  * ssl.c: SSL connection functions
  *
@@ -59,9 +59,9 @@ static SSL_CTX	*SSL_CTX_init (int server)
 	
 	if (firsttime)
 	{
+		ssl_setup_locking();
 		SSL_load_error_strings();
 		SSL_library_init();
-		ssl_setup_locking();
 		firsttime = 0;
 	}
 
