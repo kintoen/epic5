@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.98 2004/04/13 00:19:48 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.99 2004/04/30 18:34:28 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -3323,9 +3323,11 @@ static void	process_dcc_get_connected (DCC_list *dcc)
 	len = sizeof(name);
 	if (getpeername(dcc->socket, (SA *)&name, &len))
 	{
-	    if (do_hook(DCC_LOST_LIST, "%s GET connection failed", dcc->user))
+	    char *edesc = dcc_urlencode(dcc->description);
+	    if (do_hook(DCC_LOST_LIST, "%s GET %s connection failed", dcc->user, edesc))
 		say("DCC GET connection to %s lost [connection failed]", 
 							dcc->user);
+	    new_free(&edesc);
 	    dcc->flags |= DCC_DELETE;
 	    unlock_dcc(dcc);
 	    return;
