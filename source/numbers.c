@@ -213,7 +213,7 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 		new_port = atoi(ArgList[1]);
 		PasteArgs(ArgList, 2);
 
-		if (do_hook(current_numeric, "%s %d %s", from, 
+		if (do_hook(current_numeric, "%s %s %d %s", from, 
 				new_server, new_port, ArgList[2]))
 			display_msg(from, ArgList);
 
