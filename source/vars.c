@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.28 2003/04/24 21:49:25 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.29 2003/05/09 04:29:52 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -41,7 +41,7 @@
 #include "lastlog.h"
 #include "log.h"
 #include "hook.h"
-#include "crypt.h"
+#include "sedcrypt.h"
 #include "history.h"
 #include "notify.h"
 #include "vars.h"
