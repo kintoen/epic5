@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.39 2003/10/28 05:53:57 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.40 2004/03/25 04:20:30 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -387,6 +387,37 @@ int 	timer_exists (const char *ref)
 		return 0;
 }
 
+/*
+ * dump_timers: show all timers in case of emergency
+ */
+void	dump_timers (void)
+{
+	Timer	*tmp;
+	Timeval	current;
+	double	time_left;
+
+	yell("*X*X*X*X*X*X*X*X*X* WARNING *X*X*X*X*X*X*X*X*X*X");
+	yell("POLLING LOOP DETECTED -- IMPORTANT DEBUGGING INFO");
+	yell("MAKE SURE TO SAVE THIS VERY IMPORTANT INFORMATION!");
+	yell("");
+	say("Timer     Seconds   Events Command");
+
+	get_time(&current);
+	for (tmp = PendingTimers; tmp; tmp = tmp->next)
+	{
+		time_left = time_diff(current, tmp->time);
+		if (time_left <= 0)
+		    yell("--> %-10s %-8.2f %-7ld %s", 
+				tmp->ref, time_left, tmp->events, 
+				tmp->callback ? "SYSTEM" : tmp->command);
+		else
+		    yell("    %-10s %-8.2f %-7ld %s", 
+				tmp->ref, time_left, tmp->events,
+				tmp->callback ? "SYSTEM" : tmp->command);
+	}
+	yell("Make sure to give this list to hop on #epic on efnet!");
+	yell("*X*X*X*X*X*X*X*X*X* WARNING *X*X*X*X*X*X*X*X*X*X");
+}
 
 /*
  * list_timers:  Display a list of all the TIMER commands that are
