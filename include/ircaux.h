@@ -107,7 +107,7 @@ struct timeval time_add		(struct timeval, struct timeval);
 struct timeval time_subtract	(struct timeval, struct timeval);
 struct timeval double_to_timeval (double);
 char *	plural 			(int);
-struct timeval	time_to_next_minute 	(void);
+double	time_to_next_minute 	(void);
 char *	remove_trailing_spaces 	(char *, size_t *cluep);
 char *	ltoa 			(long);
 char *	ftoa			(double);
