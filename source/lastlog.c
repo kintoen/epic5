@@ -564,7 +564,7 @@ BUILT_IN_COMMAND(lastlog)
 	    start = current_window->lastlog_oldest;
 	    end = current_window->lastlog_newest;
 
-	    for (l = start; l && l != end; l && (l = l->newer))
+	    for (l = start; l; l && (l = l->newer))
 	    {
 		if (show_lastlog(&l, &skip, &number, level_mask, 
 				match, reg, &max))
@@ -604,7 +604,7 @@ BUILT_IN_COMMAND(lastlog)
 	    start = current_window->lastlog_newest;
 	    end = current_window->lastlog_oldest;
 
-	    for (l = start; l && l != end; l && (l = l->older))
+	    for (l = start; l; l && (l = l->older))
 	    {
 		if (show_lastlog(&l, &skip, &number, level_mask, 
 				match, reg, &max))
