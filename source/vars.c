@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.46 2004/10/01 20:37:30 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.47 2004/11/02 23:13:51 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -1009,7 +1009,7 @@ int	parse_mangle (const char *value, int nvalue, char **rv)
 			else if (!my_strnicmp(str2, "-ALL_OFF", 5))
 				nvalue &= ~(STRIP_ALL_OFF);
 			else if (!my_strnicmp(str2, "ALL", 3))
-				nvalue = (0x7FFFFFFF ^ (MANGLE_ESCAPES) ^ (STRIP_OTHER) ^ (STRIP_ALL_OFF));
+				nvalue = (0x7FFFFFFF ^ (MANGLE_ESCAPES) ^ (STRIP_OTHER));
 			else if (!my_strnicmp(str2, "-ALL", 4))
 				nvalue = 0;
 			else if (!my_strnicmp(str2, "ANSI", 2))
