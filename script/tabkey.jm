@@ -16,9 +16,18 @@
 #    /set variables, /help topics and file names
 #
 #
-# the latest version of this script may be found at:
+#  /set variables this script uses:
 #
-# http://jmz.digitallinx.com/tabkey.jm
+#    NICK_COMPLETION_CHAR -- the value of this set will be appended each time
+#                            nickname completion occurs as the first word of the
+#                            input line.  a typical value might be ':'.
+#
+#   TAB_HISTORY_CYCLE_SIZE -- how many nicknames to keep in the /msg history
+#
+#   ZSH_STYLE_COMPLETION -- turning this on allows you to cycle through completion
+#                           possibilities, when there is more than one completion
+#                           possibility, similar to how zsh behaves for tab
+#                           completion
 #
 #
 # note: this script uses the serial number 110 for its serial hooks
