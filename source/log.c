@@ -1,4 +1,4 @@
-/* $EPIC: log.c,v 1.11 2003/05/09 04:29:52 jnelson Exp $ */
+/* $EPIC: log.c,v 1.12 2003/07/22 21:12:54 jnelson Exp $ */
 /*
  * log.c: handles the irc session logging functions 
  *
@@ -191,7 +191,7 @@ void 	add_to_log (FILE *fp, unsigned winref, const unsigned char *line, int mang
 	 * 'mangle_line' can expand the input string, so it is 
 	 * neccesary to allocate more than we need.
 	 */
-	size = strlen(line) * 11;
+	size = (strlen(line) + 1) * 11;
 	local_line = alloca(size + 1);
 	strlcpy(local_line, line, size + 1);
 
