@@ -1,4 +1,4 @@
-/* $EPIC: expr.c,v 1.13 2003/05/30 01:05:30 jnelson Exp $ */
+/* $EPIC: expr.c,v 1.14 2003/05/30 19:58:10 jnelson Exp $ */
 /*
  * expr.c -- The expression mode parser and the textual mode parser
  * #included by alias.c -- DO NOT DELETE
@@ -1442,7 +1442,11 @@ char	*expand_alias	(const char *string, const char *args, int *args_flag, ssize_
 					RIGHT_PAREN : RIGHT_BRACE)) < 0)
 			{
 				put_it("Unmatched %c", ch);
-				ptr = stuff + strlen(stuff);
+				/* 
+				 * DO NOT ``OPTIMIZE'' THIS BECAUSE
+				 * *STUFF IS NUL SO STRLEN(STUFF) IS 0!
+				 */
+				ptr = stuff + 1 + strlen(stuff + 1);
 			}
 			else
 				ptr = stuff + 1 + span + 1;
