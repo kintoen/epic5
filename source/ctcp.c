@@ -178,12 +178,13 @@ CTCP_HANDLER(do_sed)
 
 	new_free(&tofrom);
 
-	if (!key || !ret)
+	if (!key || !ret) {
+		sed = 2;
 		malloc_strcpy(&ret2, "[ENCRYPTED MESSAGE]");
-	else if (!*ret)
+	} else if (!*ret) {
+		sed = 2;
 		malloc_strcpy(&ret2, "[ENCRYPTED MESSAGE - BAD KEY?]");
-	else
-	{
+	} else {
 		/* 
 		 * There might be a CTCP message in there,
 		 * so we see if we can find it.

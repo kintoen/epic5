@@ -286,8 +286,8 @@ void 	parse_notice (char *from, char **Args)
 
 	/* Let the user know if it is an encrypted notice */
 	/* Note that this is always hooked, even during a flood */
-	if (sed == 1 && !do_hook(ENCRYPTED_NOTICE_LIST, "%s %s %s", 
-					from, to, line))
+	if (sed != 0 && !do_hook(ENCRYPTED_NOTICE_LIST, "%s %s %s", 
+			from, to, sed == 1 ? line : empty_string))
 	{
 		sed = 0;
 		goto the_end;
