@@ -1,4 +1,4 @@
-/* $EPIC: ctcp.c,v 1.32 2003/12/16 23:25:45 jnelson Exp $ */
+/* $EPIC: ctcp.c,v 1.33 2003/12/17 09:25:30 jnelson Exp $ */
 /*
  * ctcp.c:handles the client-to-client protocol(ctcp). 
  *
@@ -55,7 +55,6 @@
 #include "window.h"
 #include "if.h"
 #include "flood.h"
-#include "notice.h"
 #include "words.h"
 
 #include <pwd.h>
