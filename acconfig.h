@@ -311,3 +311,6 @@
 /* Define this if you have a (long long) */
 #undef HAVE_LONG_LONG
 
+/* Define this if you have atoll() */
+#undef HAVE_ATOLL
+
