@@ -227,6 +227,7 @@ void 	parse_notice (char *from, char **Args)
 	 * global variable is reset.
 	 */
 	doing_notice = 1;
+	sed = 0;
 
 	/*
 	 * Note that NOTICEs from servers are not "server notices" unless
