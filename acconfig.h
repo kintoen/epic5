@@ -320,3 +320,15 @@
 /* Define this if you have atoq() */
 #undef HAVE_ATOQ
 
+/* Define this to use select() */
+#undef USE_SELECT
+
+/* Define this to use poll() */
+#undef USE_POLL
+
+/* Define this to use kqueue() */
+#undef USE_KQUEUE
+
+/* Define this to use pthreads */
+#undef USE_PTHREAD
+
