@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.90 2003/07/15 01:26:03 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.91 2003/07/18 01:36:35 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -4825,8 +4825,10 @@ char *	universal_next_arg_count (char *str, char **new_ptr, int count, int exten
 	if (x_debug & DEBUG_EXTRACTW_DEBUG)
 		yell("<<<< universal_next_arg_count: End:   [%s] [%s]", 
 						str, *new_ptr);
+#if 0		/* This can't possibly be right! */
 	if (!str || !*str)
 		return NULL;
+#endif
 	return str;
 }
 
