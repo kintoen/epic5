@@ -1,3 +1,4 @@
+/* $EPIC$ */
 /*
  * Everything that im not directly responsible for I put in here.  Almost
  * all of this stuff is either borrowed from somewhere else (for you poor
