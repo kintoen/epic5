@@ -1044,7 +1044,7 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 					strmcat(buffer, " (Bad channel mask)", BIG_BUFFER_SIZE);
 					break;
 				case 477:
-					strmcat(buffer, " (You must use a registered nickname", BIG_BUFFER_SIZE);
+					strmcat(buffer, " (You must use a registered nickname)", BIG_BUFFER_SIZE);
 					break;
 			}
 			put_it("%s %s", numeric_banner(), buffer);
