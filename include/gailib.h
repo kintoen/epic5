@@ -27,6 +27,9 @@
  * SUCH DAMAGE.
  */
 
+#ifndef __gailib_h__
+#define __gailib_h__
+
 /* special compatibility hack */
 #undef EAI_ADDRFAMILY
 #undef EAI_AGAIN
@@ -203,3 +206,4 @@ Standard C system should have one. */
 extern int h_errno;
 #endif
 
+#endif

@@ -284,3 +284,9 @@
 /* Define this if you have getservbyport() */
 #undef HAVE_GETSERVBYPORT
 
+/* Define this if you have getaddrinfo */
+#undef HAVE_GETADDRINFO
+
+/* Define this if you have getnameinfo */
+#undef HAVE_GETNAMEINFO
+
