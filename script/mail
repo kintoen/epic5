@@ -17,7 +17,7 @@
 
 @mail.folders = getenv(MAIL)
 
-^on ^set "mail_watch_time *" {
+on ^set "mail_watch_time *" {
     if ([$1] == []) {
 	echo $banner Current value of MAIL_WATCH_TIME is $mail.time
 	return
