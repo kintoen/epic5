@@ -10,8 +10,6 @@ AC_REVISION($Revision$)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
-
-
 dnl ----------------------------------------------------------
 dnl
 dnl grok the version number - from source/irc.c
@@ -313,6 +311,7 @@ AC_TRY_RUN([
 #include <sys/types.h>
 #include <sys/signal.h>
 #include <signal.h>
+#include <unistd.h>
 main()
 {
 	char *s = sys_siglist[0];

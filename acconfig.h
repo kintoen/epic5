@@ -290,3 +290,5 @@
 /* Define this if you have getnameinfo */
 #undef HAVE_GETNAMEINFO
 
+/* Define this if you have sys_siglist declared */
+#undef SYS_SIGLIST_DECLARED
