@@ -299,3 +299,6 @@
 /* Define this if you have TCL */
 #undef TCL
 
+/* Define this if you have clock_gettime() */
+#undef HAVE_CLOCK_GETTIME
+
