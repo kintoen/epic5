@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.63 2003/11/15 22:15:59 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.64 2003/11/19 18:09:53 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -2230,6 +2230,11 @@ void 	add_to_screen (const unsigned char *buffer)
 		/*
 		 * Check for /WINDOW LEVELs that apply
 		 */
+		if (who_level == LOG_DCC && tmp->window_level & who_level)
+		{
+			add_to_window(tmp, buffer);
+			return;
+		}
 		if (((from_server == tmp->server) || (from_server == NOSERV)) &&
 		    (who_level & tmp->window_level))
 		{
