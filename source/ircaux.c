@@ -1456,13 +1456,13 @@ static	int recursion = 0;		/* Recursion is bad */
 	term_reset();
 	fprintf(stderr, "An unrecoverable logic error has occured.\n");
 	fprintf(stderr, "Please fill out the BUG_FORM file, and include the following message:\n");
-	fprintf(stderr, "Panic: [%s:%s]\n", irc_version, buffer);
+	fprintf(stderr, "Panic: [%s (%lu):%s]\n", irc_version, commit_id, buffer);
 	panic_dump_call_stack();
 
 	if (x_debug & DEBUG_CRASH)
-		irc_exit(0, "EPIC Panic: %s:%s", irc_version, buffer);
+		irc_exit(0, "EPIC Panic: %s (%lu):%s", irc_version, commit_id, buffer);
 	else
-		irc_exit(1, "EPIC Panic: %s:%s", irc_version, buffer);
+		irc_exit(1, "EPIC Panic: %s (%lu):%s", irc_version, commit_id, buffer);
 }
 
 /* beep_em: Not hard to figure this one out */
