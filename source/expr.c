@@ -1,4 +1,4 @@
-/* $EPIC: expr.c,v 1.24 2004/11/10 03:20:35 jnelson Exp $ */
+/* $EPIC: expr.c,v 1.25 2004/12/01 23:47:51 jnelson Exp $ */
 /*
  * expr.c -- The expression mode parser and the textual mode parser
  * #included by alias.c -- DO NOT DELETE
@@ -1320,6 +1320,11 @@ char	*parse_inline (char *str, const char *args, int *args_flag)
  *		semi-colons and returned one at a time. The unprocessed
  *		portion is written back into more_text.
  *	Backslash escapes are unescaped.
+ *
+ * XXX - BIG IMPORTANT NOTE -- This function is called by output_rewrite() and
+ * so is part of the critical output path.  That means it must not output 
+ * anything except via privileged_yell()!  To do otherwise could result in
+ * an infinite loop with add_to_window() that crashes!  You have been warned.
  */
 char	*expand_alias	(const char *string, const char *args, int *args_flag, ssize_t *more_text)
 {
@@ -1433,7 +1438,7 @@ char	*expand_alias	(const char *string, const char *args, int *args_flag, ssize_
 					(ch == LEFT_PAREN) ?
 					RIGHT_PAREN : RIGHT_BRACE)) < 0)
 			{
-				put_it("Unmatched %c", ch);
+				privileged_yell("Unmatched %c", ch);
 				/* 
 				 * DO NOT ``OPTIMIZE'' THIS BECAUSE
 				 * *STUFF IS NUL SO STRLEN(STUFF) IS 0!

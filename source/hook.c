@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.25 2003/12/09 04:37:52 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.26 2004/12/01 23:47:51 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -178,7 +178,7 @@ hook_functions[] =
 	{ "SEND_MSG",		(Hook *) 0,	2,	0,	HF_NORECURSE },
 	{ "SEND_NOTICE",	(Hook *) 0,	2,	0,	HF_NORECURSE },
 	{ "SEND_PUBLIC",	(Hook *) 0,	2,	0,	HF_NORECURSE },
-	{ "SEND_TO_SERVER",	(Hook *) 0,	3,	0,	0 },
+	{ "SEND_TO_SERVER",	(Hook *) 0,	3,	0,	HF_NORECURSE },
 	{ "SERVER_ESTABLISHED",	(Hook *) 0,	2,	0,	0 },
 	{ "SERVER_LOST",	(Hook *) 0,	2,	0,	0 },
 	{ "SERVER_NOTICE",	(Hook *) 0,	1,	0,	0 },

@@ -33,3 +33,8 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix brain-damage per above.
 * Fix space-related panic.  See UPDATES for all the gruesome details.
 * Add ALT_CHAR to the list of things that can be mangled.
+* Fix wording of default messages for 347 and 349 numerics.
+* Fix column alignment for /timer list.
+* Fix add_to_window() to stop runaway recursion through /set output_rewrite.
+* Fix bug in expand_alias() -- all output must be privileged_yell()!
+* Change /on send_to_server so it can't be hooked recursively.

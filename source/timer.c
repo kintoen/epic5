@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.41 2004/03/25 04:26:59 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.42 2004/12/01 23:47:51 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -413,7 +413,7 @@ static	void	list_timers (const char *command)
 		time_left = time_diff(current, tmp->time);
 		if (time_left < 0)
 			time_left = 0;
-		say("%-10s %-8.2f %-7ld %s", tmp->ref, time_left, 
+		say("%-10s %-10.2f %-7ld %s", tmp->ref, time_left, 
 					tmp->events, tmp->command);
 	}
 
