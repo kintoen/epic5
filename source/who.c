@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.29 2004/07/24 00:02:31 jnelson Exp $ */
+/* $EPIC: who.c,v 1.30 2004/08/07 19:54:55 jnelson Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -1042,7 +1042,7 @@ void userhostbase (int refnum, char *args, void (*line) (int, UserhostItem *, co
 	*buffer = 0;
 	while ((nick = next_arg(args, &args)) != NULL)
 	{
-		if (check_nickname(nick, 1))
+		if (isdigit(*nick) || check_nickname(nick, 1))
 		{
 			total++;
 			if (!fetch_userhost(refnum, nick))
