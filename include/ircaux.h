@@ -149,6 +149,7 @@ int	vsnprintf 		(char *, size_t, const char *, va_list);
 int	snprintf 		(char *, size_t, const char *, ...) __A(3);
 #endif
 char *	next_in_comma_list	(char *, char **);
+char *	next_in_div_list	(char *, char **, char);
 char *	get_userhost		(void);
 int	charcount		(const char *, char);
 void	beep_em			(int);
