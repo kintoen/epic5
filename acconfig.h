@@ -314,3 +314,9 @@
 /* Define this if you have atoll() */
 #undef HAVE_ATOLL
 
+/* Define this if you have strtoll() */
+#undef HAVE_STRTOLL
+
+/* Define this if you have atoq() */
+#undef HAVE_ATOQ
+
