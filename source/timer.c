@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.35 2003/07/16 00:56:43 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.36 2003/07/18 01:36:35 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -701,6 +701,7 @@ void 	ExecuteTimers (void)
 		 * then we use ''parse_line''.
 		 */
 		get_time(&right_now);
+		now = right_now;
 		if (current->callback)
 			(*current->callback)((void *)current->command);
 		else

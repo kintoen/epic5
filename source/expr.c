@@ -1,4 +1,4 @@
-/* $EPIC: expr.c,v 1.18 2003/07/09 21:10:25 jnelson Exp $ */
+/* $EPIC: expr.c,v 1.19 2003/07/10 09:50:30 jnelson Exp $ */
 /*
  * expr.c -- The expression mode parser and the textual mode parser
  * #included by alias.c -- DO NOT DELETE
@@ -1583,7 +1583,7 @@ static	char	*alias_special_char (char **buffer, char *ptr, const char *args, cha
 					new_free(&tmpsav);
 				tmpsav = tmp = tmp2;
 			}
-			while (*tmp == '$');
+			while (tmp && *tmp == '$');
 
 			alias_special_char(&sub_buffer, tmp, args, 
 						quote_em, args_flag);
