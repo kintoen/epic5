@@ -192,6 +192,11 @@
 #undef Rlisten
 #undef Rselect
 
+/*
+ *  Perl support.
+ * /
+#undef PERL
+
 /* Define this is DIRSIZ takes no argument */
 #undef DIRSIZ_TAKES_NO_ARG
 
