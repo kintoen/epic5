@@ -279,6 +279,9 @@ void 	numbered_command (char *from, int comm, char **ArgList)
 	/* XXX Doesn't belong here */
 	case 313:		/* #define RPL_WHOISOPERATOR    313 */
 	{
+		if (!ArgList[0] || !ArgList[1])
+			break;		/* Larne-proof epic */
+
 		PasteArgs(ArgList, 1);
 		if (do_hook(current_numeric, "%s %s %s", from, ArgList[0], ArgList[1]))
 			put_it("%s %s %s", numeric_banner(), ArgList[0], ArgList[1]);
