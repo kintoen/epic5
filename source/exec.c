@@ -1,4 +1,4 @@
-/* $EPIC: exec.c,v 1.33 2005/02/23 03:41:36 jnelson Exp $ */
+/* $EPIC: exec.c,v 1.34 2005/03/20 20:50:18 jnelson Exp $ */
 /*
  * exec.c: handles exec'd process for IRCII 
  *
@@ -677,8 +677,8 @@ say("Output from process %d (%s) now going to you", i, proc->name);
 			if (endc)
 				add_process_wait(proc->index, endc);
 
-			new_open(proc->p_stdout, do_exec, NEWIO_READ);
-			new_open(proc->p_stderr, do_exec, NEWIO_READ);
+			new_open(proc->p_stdout, do_exec, NEWIO_READ, 1);
+			new_open(proc->p_stderr, do_exec, NEWIO_READ, 1);
 			break;
 		}
 		}
