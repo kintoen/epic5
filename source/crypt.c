@@ -1,4 +1,4 @@
-/* $EPIC: crypt.c,v 1.8 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: crypt.c,v 1.9 2002/12/11 19:20:23 crazyed Exp $ */
 /*
  * crypt.c: handles some encryption of messages stuff. 
  *
@@ -100,7 +100,7 @@ static	int	remove_crypt (char *nick)
  * is_crypted: looks up nick in the crypt_list and returns the encryption key
  * if found in the list.  If not found in the crypt_list, null is returned. 
  */
-Crypt	*is_crypted (char *nick)
+Crypt	*is_crypted (const char *nick)
 {
 	Crypt	*tmp;
 
