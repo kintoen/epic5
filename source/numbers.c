@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.66 2004/12/01 23:47:51 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.67 2004/12/03 17:24:11 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -618,9 +618,9 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 		{
 			put_it("%s Total number of %s on %s - %d",
 				banner(), 
-				 current_numeric == 347 ? "invites" :
-				(current_numeric == 349 ? "exceptions" :
-				(current_numeric == 368 ? "bans" : "wounds")),
+				 numeric == 347 ? "invites" :
+				(numeric == 349 ? "exceptions" :
+				(numeric == 368 ? "bans" : "wounds")),
 				channel, number_of_bans);
 		}
 		goto END;
