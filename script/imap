@@ -22,9 +22,6 @@
 # This script has been modified to work correctly on the EPIC client.
 #
 
-^set novice off
-^set max_recursion 50
-
 @ RCS.imap = [$$Header$$]
 eval @ map.mask = encode(*.)
 # @ map.str = [| | | | | | | | | | | | | | | | | | | | | | | ]
