@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.50 2005/03/03 02:10:39 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.51 2005/03/12 01:40:22 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -1855,7 +1855,7 @@ char *hookctl (char *input)
 	int sernum;
 	int halt = 0;
 	int id;
-	int retlen;
+	size_t retlen;
 	char *nam;
 	char *str;
 	char *hookname;
