@@ -194,7 +194,7 @@
 
 /*
  *  Perl support.
- * /
+ */
 #undef PERL
 
 /* Define this is DIRSIZ takes no argument */
