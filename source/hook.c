@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.36 2004/04/30 18:34:28 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.37 2004/05/04 00:34:59 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -626,7 +626,10 @@ int 	do_hook (int which, const char *format, ...)
 		        currmatch = wild_match(tmp->nick, buffer);
 
 		    if (currmatch > bestmatch)
+		    {
 			besthook = tmp;
+			bestmatch = currmatch;
+		    }
 		}
 
 		/* If nothing matched, then run the next serial number. */
