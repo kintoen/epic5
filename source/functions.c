@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.149 2003/12/09 04:37:52 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.150 2003/12/26 19:14:49 crazyed Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -5563,7 +5563,7 @@ BUILT_IN_FUNCTION(function_isnumber, input)
  */
 BUILT_IN_FUNCTION(function_rest, input)
 {
-	int	start = 1;
+	int	start = 1, len;
 	char *	test_input;
 
 	/*
@@ -5574,13 +5574,16 @@ BUILT_IN_FUNCTION(function_rest, input)
 	if (test_input > input && my_isspace(*test_input))
 		GET_INT_ARG(start, input);
 
-	if (start <= 0)
-		RETURN_STR(input);
+	len = (int)strlen(input);
 
-	if (start >= (int)strlen(input))
+	if (start >= len || -start >= len)
 		RETURN_EMPTY;
+	else if (start >= 0)
+		RETURN_STR(input + start);
+	else
+		input[len+start] = '\0';
 
-	RETURN_STR(input + start);
+	RETURN_STR(input);
 }
 
 
@@ -6759,30 +6762,48 @@ BUILT_IN_FUNCTION(function_logctl, input)
  */
 BUILT_IN_FUNCTION(function_joinstr, input)
 {
-	char	*sep;
-	char	*var1, *val1, *word1;
-	char	*var2, *val2, *word2;
-	char	*retval = NULL;
-	size_t  clue=0;
+	char	*sep, *word;
+	char	*retval = NULL, *sub = NULL;
+	char	**free = NULL, **vals = NULL;
+	size_t	valc = 0;
+	size_t  retclue = 0;
+	int	foo;
 
 	GET_STR_ARG(sep, input)
-	GET_STR_ARG(var1, input)
-	GET_STR_ARG(var2, input)
 
-	word1 = get_variable(var1);
-	word2 = get_variable(var2);
-	val1 = LOCAL_COPY(word1);
-	val2 = LOCAL_COPY(word2);
-	new_free(&word1);
-	new_free(&word2);
+	for (valc = 0; input && *input; valc++) {
+		char *var;
 
-	while (*val1 || *val2)
-	{
-		word1 = safe_new_next_arg(val1, &val1);
-		word2 = safe_new_next_arg(val2, &val2);
-		malloc_strcat2_c(&retval, word1, sep, &clue);
-		malloc_strcat2_c(&retval, word2, space, &clue);
+		RESIZE(vals, vals, valc + 1);
+		RESIZE(free, free, valc + 1);
+
+		GET_STR_ARG(var, input)
+		free[valc] = vals[valc] = get_variable(var);
 	}
+
+	for (;;) {
+		size_t	clue = 0;
+		char	more = 0;
+
+		for (foo = 0; foo < valc; foo++) {
+			more |= *vals[foo];
+			word = safe_new_next_arg(vals[foo], &vals[foo]);
+			malloc_strcat2_c(&sub, foo?sep:"", word, &clue);
+		}
+
+		if (!more)
+			break;
+
+		malloc_strcat_word_c(&retval, space, sub, &retclue);
+		sub[0] = '\0'; /* improve malloc performance */
+	}
+
+	for (foo = 0; foo < valc; foo++)
+		new_free(&free[foo]);
+
+	new_free(&free);
+	new_free(&vals);
+	new_free(&sub);
 
 	RETURN_MSTR(retval);
 }

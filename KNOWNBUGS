@@ -86,3 +86,10 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix for rain's meta-compat script
 * Change default of /SET AUTO_REJOIN to OFF.
 * Allow semicolons in the middle of the /switch command.
+* Fixed $shuffle*() to respect extractw.
+* Altered $rest() so that a negative first argument makes it a compliment to
+  $right() in the same way that a positive arg makes it a compliment to
+  $left().  This may conceivably cause problems for scripts.
+* Spruced $joinstr() up a bit.  It now accepts any number of variables and
+  respects extractw.
+* Fixed an extractw bug in malloc_strcat_word_c while testing the above.
