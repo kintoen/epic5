@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.18 2002/12/26 16:40:31 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.19 2003/01/12 21:14:11 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -194,8 +194,10 @@ BUILT_IN_COMMAND(timercmd)
 
 		if (!update && events == -2)
 			events = 1;
+/*
 		else if (events == -2)
 			events = -1;
+*/
 
 		add_timer(update, want, interval, events, NULL, args, subargs, winref);
 	}
