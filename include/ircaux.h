@@ -176,7 +176,7 @@ char *	enquote_it		(char *str, size_t len);
 char *	dequote_it		(char *str, size_t *len);
 const char *	find_forward_quote	(const char *, const char *);
 const char *	find_backward_quote	(const char *, const char *);
-const char *	my_strerror		(int);
+const char *	my_strerror		(int, int);
 
 /* From words.c */
 #define SOS 		-32767
