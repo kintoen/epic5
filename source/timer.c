@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.25 2003/03/24 09:20:29 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.26 2003/04/08 22:27:30 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -117,7 +117,11 @@ BUILT_IN_COMMAND(timercmd)
 			int	winref;
 
 			if (!(ptr = next_arg(args, &args)) || !is_number(ptr))
+			{
 			    say("%s: Need a window number for -DELETE_FOR_WINDOW", command);
+			    return;
+			}
+
 			winref = atol(ptr);
 			remove_window_timers(winref);
 			return;
