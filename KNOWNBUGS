@@ -2,7 +2,7 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
-* $windowctl(GET <refnum> VISIBLE) is unimplemented.
+<none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
 [See http://www.epicsol.org/CHANGELOG for things that changed in the past]
@@ -120,3 +120,6 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix bug with $ at end of string (ie, echo $($))
 * Fix bug with lines containing only /, from |rain|.
 * The nick list in 353 is not mandatory (rb deww)
+* Fix a NULL deref with /window channel frobnitz hide
+* Nsx wants one more fix to his script
+* EPIC4-2.0 VOTE OF CONFIDENCE PASSES 15-0

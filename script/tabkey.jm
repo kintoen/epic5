@@ -228,6 +228,7 @@ alias do_tabkey (cycle_direction) {
 	@:input_line = left($curpos() $L)
 
 	if (L == []) {
+		@target_index = #target_cycle_list
 		@do_msg_cycle($cycle_direction)
 		return
 	} elsif (encode($L) == encode($last_input_line)) {
