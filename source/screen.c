@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.29 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.30 2002/08/03 10:58:43 crazyed Exp $ */
 /*
  * screen.c
  *
@@ -2831,7 +2831,8 @@ Screen *create_new_screen (void)
 	new_s->current_window = NULL;
 	new_s->visible_windows = 0;
 	new_s->window_stack = NULL;
-	new_s->meta_hit = 0;
+	new_s->last_press.tv_sec = new_s->last_press.tv_usec  = 0;
+	new_s->last_key = NULL;
 	new_s->quote_hit = 0;
 	new_s->fdout = 1;
 	new_s->fpout = stdout;
