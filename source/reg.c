@@ -1,4 +1,4 @@
-/* $EPIC: reg.c,v 1.7 2004/01/29 02:20:26 jnelson Exp $ */
+/* $EPIC: reg.c,v 1.8 2004/10/25 15:08:02 jnelson Exp $ */
 /*
  * reg.c - "glob"-like wildcard pattern matching (not regexes)
  *
@@ -297,7 +297,7 @@ static int new_match (const unsigned char *pattern, const unsigned char *string)
 			 * go back to normal parsing mode, presumably with
 			 * the space after the %.
 			 */
-			if (*string == ' ')
+			else if (*string == ' ')
 			{
 				if (x_debug & DEBUG_REGEX_DEBUG)
 					yell("Found a space");

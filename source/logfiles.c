@@ -1,4 +1,4 @@
-/* $EPIC: logfiles.c,v 1.22 2003/10/28 05:53:57 jnelson Exp $ */
+/* $EPIC: logfiles.c,v 1.23 2004/10/25 15:08:02 jnelson Exp $ */
 /*
  * logfiles.c - General purpose log files
  *
@@ -789,24 +789,24 @@ char *logctl	(char *input)
 		RETURN_MSTR(retval);
         } else if (!my_strnicmp(listc, "REFNUM", 6)) {
 		GET_STR_ARG(refstr, input);
-		if (!(log = get_log_by_desc(input)))
+		if (!(log = get_log_by_desc(refstr)))
 			RETURN_EMPTY;
 		RETURN_INT(log->refnum);
         } else if (!my_strnicmp(listc, "ADD", 2)) {
 		GET_STR_ARG(refstr, input);
-		if (!(log = get_log_by_desc(input)))
+		if (!(log = get_log_by_desc(refstr)))
 			RETURN_EMPTY;
 		logfile_add(log, &input);
 		RETURN_INT(1);
         } else if (!my_strnicmp(listc, "DELETE", 2)) {
 		GET_STR_ARG(refstr, input);
-		if (!(log = get_log_by_desc(input)))
+		if (!(log = get_log_by_desc(refstr)))
 			RETURN_EMPTY;
 		logfile_remove(log, &input);
 		RETURN_INT(1);
         } else if (!my_strnicmp(listc, "GET", 2)) {
                 GET_STR_ARG(refstr, input);
-		if (!(log = get_log_by_desc(input)))
+		if (!(log = get_log_by_desc(refstr)))
 			RETURN_EMPTY;
 
                 GET_STR_ARG(listc, input);
@@ -837,7 +837,7 @@ char *logctl	(char *input)
 		}
         } else if (!my_strnicmp(listc, "SET", 1)) {
                 GET_STR_ARG(refstr, input);
-		if (!(log = get_log_by_desc(input)))
+		if (!(log = get_log_by_desc(refstr)))
 			RETURN_EMPTY;
 
 		GET_STR_ARG(listc, input);

@@ -27,3 +27,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * When creating the 'epic' symlink, use a relative path for jm. (bug 9)
 * Fix compile warning for alloca on freebsd-current for blackjac. bleh.
 * Fix color bleeding with color changes in middle of long words that wrap.
+* Fix $logctl().
