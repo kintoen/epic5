@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.21 2003/07/20 15:56:02 jnelson Exp $ */
+/* $EPIC: notify.c,v 1.22 2003/07/22 19:04:36 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -632,11 +632,11 @@ void	notify_systimer (void)
 	do_notify();
 }
 
-void    set_notify_interval (int value)
+void    set_notify_interval (const void *stuff)
 {
 }
 
-void    set_notify (int value)
+void    set_notify (const void *stuff)
 {
 	update_system_timer(notify_timeref);
 }

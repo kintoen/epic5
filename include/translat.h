@@ -9,7 +9,7 @@
 #ifndef __translat_h_
 # define __translat_h_
 
-extern	void	set_translation (char *);
+extern	void	set_translation (const void *);
 extern	int	translation;
 extern	void	translate_from_server (unsigned char *);
 extern	void	translate_to_server (unsigned char *);
