@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.31 2003/12/17 09:25:30 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.32 2004/03/17 03:51:53 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -174,6 +174,7 @@ void init_binds (void) {
     ADDBIND("SWAP_NEXT_WINDOW",		    swap_next_window		    );
     ADDBIND("SWAP_PREVIOUS_WINDOW",	    swap_previous_window	    );
     ADDBIND("SWITCH_CHANNELS",		    switch_channels		    );
+    ADDBIND("SWITCH_QUERY",		    switch_query		    );
     ADDBIND("TOGGLE_INSERT_MODE",	    toggle_insert_mode		    );
     ADDBIND("TOGGLE_STOP_SCREEN",	    toggle_stop_screen		    );
     ADDBIND("TRANSPOSE_CHARACTERS",	    input_transpose_characters	    );
