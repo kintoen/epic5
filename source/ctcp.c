@@ -31,6 +31,7 @@ static	char	rcsid[] = "@(#)$Id$";
 #include "window.h"
 #include "if.h"
 #include "flood.h"
+#include "notice.h"
 
 #include <pwd.h>
 #ifdef HAVE_UNAME
@@ -187,7 +188,10 @@ CTCP_HANDLER(do_sed)
 		 * There might be a CTCP message in there,
 		 * so we see if we can find it.
 		 */
-		ret2 = m_strdup(do_ctcp(from, to, ret));
+		if (doing_privmsg)
+			ret2 = m_strdup(do_ctcp(from, to, ret));
+		else if (doing_notice)
+			ret2 = m_strdup(do_notice_ctcp(from, to, ret));
 		sed = 1;
 	}
 
