@@ -1,4 +1,4 @@
-/* $EPIC: input.c,v 1.4 2002/07/17 22:52:52 jnelson Exp $ */
+/* $EPIC: input.c,v 1.5 2002/08/12 16:41:11 wd Exp $ */
 /*
  * input.c: does the actual input line stuff... keeps the appropriate stuff
  * on the input line, handles insert/delete of characters/words... the whole
@@ -1235,8 +1235,6 @@ BUILT_IN_BINDING(cpu_saver_on)
  */
 void	edit_char (u_char key)
 {
-	void		(*func) 	(char, char *) = NULL;
-	char *		ptr = NULL;
 	u_char		extended_key;
 	WaitPrompt *	oldprompt;
 	u_char		dummy[2];
