@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.108 2003/11/21 05:57:38 jnelson Exp $ */
+/* $EPIC: server.c,v 1.109 2004/01/24 15:00:53 crazyed Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -1912,17 +1912,21 @@ void	register_server (int refnum, const char *nick)
 			cert_subject = X509_NAME_oneline(
 				X509_get_subject_name(server_cert),0,0);
 			u_cert_subject = urlencode(cert_subject);
-			say("subject: %s", u_cert_subject);
 			cert_issuer = X509_NAME_oneline(
 				X509_get_issuer_name(server_cert),0,0);
 			u_cert_issuer = urlencode(cert_issuer);
-			say("issuer: %s", u_cert_issuer);
 
-			set_server_ssl_enabled(refnum, TRUE);
 			server_pkey = X509_get_pubkey(server_cert);
-			say("public key: %d", EVP_PKEY_bits(server_pkey));
-			do_hook(SSL_SERVER_CERT_LIST, "%s %s %s",
-				s->name, cert_subject, cert_issuer);
+			
+			if (do_hook(SSL_SERVER_CERT_LIST, "%s %s %s %d",
+				s->name, u_cert_subject, u_cert_issuer, EVP_PKEY_bits(server_pkey))) {
+
+				say("SSL certificate subject: %s", cert_subject);
+				say("SSL certificate issuer: %s", cert_issuer);
+				say("SSL certificate public key length: %d bits", EVP_PKEY_bits(server_pkey));
+			}
+			
+			set_server_ssl_enabled(refnum, TRUE);
 
 			new_free(&u_cert_issuer);
 			new_free(&u_cert_subject);
