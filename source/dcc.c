@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.84 2003/12/13 17:25:58 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.85 2004/01/03 19:57:25 crazyed Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -3503,6 +3503,8 @@ char *	dccctl (char *input)
 	DCC_list *	client;
 	char *		retval = NULL;
 	size_t		clue = 0;
+	fd_set		fd;
+	Timeval		to;
 
 	GET_STR_ARG(listc, input);
 	len = strlen(listc);
@@ -3592,6 +3594,16 @@ char *	dccctl (char *input)
 				RETURN_EMPTY;
 			malloc_strcat_word_c(&retval, space, host, &clue);
 			malloc_strcat_word_c(&retval, space, port, &clue);
+		} else if (!my_strnicmp(listc, "WRITABLE", len)) {
+			int retint;
+
+			FD_ZERO(&fd);
+			FD_SET(client->socket, &fd);
+			to.tv_sec = 0;
+			to.tv_usec = 0;
+
+			retint = select(client->socket + 1, NULL, &fd, NULL, &to) > 0;
+			RETURN_INT(retint);
 		} else {
 			RETURN_EMPTY;
 		}
@@ -3691,6 +3703,19 @@ char *	dccctl (char *input)
 	} else if (!my_strnicmp(listc, "UNHELD", len)) {
 		for (client = ClientList; client; client = client->next)
 			if (!client->held)
+				malloc_strcat_word_c(&retval, space, ltoa(client->refnum), &clue);
+	} else if (!my_strnicmp(listc, "WRITABLES", len)) {
+		FD_ZERO(&fd);
+		to.tv_sec = 0;
+		to.tv_usec = 0;
+
+		for (client = ClientList; client; client = client->next)
+			FD_SET(client->socket, &fd);
+
+		select(global_max_fd + 1, NULL, &fd, NULL, &to);
+
+		for (client = ClientList; client; client = client->next)
+			if (FD_ISSET(client->socket, &fd))
 				malloc_strcat_word_c(&retval, space, ltoa(client->refnum), &clue);
 	} else
 		RETURN_EMPTY;

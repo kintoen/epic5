@@ -316,12 +316,11 @@ alias replace (args) {
 # The c in shufflec stands for "char".
 # The slow version is actually faster than the fast for smaller arg lists.
 alias shufflec return $chr($shufflef($ascii($*)))
-alias shufflef {
-	if (500>#) {
-		return $shuffles($*)
+alias shufflef (args) {
+	@ :foo = randn($#args 2)
+	if (#args < 1000) {
+		return $shuffles($copattern(0 foo args)) $shuffles($copattern(1 foo args))
 	} else {
-		@ :args = [$*]
-		@ :foo = randn($# 2)
 		return $shufflef($copattern(0 foo args)) $shufflef($copattern(1 foo args))
 	}
 }

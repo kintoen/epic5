@@ -93,3 +93,6 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Spruced $joinstr() up a bit.  It now accepts any number of variables and
   respects extractw.
 * Fixed an extractw bug in malloc_strcat_word_c while testing the above.
+* Performance optimisation for $shufflef() (script/functions).
+* Minor bug fix for script/data_struct.
+* Rolled in changes to 005 processing as per discussions with Larne.
