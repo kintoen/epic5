@@ -221,6 +221,26 @@ alias ison (nicklist) {
 	//ison $nicklist
 }
 
+alias lookup_server (server) {
+	if (findw($server $myservers()) == -1) {
+		if (isnumber($server)) {
+			if (index($server $myservers(*)) == -1) {
+				xecho -b -c -- $server is an invalid reference number
+
+				return -1
+			} else {
+				return $server
+			}
+		} else {
+			xecho -b -c -- $server is an invalid server name
+
+			return -1
+		}
+	} else {
+		return $servernum($server)
+	}
+}
+
 alias nlist {
 	xecho -b -- global notify list: $notify_list
 
@@ -266,12 +286,11 @@ alias notify (nicklist) {
 			@:nickname = rest($nickname)
 
 			if (separators == 1) {
-				@:refnum = after(: $nickname)
+				@:serv = after(: $nickname)
+				@:refnum = lookup_server($serv)
 				@:nickname = before(: $nickname)
 
-				if (index($refnum $myservers(*)) == -1) {
-					xecho -b -c -- $refnum is not a valid server reference number
-
+				if (refnum == -1) {
 					continue
 				}
 
@@ -343,21 +362,20 @@ alias notify (nicklist) {
 			}
 
 			if (separators == 1) {
-				@:refnum = after(: $nickname)
+				@:serv = after(: $nickname)
+				@:refnum = lookup_server($serv)
 				@:nickname = before(: $nickname)
 
 				if (nickname == []) {
 					continue
 				}
 
-				if (index($refnum $myservers(*)) == -1) {
-					xecho -b -c -- $refnum is not a valid server reference number
-
+				if (refnum == -1) {
 					continue
 				}
 
 				if (findw($nickname $notify_list[$refnum]) != -1) {
-					xecho -b -c -- $nickname is already in the local notify list for server ${refnum}!
+					xecho -b -c -- $nickname is already in the local notify list for server ${serv}!
 
 					continue
 				}
@@ -370,7 +388,7 @@ alias notify (nicklist) {
 
 				push notify_list[$refnum] $nickname
 
-				xecho -b -c -- $nickname has been added to the local notify list for server $refnum
+				xecho -b -c -- $nickname has been added to the local notify list for server $serv
 			} elsif (separators == 2) {
 				@:groupname = after(-1 : $nickname)
 				@:nickname = before(: $nickname)
