@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.133 2004/06/28 23:48:15 jnelson Exp $ */
+/* $EPIC: server.c,v 1.134 2004/07/08 08:27:59 crazyed Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -1796,7 +1796,8 @@ void	register_server (int refnum, const char *nick)
 	send_to_aserver(refnum, "USER %s %s %s :%s", username, 
 			(send_umode && *send_umode) ? send_umode : 
 			(LocalHostName ? LocalHostName : hostname), 
-			username, (*realname ? realname : space));
+			username, (get_string_var(REALNAME_VAR) ? 
+				   get_string_var(REALNAME_VAR) : space));
 	change_server_nickname(refnum, nick);
 	if (x_debug & DEBUG_SERVER_CONNECT)
 		yell("Registered with server [%d]", refnum);
