@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.64 2003/02/17 23:48:48 crazyed Exp $ */
+/* $EPIC: ircaux.c,v 1.65 2003/02/27 02:59:25 crazyed Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -2341,7 +2341,7 @@ Timeval time_add (Timeval one, Timeval two)
 
 	td.tv_usec = one.tv_usec + two.tv_usec;
 	td.tv_sec = one.tv_sec + two.tv_sec;
-	if (td.tv_usec > 1000000)
+	if (td.tv_usec >= 1000000)
 	{
 		td.tv_usec -= 1000000;
 		td.tv_sec++;

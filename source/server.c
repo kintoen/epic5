@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.90 2003/02/05 21:48:12 crazyed Exp $ */
+/* $EPIC: server.c,v 1.91 2003/02/17 23:48:48 crazyed Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -179,6 +179,7 @@ void 	add_to_server_list (const char *server, int port, const char *password, co
 
 		s->funny_match = NULL;
 
+		s->try_ssl = FALSE;
 		s->ssl_enabled = FALSE;
 		s->ssl_fd = NULL;
 
