@@ -179,6 +179,8 @@ CTCP_HANDLER(do_sed)
 
 	if (!key || !ret)
 		malloc_strcpy(&ret2, "[ENCRYPTED MESSAGE]");
+	else if (!*ret)
+		malloc_strcpy(&ret2, "[ENCRYPTED MESSAGE - BAD KEY?]");
 	else
 	{
 		/* 

@@ -1584,8 +1584,6 @@ char*	exec_pipe (char *executable, char *input, size_t *len, char**args)
 		close(pipe0[1]);
 		close(pipe1[0]);
 		waitpid(pid, NULL, WNOHANG);
-		new_realloc((void**)&ret, 1+rdpos);
-		ret[rdpos] = 0; /* Not strictly necessary, but just in case. */
 		new_realloc((void**)&ret, rdpos);
 		break;
 	}

@@ -195,6 +195,8 @@ char* 	prog_crypt (char *str, int *len, Crypt *key, int flag)
 	*len += iplen;
 	ret = exec_pipe(key->prog, input, len, args);
 	new_free((char**)&input);
+	new_realloc((void**)&ret, 1+*len);
+	ret[*len] = 0;
 	return ret;
 }
 
