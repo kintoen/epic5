@@ -1,4 +1,4 @@
-/* $EPIC: compat.c,v 1.21 2004/02/20 22:32:54 jnelson Exp $ */
+/* $EPIC: compat.c,v 1.22 2004/02/20 22:51:12 jnelson Exp $ */
 /*
  * Everything that im not directly responsible for I put in here.  Almost
  * all of this stuff is either borrowed from somewhere else (for you poor
@@ -1201,7 +1201,10 @@ char *	my_realpath (const char *pathname, char resolved_path[MAXPATHLEN])
 	if ((rest = strrchr(mypath, '/')))
 		*rest++ = 0;
 	else
-		strlcpy(mypath, "./", size);
+	{
+		strlcpy(mypath, ".", size);
+		rest = mypath;
+	}
 
 	if (realpath(mypath, resolved_path) == NULL)
 		return NULL;
