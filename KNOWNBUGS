@@ -124,3 +124,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Nsx wants one more fix to his script
 * EPIC4-2.0 VOTE OF CONFIDENCE PASSES 15-0
 * Fix some bugs with /dcc send <nick> <non-existant file>
+* Fix my_realpath() for linux users.
