@@ -847,7 +847,7 @@ char *	do_notice_ctcp (char *from, char *to, char *str)
 		}
 
 		/* Toss it at the user.  */
-		if (do_hook(CTCP_REPLY_LIST, "%s %s %s", from, ctcp_command, ctcp_argument))
+		if (do_hook(CTCP_REPLY_LIST, "%s %s %s %s", from, to, ctcp_command, ctcp_argument))
 		{
 			/* Set up the window level/logging */
 			lastlog_level = set_lastlog_msg_level(LOG_CTCP);
