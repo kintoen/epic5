@@ -296,6 +296,7 @@ void malloc_dump (char* file) {
 			fprintf(fd, " %x", (unsigned char)(((char*)(alloc_table.entries[foo]))[bar]));
 		fprintf(fd, "\n");
 	}
+	fclose(fd);
 #endif
 }
 
