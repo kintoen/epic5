@@ -1,4 +1,4 @@
-/* $EPIC: compat.c,v 1.13 2002/10/22 23:18:44 jnelson Exp $ */
+/* $EPIC: compat.c,v 1.14 2002/12/19 03:22:58 jnelson Exp $ */
 /*
  * Everything that im not directly responsible for I put in here.  Almost
  * all of this stuff is either borrowed from somewhere else (for you poor
@@ -164,7 +164,7 @@ static int popnum(int *num)
 	return 1;
 }
 
-static int cvtchar(char *sp, char *c)
+static int cvtchar (const char *sp, char *c)
 {
 	switch(*sp) {
 	case '\\':

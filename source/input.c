@@ -1,4 +1,4 @@
-/* $EPIC: input.c,v 1.8 2002/11/26 23:03:13 jnelson Exp $ */
+/* $EPIC: input.c,v 1.9 2002/12/23 18:37:15 jnelson Exp $ */
 /*
  * input.c: does the actual input line stuff... keeps the appropriate stuff
  * on the input line, handles insert/delete of characters/words... the whole
@@ -551,6 +551,7 @@ void	set_input (char *str)
 {
 	strmcpy(INPUT_BUFFER + MIN_POS, str, INPUT_BUFFER_SIZE - MIN_POS);
 	THIS_POS = strlen(INPUT_BUFFER);
+	update_input(UPDATE_ALL);
 }
 
 /*
