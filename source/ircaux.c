@@ -1538,8 +1538,15 @@ char*	exec_pipe (char *executable, char *input, size_t *len, char**args)
 		setuid(getuid());
 		setgid(getgid());
 		execvp(executable, args);
+#if 0
+		/*
+		 * OK, well the problem with this is that the message
+		 * is going to go out on stdout right, and where does
+		 * that end up?
+		 */
 		yell("Cannot exec %s: %s", 
 			executable, strerror(errno));
+#endif
 		_exit(0);
 	default :
 		close(pipe0[0]);
