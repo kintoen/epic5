@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.123 2004/01/25 06:48:02 jnelson Exp $ */
+/* $EPIC: server.c,v 1.124 2004/01/29 06:59:55 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -1767,7 +1767,7 @@ void	register_server (int refnum, const char *nick)
 			server_pkey = X509_get_pubkey(server_cert);
 
 			if (do_hook(SSL_SERVER_CERT_LIST, "%s %s %s %d",
-				s->name, u_cert_subjcet, u_cert_issuer, EVP_PKEY_bits(server_pkey))) {
+				s->name, u_cert_subject, u_cert_issuer, EVP_PKEY_bits(server_pkey))) {
 				say("SSL certificate subject: %s", cert_subject);
 				say("SSL certificate issuer: %s", cert_issuer);
 				say("SSL certificate public key length: %d bits", EVP_PKEY_bits(server_pkey));
