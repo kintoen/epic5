@@ -2095,6 +2095,10 @@ int	split_args (char *str, char **to, size_t maxargs)
 		}
 		else
 			to[counter] = new_next_arg(ptr, &ptr);
+
+		/* Syntax error? abort immediately. */
+		if (to[counter] == NULL)
+			break;
 	}
 	to[counter] = NULL;
 	return counter;
