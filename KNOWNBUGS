@@ -3,6 +3,10 @@ EPIC4 Projects, Bugs, and other Errata:
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
 * /eval echo $stripcrap(all,-bold ^B^Btest) is bolded.
+* 346 is the channel invite list
+* 347 is End of Channel Invite list
+* 348 is the channel exception list
+* 349 is End of Channel Exception list.
 <none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
@@ -138,3 +142,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Allow /userhost <uniqueid> for ircnet.
 * Allow 'epic 0 <servername' for ircnet.
 * Increase buffer for %F (and %{1}F) from 80 bytes to 2k.
+* Avoid NULL deref on brok^H^H^H^Hempty numeric replies

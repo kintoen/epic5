@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.63 2004/08/07 18:33:35 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.64 2004/08/15 03:28:23 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -96,13 +96,15 @@ const char *	banner (void)
  * Simplified by Jeremy Nelson (esl) some time in 1996.
  * -- called by more than one place.
  */
-void 	display_msg (const char *from, const char **ArgList)
+static void 	display_msg (const char *from, const char *comm, const char **ArgList)
 {
 	char	*ptr = NULL;
 	const char	*rest;
 	int	drem;
 
-	rest = PasteArgs(ArgList, 0);
+	if (!(rest = PasteArgs(ArgList, 0)))
+		{ rfc1459_odd(from, comm, ArgList); return; }
+
 	if (from && (my_strnicmp(get_server_itsname(from_server), from,
 			strlen(get_server_itsname(from_server))) == 0))
 		from = NULL;
@@ -1110,7 +1112,7 @@ DISPLAY:
 	{
 		PasteArgs(ArgList, 0);
 		if (get_int_var(SHOW_END_OF_MSGS_VAR))
-			display_msg(from, ArgList);
+			display_msg(from, comm, ArgList);
 		break;
 	}
 
@@ -1390,7 +1392,7 @@ DISPLAY:
 			{ rfc1459_odd(from, comm, ArgList); goto END; }
 
 		if (!channel_is_syncing(channel, from_server))
-			display_msg(from, ArgList);
+			display_msg(from, comm, ArgList);
 
 		break;
 	}
@@ -1442,7 +1444,7 @@ DISPLAY:
 	{
 		PasteArgs(ArgList, 0);
 		if (get_int_var(SHOW_END_OF_MSGS_VAR))
-			display_msg(from, ArgList);
+			display_msg(from, comm, ArgList);
 		break;
 	}
 
@@ -1513,7 +1515,7 @@ DISPLAY:
 		/* IRCnet has a different 477 numeric. */
 		if (message && *message == '+')
 		{
-			display_msg(from, ArgList);
+			display_msg(from, comm, ArgList);
 			break;
 		}
 
@@ -1524,7 +1526,7 @@ DISPLAY:
 	}
 
 	default:
-		display_msg(from, ArgList);
+		display_msg(from, comm, ArgList);
 	}
 
 END:
