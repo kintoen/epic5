@@ -92,6 +92,8 @@ char *	ltoa 			(long);
 char *	ftoa			(double);
 char *	strformat 		(char *, const char *, int, int);
 char *	chop_word 		(char *);
+char *	skip_spaces		(char *);
+int	split_args		(char *, char **to, size_t);
 int	splitw 			(char *, char ***);
 char *	unsplitw 		(char ***, int);
 int	check_val 		(char *);
