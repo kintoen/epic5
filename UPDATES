@@ -1,12 +1,19 @@
 EPIC4-1.2.0
 
-*** News -- 12/27/2003 -- Added $splicec() in functions script.
-	This works much the same way as $splice(), but on characters, not
-	words.  It won't work seemlessly on local vars though.
-
 *** News -- 12/27/2003 -- Added /SET DCC_DEQUOTE_FILENAMES
 	This turns the double quoted space decoding feature added recently for
 	received DCC SEND requests on and off.
+
+*** News -- 12/27/2003 -- $rest() also removes chars from the right.
+	Using a negative first arg causes $rest() to strip chars from the right
+	hand side of the string.  This makes it a compliment to $right() as
+	well as $left(), but if a script relies on it returning the original
+	string the way it did before, it may now cause compatibility problems.
+	If it does, talk to CrazyEddy on #epic efnet.
+
+*** News -- 12/27/2003 -- Added $splicec() in functions script.
+	This works much the same way as $splice(), but on characters, not
+	words.  It won't work seemlessly on local vars though.
 
 *** News -- 12/13/2003 -- Default of AUTO_REJOIN is now OFF
 	Per the poll taken on the epic mailing list, the preponderance of
