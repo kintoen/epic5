@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.88 2004/01/28 09:51:46 crazyed Exp $ */
+/* $EPIC: dcc.c,v 1.89 2004/02/20 19:44:32 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -1866,6 +1866,7 @@ static	void	dcc_filesend (char *args)
 			continue;
 		}
 
+#if 0
 		/*
 		 * Ok.  We have a filename they want to send.  Check to
 		 * see what kind it is.
@@ -1875,6 +1876,7 @@ static	void	dcc_filesend (char *args)
                         say("%s is not a valid directory", fullname);
                         continue;
                 }
+#endif
 
 		/*
 		 * Make a note that we've seen a filename
@@ -1898,7 +1900,7 @@ static	void	dcc_filesend (char *args)
 
 		if (access(fullname, R_OK))
 		{
-			say("Cannot send %s because you dont have read permission", fullname);
+			say("Cannot send %s because it doesn't exist or you can't read it.", fullname);
 			continue;
 		}
 
