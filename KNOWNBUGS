@@ -15,3 +15,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix 353 numeric so channels w/o users on ratbox aren't "odd"
 * Fix problems with translation, particular for zlonix.
 * A tab between [ref] and pattern in /ignore is visually jarring. Use space.
+* Fix problems with LOG_REWRITE and window refnum -1.
