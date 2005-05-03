@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.111 2004/08/07 19:54:55 jnelson Exp $ */
+/* $EPIC: server.c,v 1.112 2005/05/03 03:51:56 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2172,7 +2172,8 @@ int	get_server_port (int refnum)
 	if (!(s = get_server(refnum)))
 		return 0;
 
-	if (!inet_ntostr((SA *)&s->remote_sockname, NULL, 0, p_port, 12, 0))
+	if (is_server_open(refnum))
+	    if (!inet_ntostr((SA *)&s->remote_sockname, NULL, 0, p_port, 12, 0))
 		return atol(p_port);
 
 	return s->port;
@@ -2186,7 +2187,8 @@ int	get_server_local_port (int refnum)
 	if (!(s = get_server(refnum)))
 		return 0;
 
-	if (!inet_ntostr((SA *)&s->remote_sockname, NULL, 0, p_port, 12, 0))
+	if (is_server_open(refnum))
+	    if (!inet_ntostr((SA *)&s->local_sockname, NULL, 0, p_port, 12, 0))
 		return atol(p_port);
 
 	return 0;
@@ -3014,6 +3016,9 @@ char 	*serverctl 	(char *input)
 			RETURN_STR(ret);
 		} else if (!my_strnicmp(listc, "PORT", len)) {
 			num = get_server_port(refnum);
+			RETURN_INT(num);
+		} else if (!my_strnicmp(listc, "LOCALPORT", len)) {
+			num = get_server_local_port(refnum);
 			RETURN_INT(num);
 		} else if (!my_strnicmp(listc, "QUIT_MESSAGE", len)) {
 			ret = get_server_quit_message(refnum);

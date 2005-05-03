@@ -16,3 +16,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix problems with translation, particular for zlonix.
 * A tab between [ref] and pattern in /ignore is visually jarring. Use space.
 * Fix problems with LOG_REWRITE and window refnum -1.
+* Fix 'get_local_server_port', add $serverctl(GET * LOCALPORT). (fudd)
