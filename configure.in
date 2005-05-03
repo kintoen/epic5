@@ -77,7 +77,7 @@ dnl ----------------------------------------------------------
 dnl   Where does this belong?
 AC_MSG_CHECKING(which multiplexer function to use)
 AC_ARG_WITH(multiplex,
-[  --with-multiplex[=TYPE] Multiplexer type (select,poll,freebsd-kqueue,pthread)],[
+[  --with-multiplex[=TYPE] Multiplexer type (select,poll,freebsd-kqueue,pthread,solaris-ports)],[
 	if test "x$withval" = "x"; then
 		with_multiplex="select"
 	elif test "x$withval" = "xselect"; then
@@ -86,6 +86,8 @@ AC_ARG_WITH(multiplex,
 		with_multiplex="poll"
 	elif test "x$withval" = "xfreebsd-kqueue"; then
 		with_multiplex="kqueue"
+	elif test "x$withval" = "xsolaris-ports"; then
+		with_multiplex="port_create"
 	elif test "x$withval" = "xpthread"; then
 		with_multiplex="pthread_create"
 		CFLAGS="$CFLAGS -pthread"
@@ -105,6 +107,9 @@ AC_CHECK_FUNC($with_multiplex, [
 		threading=0
 	elif test "x$with_multiplex" = "xkqueue" ; then
 		AC_DEFINE(USE_FREEBSD_KQUEUE)
+		threading=0
+	elif test "x$with_multiplex" = "xport_create" ; then
+		AC_DEFINE(USE_SOLARIS_PORTS)
 		threading=0
 	elif test "x$with_multiplex" = "xpthread_create" ; then
 		AC_DEFINE(USE_PTHREAD)

@@ -335,3 +335,5 @@
 /* Define this if you have arc4random() */
 #undef HAVE_ARC4RANDOM
 
+/* Define this if you have solaris ports */
+#undef USE_SOLARIS_PORTS
