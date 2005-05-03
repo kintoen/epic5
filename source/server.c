@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.164 2005/04/03 19:00:59 jnelson Exp $ */
+/* $EPIC: server.c,v 1.165 2005/04/24 13:39:30 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2798,6 +2798,9 @@ char 	*serverctl 	(char *input)
 			RETURN_STR(ret);
 		} else if (!my_strnicmp(listc, "PORT", len)) {
 			num = get_server_port(refnum);
+			RETURN_INT(num);
+		} else if (!my_strnicmp(listc, "LOCALPORT", len)) {
+			num = get_server_local_port(refnum);
 			RETURN_INT(num);
 		} else if (!my_strnicmp(listc, "QUIT_MESSAGE", len)) {
 			if (!(ret = get_server_quit_message(refnum)))
