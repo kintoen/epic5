@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.146 2005/05/19 13:34:00 jnelson Exp $ */
+/* $EPIC: window.c,v 1.147 2005/05/20 23:49:16 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -4529,7 +4529,7 @@ Window *window_server (Window *window, char **args)
 			set_server_status(i, SERVER_RECONNECT);
 	}
 	else
-		say("SERVER: You must specify a server");
+		display_server_list();
 
 	return window;
 }
