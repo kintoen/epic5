@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.44 2005/04/20 03:59:09 wd Exp $ */
+/* $EPIC: keys.c,v 1.45 2005/05/02 03:55:48 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -378,7 +378,7 @@ void *	handle_keypress (void *lastp, Timeval pressed, unsigned char key) {
     /* If there is a map and a keybinding, schedule a timeout */
     if (kp->map && kp->bound)
 	add_timer(0, empty_string, get_int_var(KEY_INTERVAL_VAR) / 1000.0, 1,
-			do_input_timeouts, NULL, NULL, -1);
+			do_input_timeouts, NULL, NULL, GENERAL_TIMER, -1, 0);
 
     /* if the key has a map associated, we can't automatically execute the
      * action.  return kp and wait quietly. */
