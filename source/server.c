@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.112 2005/05/03 03:51:56 jnelson Exp $ */
+/* $EPIC: server.c,v 1.113 2005/06/04 04:32:53 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2323,16 +2323,19 @@ void	change_server_nickname (int refnum, const char *nick)
 	s->resetting_nickname = 0;
 	if (nick)
 	{
-	    n = LOCAL_COPY(nick);
-
+	    /* If changing to our Unique ID, the default nickname is 0 */
 	    id = get_server_unique_id(refnum);
-            if ((id && my_stricmp(n, id)) && strcmp(n, "0"))
-            {
+	    if (id && !my_stricmp(nick, id))
+		malloc_strcpy(&s->d_nickname, zero);
+	    else
+	    {
+	        n = LOCAL_COPY(nick);
                 if (!(n = check_nickname(n, 1)))
 			reset_nickname(refnum);
+		else
+			malloc_strcpy(&s->d_nickname, n);
 	    }
 
-	    malloc_strcpy(&s->d_nickname, n);
 	    malloc_strcpy(&s->s_nickname, n);
 	}
 
@@ -2353,14 +2356,22 @@ const char *	get_pending_nickname (int refnum)
 void	accept_server_nickname (int refnum, const char *nick)
 {
 	Server *s;
+	const char *id;
 
 	if (!(s = get_server(refnum)))
 		return;
 
+	/* We always accept whatever the server says our new nick is */
 	malloc_strcpy(&s->nickname, nick);
-	malloc_strcpy(&s->d_nickname, nick);
 	new_free(&s->s_nickname);
 	s->fudge_factor = 0;
+
+	/* Change our default nickname to our new nick, or 0 for unique id's */
+	id = get_server_unique_id(refnum);
+	if (id && !my_stricmp(nick, id))
+		malloc_strcpy(&s->d_nickname, zero);
+	else
+		malloc_strcpy(&s->d_nickname, nick);
 
 	if (refnum == primary_server)
 		strlcpy(nickname, nick, sizeof nickname);
@@ -2635,7 +2646,6 @@ IACCESSOR(v, line_length)
 IACCESSOR(v, max_cached_chan_size)
 SACCESSOR(chan, invite_channel, NULL)
 SACCESSOR(nick, last_notify_nick, NULL)
-SACCESSOR(id, unique_id, NULL)
 SACCESSOR(nick, joined_nick, NULL)
 SACCESSOR(nick, public_nick, NULL)
 SACCESSOR(nick, recv_nick, NULL)
@@ -2646,6 +2656,21 @@ SACCESSOR(group, group, "<default>")
 SACCESSOR(message, quit_message, "get_server_quit_message")
 SACCESSOR(cookie, cookie, NULL)
 SACCESSOR(ver, version_string, NULL)
+
+GET_SATTRIBUTE(unique_id, NULL)
+void    set_server_unique_id (int servref, const char * id)
+{
+	Server *s;
+
+	if (!(s = get_server(servref)))
+		return;
+
+	malloc_strcpy(&s->unique_id , id);
+	if (id && s->d_nickname && !my_stricmp(id, s->d_nickname))
+		malloc_strcpy(&s->d_nickname, zero);
+}
+
+
 
 GET_IATTRIBUTE(operator)
 void	set_server_operator (int refnum, int flag)

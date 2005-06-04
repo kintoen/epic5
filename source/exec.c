@@ -1,4 +1,4 @@
-/* $EPIC: exec.c,v 1.24 2003/12/04 22:59:03 crazyed Exp $ */
+/* $EPIC: exec.c,v 1.25 2005/06/04 04:32:53 jnelson Exp $ */
 /*
  * exec.c: handles exec'd process for IRCII 
  *
@@ -554,6 +554,9 @@ say("Output from process %d (%s) now going to you", i, proc->name);
 				}
 				my_args[cnt] = NULL;
 				execvp(my_args[0], my_args);
+
+				printf("*** Error running program \"%s\": %s\n",
+						args, strerror(errno));
 			}
 
 			/*
@@ -565,13 +568,14 @@ say("Output from process %d (%s) now going to you", i, proc->name);
 					flag = empty_string;
 
 				execl(shell, shell, flag, name, NULL);
+
+				printf("*** Error running program \"%s %s\": %s\n",
+						shell, args, strerror(errno));
 			}
 
 			/*
 			 * Something really died if we got here
 			 */
-			printf("*** Error starting shell \"%s\": %s\n", 
-					shell, strerror(errno));
 			_exit(-1);
 			break;
 		}
