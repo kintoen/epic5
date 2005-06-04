@@ -2,7 +2,8 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
-<none>
+* Get NICK 0 support for d_nickname from epic5.
+* Fix /exec -direct asdf errors from epic5
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
 [See http://www.epicsol.org/CHANGELOG for things that changed in the past]
@@ -17,3 +18,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * A tab between [ref] and pattern in /ignore is visually jarring. Use space.
 * Fix problems with LOG_REWRITE and window refnum -1.
 * Fix 'get_local_server_port', add $serverctl(GET * LOCALPORT). (fudd)
+* Fix /while et al to not do LOCAL_COPY within an infinite loop.

@@ -1,4 +1,4 @@
-/* $EPIC: if.c,v 1.25 2003/12/15 18:36:44 jnelson Exp $ */
+/* $EPIC: if.c,v 1.26 2005/06/04 04:15:27 jnelson Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -301,9 +301,10 @@ BUILT_IN_COMMAND(whilecmd)
 
 	will_catch_break_exceptions++;
 	will_catch_continue_exceptions++;
+	newexp = alloca(strlen(exp) + 2);
 	while (1)
 	{
-		newexp = LOCAL_COPY(exp);
+		strlcpy(newexp, exp, strlen(exp) + 1);
 		ptr = parse_inline(newexp, subargs, &args_used);
 		if (check_val(ptr) != whileval)
 			break;
@@ -755,9 +756,10 @@ BUILT_IN_COMMAND(forcmd)
 
 	will_catch_break_exceptions++;
 	will_catch_continue_exceptions++;
+	lameeval = alloca(strlen(evaluation) + 2);
 	while (1)
 	{
-		lameeval = LOCAL_COPY(evaluation);
+		strlcpy(lameeval, evaluation, strlen(evaluation) + 1);
 
 		blah = parse_inline(lameeval, subargs, &argsused);
 		if (!check_val(blah))
