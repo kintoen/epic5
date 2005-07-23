@@ -61,9 +61,14 @@ char *	malloc_sprintf 		(char **, const char *, ...) __A(2);
 int	is_number 		(const char *);
 int	is_real_number 		(const char *);
 char *	my_ctime 		(time_t);
-extern	unsigned char	stricmp_table[];
-int	my_stricmp 		(const unsigned char *, const unsigned char *);
+
+int	my_table_strnicmp 	(const unsigned char *, const unsigned char *, size_t, int);
+#define my_table_stricmp(x, y, t) my_table_strnicmp(x, y, UINT_MAX, t)
+int	server_strnicmp		(const unsigned char *, const unsigned char *, size_t, int);
+#define server_stricmp(x, y, s)	server_strnicmp(x, y, UINT_MAX, s)
 int	my_strnicmp 		(const unsigned char *, const unsigned char *, size_t);
+int	my_stricmp 		(const unsigned char *, const unsigned char *);
+
 void	really_free 		(int);
 char *	chop 			(char *, size_t);
 char *	malloc_strcat_ues_c	(char **, const char *, const char *, size_t *);
