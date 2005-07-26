@@ -1,4 +1,4 @@
-/* $EPIC: parse.c,v 1.68 2005/05/02 03:55:49 jnelson Exp $ */
+/* $EPIC: parse.c,v 1.69 2005/05/09 03:43:52 jnelson Exp $ */
 /*
  * parse.c: handles messages from the server.   Believe it or not.  I
  * certainly wouldn't if I were you. 
@@ -1070,7 +1070,7 @@ static void	p_kick (const char *from, const char *comm, const char **ArgList)
 			break;
 	}
 
-	switch (check_ignore_channel(victim, fetch_userhost(from_server, victim), channel, LEVEL_KICK))
+	switch (check_ignore_channel(victim, fetch_userhost(from_server, NULL, victim), channel, LEVEL_KICK))
 	{
 		case IGNORED:
 			goto do_remove_nick;

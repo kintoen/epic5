@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.29 2005/01/06 23:54:13 jnelson Exp $ */
+/* $EPIC: notify.c,v 1.30 2005/03/19 03:55:55 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -282,8 +282,7 @@ BUILT_IN_COMMAND(notify)
 		if (!(s = get_server(refnum)))
 		    continue;
 
-		if (is_server_registered(refnum) && list && *list
-				&& !get_server(refnum)->ison_wait)
+		if (is_server_registered(refnum) && list && *list)
 			isonbase(refnum, list, ison_notify);
 	    }
 	}
