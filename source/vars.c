@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.76 2005/07/30 17:29:43 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.77 2005/08/03 03:10:07 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -233,6 +233,7 @@ void 	init_variables_stage1 (void)
 	VAR(NO_CONTROL_LOG, BOOL, NULL);
 	VAR(NO_CTCP_FLOOD, BOOL, NULL);
 	VAR(NO_FAIL_DISCONNECT, BOOL, NULL);
+	VAR(OLD_MATH_PARSER, BOOL, NULL);
 	VAR(OLD_SERVER_LASTLOG_LEVEL, STR,  set_old_server_lastlog_mask);
 #define DEFAULT_OUTPUT_REWRITE NULL
 	VAR(OUTPUT_REWRITE, STR,  NULL);
