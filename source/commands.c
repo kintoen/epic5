@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.127 2005/06/04 16:27:05 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.128 2005/08/05 00:15:44 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -655,7 +655,6 @@ BUILT_IN_COMMAND(e_channel)
 BUILT_IN_COMMAND(e_nick)
 {
 	char	*nick;
-	const char *id;
 
 	if (from_server == NOSERV)
 	{

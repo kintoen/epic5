@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.70 2005/07/24 15:45:03 jnelson Exp $ */
+/* $EPIC: names.c,v 1.71 2005/07/26 20:43:24 crazyed Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -97,7 +97,9 @@ struct	channel_stru *	prev;		/* pointer to previous channel */
 /* channel_list: list of all the channels you are currently on */
 static	Channel *	channel_list = NULL;
 
+#if 0
 static	int	match_chan_with_id (const char *chan, const char *match);
+#endif
 static	void	channel_hold_election (int winref);
 
 

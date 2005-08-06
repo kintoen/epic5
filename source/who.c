@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.48 2005/07/26 04:02:18 jnelson Exp $ */
+/* $EPIC: who.c,v 1.49 2005/07/26 20:43:24 crazyed Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -1195,7 +1195,7 @@ void	isonbase (int refnum, char *args, void (*line) (int, char *, char *))
 {
 	IsonEntry 	*new_i;
 	char 		*next = args;
-	char		*on_cmd = NULL, *offcmd = NULL, *endcmd = NULL, *stuff;
+	char		*on_cmd = NULL, *offcmd = NULL, *endcmd = NULL;
 	int		sendnext = 0;
 
 	/* Maybe should output a warning? */
