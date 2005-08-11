@@ -1,4 +1,4 @@
-/* $EPIC: network.c,v 1.71 2005/08/05 02:45:12 jnelson Exp $ */
+/* $EPIC: network.c,v 1.72 2005/08/06 00:54:23 jnelson Exp $ */
 /*
  * network.c -- handles stuff dealing with connecting and name resolving
  *
@@ -866,7 +866,11 @@ pid_t	async_getaddrinfo (const char *nodename, const char *servname, const AI *h
 		err = -abs(err);		/* Always a negative number */
 		write(fd, &err, sizeof(err));
 		close(fd);
+#ifdef ASYNC_DNS
 		exit(0);
+#else
+		return 0;
+#endif
         }
 
 	if (!results)
@@ -874,7 +878,11 @@ pid_t	async_getaddrinfo (const char *nodename, const char *servname, const AI *h
 		err = 0;
 		write(fd, &err, sizeof(err));
 		close(fd);
+#ifdef ASYNC_DNS
 		exit(0);
+#else
+		return 0;
+#endif
         }
 
         marshall_getaddrinfo(fd, results);
