@@ -1,4 +1,4 @@
-/* $EPIC: network.c,v 1.72 2005/08/06 00:54:23 jnelson Exp $ */
+/* $EPIC: network.c,v 1.73 2005/08/11 17:16:47 crazyed Exp $ */
 /*
  * network.c -- handles stuff dealing with connecting and name resolving
  *
@@ -39,7 +39,7 @@
 #include <sys/ioctl.h>
 
 /* This will eventually become a configurable */
-#undef ASYNC_DNS
+#define ASYNC_DNS
 
 #ifdef HAVE_SYS_UN_H
 #include <sys/un.h>
