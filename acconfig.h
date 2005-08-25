@@ -337,3 +337,22 @@
 
 /* Define this if you have solaris ports */
 #undef USE_SOLARIS_PORTS
+
+/* Define this if your largest int is (long) */
+#undef HAVE_INTMAX_LONG
+
+/* Define this if your largest int is (quad_t) */
+#undef HAVE_INTMAX_QUADT
+
+/* Define this if your largest int is (long long) */
+#undef HAVE_INTMAX_LONG_LONG
+
+/* Define this if your largest int is (intmax_t) */
+#undef HAVE_INTMAX_NATIVE
+
+/* Define this if you have a strtoimax() */
+#undef HAVE_STRTOIMAX
+
+/* Define this if you have a strtoq() */
+#undef HAVE_STRTOQ
+
