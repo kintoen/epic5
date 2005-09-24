@@ -1,4 +1,4 @@
-/* $EPIC: status.c,v 1.62 2005/08/07 04:57:57 jnelson Exp $ */
+/* $EPIC: status.c,v 1.63 2005/08/08 00:39:07 jnelson Exp $ */
 /*
  * status.c: handles the status line updating, etc for IRCII 
  *
@@ -528,7 +528,7 @@ int	make_status (Window *window, int must_redraw)
 		int	in_rhs = 0,
 			pr_lhs = 0,
 			pr_rhs = 0,
-			line,
+			line = 0,	/* XXX gcc4 lameness */
 			*prc = &pr_lhs, 
 			i;
 
