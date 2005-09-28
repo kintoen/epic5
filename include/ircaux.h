@@ -149,7 +149,6 @@ char *	strnrchr		(char *, char, int);
 void	mask_digits		(char **);
 char *	strpcat			(char *, const char *, ...) __A(2);
 char *  strlpcat		(char *, size_t, const char *, ...) __A(3);
-u_char *strcpy_nocolorcodes	(u_char *, const u_char *);
 u_long	random_number		(u_long);
 char *	urlencode		(const char *);
 char *	urldecode		(char *, size_t *);
