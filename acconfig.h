@@ -356,3 +356,6 @@
 /* Define this if you have a strtoq() */
 #undef HAVE_STRTOQ
 
+/* Define this if you have <stddef.h> */
+#undef HAVE_STDDEF_H
+

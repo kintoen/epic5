@@ -223,7 +223,6 @@ char *	substitute_string	(const char *, const char *, const char *, int, int);
 extern	int	outbound_line_mangler;
 extern	int	inbound_line_mangler;
 extern	int	logfile_line_mangler;
-size_t	mangle_line		(char *, int, size_t);
 
 /* ---------------- */
 struct BucketItem {
