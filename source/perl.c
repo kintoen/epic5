@@ -1,4 +1,4 @@
-/* $EPIC: perl.c,v 1.12 2003/12/14 20:04:10 jnelson Exp $ */
+/* $EPIC: perl.c,v 1.13 2004/06/28 23:48:15 jnelson Exp $ */
 /*
  * perl.c -- The perl interfacing routines.
  *
@@ -73,7 +73,7 @@ static XS (XS_eval) {
 }
 
 static XS (XS_expr) {
-	unsigned foo, food = 0;
+	unsigned foo = 0;
 	char* retval=NULL;
 	char* arg=NULL;
 	dXSARGS;
@@ -88,7 +88,7 @@ static XS (XS_expr) {
 }
 
 static XS (XS_call) {
-	unsigned foo, food = 0;
+	unsigned foo = 0;
 	char* retval=NULL;
 	char* arg=NULL;
 	dXSARGS;

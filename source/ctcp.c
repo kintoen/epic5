@@ -1,4 +1,4 @@
-/* $EPIC: ctcp.c,v 1.45 2005/05/02 03:55:48 jnelson Exp $ */
+/* $EPIC: ctcp.c,v 1.46 2005/06/04 16:27:05 jnelson Exp $ */
 /*
  * ctcp.c:handles the client-to-client protocol(ctcp). 
  *
@@ -831,7 +831,7 @@ char *	do_notice_ctcp (const char *from, const char *to, char *str)
 	in_ctcp_flag++;
 	strlcpy(local_ctcp_buffer, str, sizeof(local_ctcp_buffer) - 2);
 
-	for (;;strlcat(local_ctcp_buffer, last, sizeof local_ctcp_buffer) - 2)
+	for (;;strlcat(local_ctcp_buffer, last, sizeof(local_ctcp_buffer) - 2))
 	{
 		if (split_CTCP(local_ctcp_buffer, the_ctcp, last))
 			break;		/* All done! */
