@@ -1,4 +1,4 @@
-/* $EPIC: exec.c,v 1.25 2005/06/04 04:32:53 jnelson Exp $ */
+/* $EPIC: exec.c,v 1.26 2005/10/16 19:12:24 jnelson Exp $ */
 /*
  * exec.c: handles exec'd process for IRCII 
  *
@@ -782,9 +782,9 @@ this_sucks:
 			int ofs;
 
 			ofs = from_server;
+			from_server = proc->server;
 			if (proc->refnum)
-				from_server = proc->server;
-			message_to(proc->refnum);
+				message_to(proc->refnum);
 			proc->counter++;
 
 			while (len > 0 && (exec_buffer[len] == '\n' ||
