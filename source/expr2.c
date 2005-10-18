@@ -1,4 +1,4 @@
-/* $EPIC: expr2.c,v 1.30 2005/10/16 04:15:44 jnelson Exp $ */
+/* $EPIC: expr2.c,v 1.31 2005/10/16 15:46:01 jnelson Exp $ */
 /*
  * Zsh: math.c,v 3.1.2.1 1997/06/01 06:13:15 hzoli Exp 
  * math.c - mathematical expression evaluation
@@ -2580,7 +2580,7 @@ static  char *	after_expando_special (expr_info *c)
 
 	for (;;)
 	{
-		rest = after_expando(start, 1, &call);
+		rest = after_expando(start, 0, &call);
 		if (*rest != '$')
 			break;
 		start = rest + 1;
