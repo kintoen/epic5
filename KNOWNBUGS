@@ -16,8 +16,11 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix problems with translation, particular for zlonix.
 * A tab between [ref] and pattern in /ignore is visually jarring. Use space.
 * Fix problems with LOG_REWRITE and window refnum -1.
+* Fix bug with deleting user-created bind functions (wd)
 * Fix 'get_local_server_port', add $serverctl(GET * LOCALPORT). (fudd)
 * Fix /while et al to not do LOCAL_COPY within an infinite loop, from epic5.
 * Fix error messages when you /exec -direct asdf, from epic5.
 * Add more gracious support for unique id's and nickname 0, from epic5.
-
+* Fix output from exec to go to correct server
+* Fix two 64-bit pointer errors (one in dcc.c, and one in who.c)
+* Fix refresh_a_screen() to not pass NULL to recalculate_windows().

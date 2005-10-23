@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.30 2004/08/07 19:54:55 jnelson Exp $ */
+/* $EPIC: who.c,v 1.31 2005/10/23 03:52:07 jnelson Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -851,8 +851,7 @@ static void ison_queue_list (int refnum)
 
 	for (item = s->ison_queue; item; item = item->next, count++)
 	{
-		yell("[%d] [%s] [%#x]", count, item->ison_asked, 
-				(unsigned)item->line);
+		yell("[%d] [%s] [%p]", count, item->ison_asked, item->line);
 	}
 }
 

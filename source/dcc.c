@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.91 2004/02/20 23:40:22 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.92 2005/10/23 03:52:07 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -1111,7 +1111,7 @@ const	char 		*text_display, 	/* What to tell the user we sent */
 
 	if (dcc->flags & DCC_QUOTED)
 	{
-		int	len = strlen(text);
+		size_t	len = strlen(text);
 		text = dequote_it(text, &len);
 		writeval = write(dcc->socket, text, len);
 		new_free(&text);

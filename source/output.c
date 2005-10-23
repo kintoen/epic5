@@ -1,4 +1,4 @@
-/* $EPIC: output.c,v 1.10 2003/10/10 06:22:39 jnelson Exp $ */
+/* $EPIC: output.c,v 1.11 2005/10/23 03:52:07 jnelson Exp $ */
 /*
  * output.c: handles a variety of tasks dealing with the output from the irc
  * program 
@@ -83,7 +83,10 @@ SIGNAL_HANDLER(sig_refresh_screen)
  */
 void refresh_screen (char dumb, char *dumber)
 {
-	refresh_a_screen(current_window->screen);
+	if (current_window && current_window->screen)
+		refresh_a_screen(current_window->screen);
+	else
+		refresh_a_screen(main_screen);
 }
 
 void	refresh_a_screen (Screen *screen)
@@ -92,7 +95,7 @@ void	refresh_a_screen (Screen *screen)
 	term_clear_screen();
 
 	if (screen != main_screen || term_resize())
-		recalculate_windows(current_window->screen);
+		recalculate_windows(screen);
 	else
 		redraw_all_windows();
 
