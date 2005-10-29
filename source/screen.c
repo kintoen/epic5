@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.112 2005/10/13 01:11:58 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.113 2005/10/16 19:23:01 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -1983,11 +1983,11 @@ void 	add_to_screen (const unsigned char *buffer)
 	}
 
 	/*
-	 * The next priority is "LEVEL_CURRENT)" which is only ever
+	 * The next priority is "LEVEL_NONE" which is only ever
 	 * used by the /WINDOW command, but I'm not even sure it's very
 	 * useful.  Maybe I'll think about this again later.
 	 */
-	else if ((who_level == LEVEL_CURRENT) && 
+	else if ((who_level == LEVEL_NONE) && 
 	        ((winref = get_winref_by_servref(from_server)) > -1) && 
                 (tmp = get_window_by_refnum(winref)))
 	{
