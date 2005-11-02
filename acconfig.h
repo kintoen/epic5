@@ -359,5 +359,3 @@
 /* Define this if you have <stddef.h> */
 #undef HAVE_STDDEF_H
 
-/* Define this if you have <ndbm.h> */
-#undef HAVE_NDBM_H
