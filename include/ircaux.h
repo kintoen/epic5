@@ -251,4 +251,8 @@ typedef struct Bucket Bucket;
 #define STRNUM(x) (strtoimax(x, NULL, 10))
 #define NUMSTR(x) (intmaxtoa((intmax_t)(x)))
 
+/********************/
+size_t	transform_string (int, int, const char *, const char *, size_t, char *, size_t);
+int	lookup_transform (const char *);
+
 #endif /* _IRCAUX_H_ */
