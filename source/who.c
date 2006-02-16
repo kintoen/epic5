@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.31 2005/10/23 03:52:07 jnelson Exp $ */
+/* $EPIC: who.c,v 1.32 2006/02/16 06:14:09 jnelson Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -635,6 +635,9 @@ void	xwhoreply (int refnum, const char *from, const char *comm, const char **Arg
 {
 	WhoEntry *new_w = who_queue_top(refnum);
 
+	if (!(ArgList[0]))
+		{ rfc1459_odd(from, comm, ArgList); return; }
+
 	if (!new_w)
 	{
 		new_w = get_new_who_entry();
@@ -662,6 +665,9 @@ void	who_end (int refnum, const char *from, const char *comm, const char **ArgLi
 {
 	WhoEntry 	*new_w = who_queue_top(refnum);
 	char 		buffer[1025];
+
+	if (!(ArgList[0]))
+		{ rfc1459_odd(from, comm, ArgList); return; }
 
 	PasteArgs(ArgList, 0);
 
@@ -912,6 +918,8 @@ void isonbase (int refnum, char *args, void (*line) (int, char *, char *))
 void	ison_returned (int refnum, const char *from, const char *comm, const char **ArgList)
 {
 	IsonEntry *new_i = ison_queue_top(refnum);
+	if (!(ArgList[0]))
+		{ rfc1459_odd(from, comm, ArgList); return; }
 
 	if (!new_i)
 	{
@@ -1164,6 +1172,9 @@ void	userhost_returned (int refnum, const char *from, const char *comm, const ch
 	UserhostEntry *top = userhost_queue_top(refnum);
 	char *ptr;
 	char *results;
+
+	if (!(ArgList[0]))
+		{ rfc1459_odd(from, comm, ArgList); return; }
 
 	if (!top)
 	{

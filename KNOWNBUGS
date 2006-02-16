@@ -25,3 +25,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix two 64-bit pointer errors (one in dcc.c, and one in who.c)
 * Fix refresh_a_screen() to not pass NULL to recalculate_windows().
 * Fix crash caused by out of bounds numeric (only bug found by ircfuzz!)
+* Fix two more larnification bugs found by ircfuzz.
