@@ -1,4 +1,4 @@
-/* $EPIC: queue.c,v 1.12 2004/06/28 23:48:15 jnelson Exp $ */
+/* $EPIC: queue.c,v 1.13 2004/08/24 23:27:24 jnelson Exp $ */
 /*
  *  queue.c - The queue command
  *
@@ -171,7 +171,7 @@ BUILT_IN_COMMAND(queuecmd)
 		{
 			char *	ick;
 
-			ick = expand_alias(cmds, subargs, NULL);
+			ick = expand_alias(cmds, subargs);
 			cmds = LOCAL_COPY(ick);
 			new_free(&ick);
 		}
