@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.113 2005/06/04 04:32:53 jnelson Exp $ */
+/* $EPIC: server.c,v 1.114 2006/06/17 04:11:18 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2323,13 +2323,14 @@ void	change_server_nickname (int refnum, const char *nick)
 	s->resetting_nickname = 0;
 	if (nick)
 	{
+	    n = LOCAL_COPY(nick);
+
 	    /* If changing to our Unique ID, the default nickname is 0 */
 	    id = get_server_unique_id(refnum);
 	    if (id && !my_stricmp(nick, id))
 		malloc_strcpy(&s->d_nickname, zero);
 	    else
 	    {
-	        n = LOCAL_COPY(nick);
                 if (!(n = check_nickname(n, 1)))
 			reset_nickname(refnum);
 		else
