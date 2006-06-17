@@ -1,4 +1,4 @@
-/* $EPIC: lastlog.c,v 1.59 2006/06/08 02:59:56 jnelson Exp $ */
+/* $EPIC: lastlog.c,v 1.60 2006/06/09 03:19:14 jnelson Exp $ */
 /*
  * lastlog.c: handles the lastlog features of irc. 
  *
@@ -55,6 +55,7 @@ typedef struct	lastlog_stru
 	time_t	when;
 	int	visible;
 	intmax_t refnum;
+	int	winref;
 }	Lastlog;
 
 static int	show_lastlog (Lastlog **l, int *skip, int *number, Mask *level_mask, char *match, regex_t *reg, int *max, const char *target, int mangler);
