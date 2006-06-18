@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.155 2004/11/10 03:20:35 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.156 2006/06/18 17:33:51 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -2855,7 +2855,7 @@ BUILT_IN_FUNCTION(function_center, word)
 	 */
 	pad = stringlen + ((fieldsize - stringlen) / 2);
 	padc = (char *)new_malloc(pad + 1);
-	snprintf(padc, pad + 1, "%*s", pad, word);       /* Right justify it */
+	snprintf(padc, pad + 1, "%*s", (int)pad, word);       /* Right justify it */
 	return padc;
 }
 

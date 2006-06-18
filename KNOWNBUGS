@@ -2,7 +2,6 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
-* Finish support for maildir
 <none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
@@ -28,3 +27,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix crash caused by out of bounds numeric (only bug found by ircfuzz!)
 * Fix two more larnification bugs found by ircfuzz.
 * Fix crash caused by /NICK <unique id> on ircnet.
+* Add support for maildir mail boxes, which must be selected at compile time.

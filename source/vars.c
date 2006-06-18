@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.48 2004/11/10 03:20:35 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.49 2006/06/18 17:33:51 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -194,6 +194,7 @@ static	IrcVariable irc_variable[] =
 	{ "LOG_REWRITE",		STR_TYPE_VAR,	0, 0, NULL, NULL, 0, 0 },
 	{ "MAIL",			INT_TYPE_VAR,	DEFAULT_MAIL, 0, NULL, set_mail, 0, 0 },
 	{ "MAIL_INTERVAL",		INT_TYPE_VAR,	DEFAULT_MAIL_INTERVAL, 0, NULL, set_mail_interval, 0, 0 },
+	/* { "MAIL_TYPE",			STR_TYPE_VAR,	0, 0, NULL, set_mail_type, 0, 0 }, */
 	{ "MANGLE_INBOUND",		STR_TYPE_VAR,	0, 0, NULL, set_mangle_inbound, 0, 0 },
 	{ "MANGLE_LOGFILES",		STR_TYPE_VAR,	0, 0, NULL, set_mangle_logfiles, 0, 0 },
 	{ "MANGLE_OUTBOUND",		STR_TYPE_VAR,	0, 0, NULL, set_mangle_outbound, 0, 0 },
@@ -349,6 +350,7 @@ void 	init_variables (void)
 	set_string_var(HIGHLIGHT_CHAR_VAR, DEFAULT_HIGHLIGHT_CHAR);
 	set_string_var(LASTLOG_LEVEL_VAR, DEFAULT_LASTLOG_LEVEL);
 	set_string_var(LOG_REWRITE_VAR, NULL);
+	/* set_string_var(MAIL_TYPE_VAR, DEFAULT_MAIL_TYPE); */
 	set_string_var(MANGLE_INBOUND_VAR, NULL);
 	set_string_var(MANGLE_LOGFILES_VAR, NULL);
 	set_string_var(MANGLE_OUTBOUND_VAR, NULL);

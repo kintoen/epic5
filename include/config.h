@@ -45,6 +45,16 @@
 #define DEFAULT_SERVER "localhost irc.efnet.net irc.undernet.org irc.dal.net"
 
 /*
+ * Maildir support is experimental in EPIC4.  More complete support is 
+ * available in EPIC5, including support for switching back and forth 
+ * between mbox and maildir at runtime.  For now, you must pick one or
+ * the other at compile time.
+ *	0 - Mail checking for mbox
+ *	1 - Mail checking for maildir
+ */
+#define MAIL_CHECKING_TYPE 0
+
+/*
  * This is an experimental feature to thwart infinite recursion.  It is not
  * very sophisticated so it's not turned on by default.  In the future I 
  * will probably do something less lame.
@@ -402,6 +412,7 @@
 #define DEFAULT_LOGFILE "irc.log"
 #define DEFAULT_MAIL 2
 #define DEFAULT_MAIL_INTERVAL 60
+/* #define DEFAULT_MAIL_TYPE "mbox" */
 #define DEFAULT_MAX_RECONNECTS 4
 #define DEFAULT_METRIC_TIME 0
 #define DEFAULT_MODE_STRIPPER 0
