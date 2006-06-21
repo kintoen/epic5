@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.193 2006/06/17 04:04:02 jnelson Exp $ */
+/* $EPIC: server.c,v 1.194 2006/06/21 04:22:34 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -1467,6 +1467,8 @@ int 	close_all_servers (const char *message)
 
 	for (i = 0; i < number_of_servers; i++)
 	{
+		if (!get_server(i))
+			continue;
 		if (message)
 			set_server_quit_message(i, message);
 		close_server(i, NULL);
