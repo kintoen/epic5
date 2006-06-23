@@ -1,4 +1,7 @@
+/* $EPIC$ */
 /*
+ * levels.c - Sorting things by category -- Window/Lastlog, Ignore, and Floods
+ *
  * Copyright (c) 1990 Michael Sandroff.
  * Copyright (c) 1991, 1992 Troy Rollo.
  * Copyright (c) 1992-1996 Matthew Green.
