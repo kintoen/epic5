@@ -1,4 +1,4 @@
-/* $EPIC: ruby.c,v 1.4 2006/06/08 02:59:56 jnelson Exp $ */
+/* $EPIC: ruby.c,v 1.5 2006/06/09 03:19:14 jnelson Exp $ */
 /*
  * ruby.c -- Calling RUBY from epic.
  *
@@ -155,7 +155,7 @@ static	VALUE	eval_failed (VALUE args, VALUE error_info)
 char *	rubyeval (char *input)
 {
 	VALUE	rubyval;
-	char *	retval;
+	char *	retval = NULL;
 
 	if (input && *input) 
 	{

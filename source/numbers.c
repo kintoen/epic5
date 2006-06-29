@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.93 2006/06/17 04:04:02 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.94 2006/06/24 17:15:06 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -343,7 +343,19 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 
 		/* Ach.  /on 301 doesn't offer 'from' as $0.  Bummer. */
                 if (do_hook(current_numeric, "%s %s", nick, message))
+		{
+			/* XXXX Hack -- figure out another way */
+			copy = alloca(IRCD_BUFFER_SIZE + 1);
+			*copy = 0;
+
+			for (i = 0; ArgList[i]; i++)
+			{
+				if (i)
+					strlcat(copy, " ", IRCD_BUFFER_SIZE);
+				strlcat(copy, ArgList[i], IRCD_BUFFER_SIZE);
+			}
 			goto DISPLAY;
+		}
 		goto END;
         }
 
