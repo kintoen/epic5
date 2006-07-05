@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.147 2006/06/29 01:13:53 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.148 2006/07/01 04:17:12 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -2864,6 +2864,7 @@ struct target_type
  * recursing -- so whoever is hacking on this code, its also up to you to 
  * make sure that YOU dont send anything to the screen without checking first!
  */
+/* SENDTEXT -- Don't delete this, I search for it! */
 void 	send_text (int server, const char *nick_list, const char *text, const char *command, int hook)
 {
 	int 	i, 
