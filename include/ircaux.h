@@ -98,7 +98,8 @@ const char *	plural 		(int);
 double	time_to_next_minute 	(void);
 char *	remove_trailing_spaces 	(char *, size_t *cluep);
 char *	forcibly_remove_trailing_spaces (char *, size_t *);
-const char *	ltoa 			(long);
+#define ltoa my_ltoa
+const char *	my_ltoa 		(long);
 const char *	intmaxtoa 		(intmax_t);
 const char *	ftoa			(double);
 char *	strformat 		(char *, const char *, ssize_t, int);
