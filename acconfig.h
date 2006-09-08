@@ -380,3 +380,12 @@
 /* Define this if you have perl and stuff */
 #undef PERLLDFLAGS
 
+/* Define this if you have finite() */
+#undef HAVE_FINITE
+
+/* Define this if you have isfinite() */
+#undef HAVE_ISFINITE
+
+/* Define this if you have math.h */
+#undef HAVE_MATH_H
+
