@@ -1,4 +1,4 @@
-/* $EPIC: debug.c,v 1.21 2005/08/03 04:21:39 jnelson Exp $ */
+/* $EPIC: debug.c,v 1.22 2005/09/24 14:43:14 jnelson Exp $ */
 /*
  * debug.c -- controll the values of x_debug.
  *
@@ -80,6 +80,7 @@ static struct debug_opts opts[] =
 	{ "MESSAGE_FROM",	DEBUG_MESSAGE_FROM },
 	{ "WHO_QUEUE",		DEBUG_WHO_QUEUE },
 	{ "OLD_MATH",		0 },
+	{ "DWORD",        DEBUG_DWORD },
 	{ "ALL",		~0},
 	{ NULL,			0 },
 };
