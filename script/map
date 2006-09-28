@@ -14,7 +14,7 @@ if (word(2 $loadinfo()) != [pf]) { load -pf $word(1 $loadinfo()); return; };
 alias map.encode {return $encode($tolower($*))};
 
 alias map.retrieve_links {
-    ^on ^364 * (client, hub, hops, gecos) {
+    ^on ^364 * (myserv, client, hub, hops, gecos) {
 	@map.links.all #= [$client ];
 	@:henc = map.encode($hub);
 	@:cenc = map.encode($client);
