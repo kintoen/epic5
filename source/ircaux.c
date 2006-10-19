@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.108 2004/11/10 03:20:35 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.109 2006/10/19 22:25:29 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -2188,7 +2188,13 @@ int 	check_val (const char *sub)
 	sval = strtod(sub, &endptr);
 
 	/* Numbers that cause exceptional conditions in strtod() are true */
-	if (errno == ERANGE || !finite(sval))
+	if (errno == ERANGE 
+#if defined(HAVE_FINITE)
+				|| finite(sval) == 0
+#elif defined(HAVE_INFINITE)
+				|| isfinite(sval) == 0
+#endif
+							)
 		return 1;
 
 	/* 

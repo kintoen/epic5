@@ -1,5 +1,5 @@
 /*
- * @(#)$Id: acconfig.h,v 1.25 2003/11/22 23:29:22 jnelson Exp $
+ * @(#)$Id: acconfig.h,v 1.26 2006/10/19 22:25:27 jnelson Exp $
  */
 
 /*
@@ -319,4 +319,10 @@
 
 /* Define this if you have atoq() */
 #undef HAVE_ATOQ
+
+/* Define this if you have finite() */
+#undef HAVE_FINITE
+
+/* Define this if you have isfinite() */
+#undef HAVE_ISFINITE
 

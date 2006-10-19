@@ -1,4 +1,4 @@
-/* $EPIC: exec.c,v 1.26 2005/10/16 19:12:24 jnelson Exp $ */
+/* $EPIC: exec.c,v 1.27 2006/10/19 22:25:29 jnelson Exp $ */
 /*
  * exec.c: handles exec'd process for IRCII 
  *
@@ -861,6 +861,8 @@ int 		get_child_exit (pid_t wanted)
 		 */
 		if (wanted != -1 && pid == wanted)
 		{
+		        unblock_signal(SIGCHLD);
+
 			if (WIFEXITED(status))
 				return WEXITSTATUS(status);
 			if (WIFSTOPPED(status))
