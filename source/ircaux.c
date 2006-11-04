@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.163 2006/10/13 21:58:02 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.164 2006/10/27 02:29:01 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -4348,6 +4348,7 @@ char *	safe_next_arg (char *str, char **new_ptr)
 char *	last_arg (char **src, size_t *cluep, int extended)
 {
 	char *mark, *start, *end;
+	size_t	clue2;
 
 	start = *src;
 	end = start + *cluep;
@@ -4361,6 +4362,8 @@ char *	last_arg (char **src, size_t *cluep, int extended)
 	else
 		*src = NULL;		/* We're done, natch! */
 
+	clue2 = strlen(mark) - 1;
+	dequoter(&mark, &clue2, 0, extended, "\"");
 	return mark;
 }
 
