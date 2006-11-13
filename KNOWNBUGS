@@ -2,7 +2,7 @@ EPIC4 Projects, Bugs, and other Errata:
 
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
-* rbw-epic says that /xecho -l doesn't overrule current channel
+<none>
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
 [See http://www.epicsol.org/CHANGELOG for things that changed in the past]
@@ -31,3 +31,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add a missing cast for printf when sending a dcc handshake.
 * Support isfinite() for hpux/c99 alongside finite() for bsd.
 * Fix bug where SIGCHLD can be blocked and never unblocked.
+* Fixes to support socks5 again, at least on freebsd.
