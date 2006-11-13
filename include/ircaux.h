@@ -181,6 +181,7 @@ char *	malloc_strdup 		(const char *);
 char *	malloc_strdup2 		(const char *, const char *);
 char *	malloc_strdup3 		(const char *, const char *, const char *);
 char *	malloc_strcat2_c	(char **, const char *, const char *, size_t *);
+char *	malloc_strcat3_c	(char **, const char *, const char *, const char *, size_t *);
 char *	malloc_strcat_wordlist_c (char **, const char *, const char *,size_t *);
 char *	malloc_strcat_word_c    (char **, const char *, const char *, int, size_t *);
 char *	malloc_sprintf 		(char **, const char *, ...) __A(2);
