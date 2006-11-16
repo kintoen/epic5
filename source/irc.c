@@ -1,4 +1,4 @@
-/* $EPIC: irc.c,v 1.747 2006/11/16 23:48:14 jnelson Exp $ */
+/* $EPIC: irc.c,v 1.748 2006/11/16 23:48:41 jnelson Exp $ */
 /*
  * ircII: a new irc client.  I like it.  I hope you will too!
  *
@@ -40,14 +40,14 @@
 /*
  * irc_version is what $J returns, its the common-name for the version.
  */
-const char irc_version[] = "EPIC4-2.4";
-const char useful_info[] = "epic4 2 4 0";
+const char irc_version[] = "EPIC4-2.6";
+const char useful_info[] = "epic4 2 6 0";
 
 /*
  * internal_version is what $V returns, its the integer-id for the
  * version, and corresponds to the date of release, YYYYMMDD.
  */ 
-const char internal_version[] = "20060303";
+const char internal_version[] = "20061116";
 
 /*
  * In theory, this number is incremented for every commit.
