@@ -1,4 +1,4 @@
-/* $EPIC: irc.c,v 1.746 2006/11/16 23:44:19 jnelson Exp $ */
+/* $EPIC: irc.c,v 1.747 2006/11/16 23:48:14 jnelson Exp $ */
 /*
  * ircII: a new irc client.  I like it.  I hope you will too!
  *
@@ -52,7 +52,7 @@ const char internal_version[] = "20060303";
 /*
  * In theory, this number is incremented for every commit.
  */
-const unsigned long	commit_id = 749;
+const unsigned long	commit_id = 750;
 
 /*
  * As a way to poke fun at the current rage of naming releases after
@@ -60,7 +60,7 @@ const unsigned long	commit_id = 749;
  * reality, I have decided to start doing that with EPIC.  These names
  * are intentionally and maliciously silly.  Complaints will be ignored.
  */
-const char ridiculous_version_name[] = "Languish";
+const char ridiculous_version_name[] = "Plebiscite";
 
 #define __need_putchar_x__
 #include "status.h"

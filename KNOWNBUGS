@@ -26,7 +26,7 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix refresh_a_screen() to not pass NULL to recalculate_windows().
 * Fix crash caused by out of bounds numeric (only bug found by ircfuzz!)
 * Fix two more larnification bugs found by ircfuzz.
-* Release epic4-2.4
+* Release epic4-2.4 (Languish)
 * Fix crash caused by /NICK <unique id> on ircnet.
 * Add support for maildir mail boxes, which must be selected at compile time.
 * Add a missing cast for printf when sending a dcc handshake.
@@ -34,3 +34,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix bug where SIGCHLD can be blocked and never unblocked.
 * Fixes to support socks5 again, at least on freebsd.
 * Fix crash with $xdebug() with no arguments.
+* Release epic4-2.6 (Plebiscite)
