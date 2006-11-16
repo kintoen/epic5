@@ -1,4 +1,4 @@
-/* $EPIC: debug.c,v 1.12 2003/07/10 13:08:56 jnelson Exp $ */
+/* $EPIC: debug.c,v 1.13 2006/11/16 23:44:19 jnelson Exp $ */
 /*
  * debug.c -- controll the values of x_debug.
  *
@@ -34,6 +34,7 @@
 #include "irc.h"
 #include "ircaux.h"
 #include "output.h"
+#include "functions.h"
 
 unsigned long x_debug = 0;
 
@@ -149,5 +150,5 @@ char *	function_xdebug (char *word)
 		malloc_strcat_c(&ret, opts[cnt].command, &clue);
 	}
 
-	return ret;
+	RETURN_MSTR(ret);
 }
