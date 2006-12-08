@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.69 2006/02/14 00:53:45 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.70 2006/12/08 15:47:50 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -225,6 +225,12 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 	 */
 	case 001:	/* #define RPL_WELCOME          001 */
 	{
+		Timeval i;
+
+                i.tv_sec = 0;
+                i.tv_usec = 50000;
+                select(0, NULL, NULL, NULL, &i);
+
 		accept_server_nickname(from_server, target);
 		server_is_registered(from_server, 1);
 		userhostbase(from_server, NULL, got_my_userhost, 1);
