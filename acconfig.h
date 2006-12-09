@@ -389,3 +389,5 @@
 /* Define this if you have math.h */
 #undef HAVE_MATH_H
 
+/* Define this if you want to use threaded stdout */
+#undef WITH_THREADED_STDOUT
