@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.97 2005/02/23 04:23:57 jnelson Exp $ */
+/* $EPIC: window.c,v 1.98 2006/12/16 15:40:01 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -3932,7 +3932,7 @@ Window *window_query (Window *window, char **args)
 		}
 		else if (*nick == '%')
 		{
-			if (!is_valid_process(nick))
+			if (!is_valid_process(nick) == -1)
 				nick = NULL;
 		}
 
