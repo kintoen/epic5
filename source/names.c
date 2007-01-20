@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.46 2003/10/28 05:53:57 jnelson Exp $ */
+/* $EPIC: names.c,v 1.47 2007/01/20 18:33:46 jnelson Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -100,7 +100,7 @@ struct	channel_stru *	prev;		/* pointer to previous channel */
  * The variable "defined_mode_str" must correspond in order to the modes 
  * defined here, or all heck will break loose.  You have been warned.
  */
-static	char	defined_mode_str[] = "aciklmnprstzDMOR";
+static	char	defined_mode_str[] = "aciklmnprstzDMORCT";
 
 const int	MODE_ANONYMOUS	= 1 << 0;	/* av2.9 */
 const int	MODE_C		= 1 << 1;	/* erf/TS4 */
@@ -119,6 +119,7 @@ const int	MODE_M          = 1 << 13;	/* Duhnet */
 const int	MODE_OPER_ONLY	= 1 << 14;	/* Duhnet */
 const int	MODE_RESTRICTED = 1 << 15;	/* Duhnet */
 const int	MODE_C2		= 1 << 16;	/* Quakenet */
+const int	MODE_T2		= 1 << 17;	/* Unreal */
 
 
 /* channel_list: list of all the channels you are currently on */
@@ -955,6 +956,9 @@ static void	decifer_mode (const char *modes, Channel *chan)
 			break;
 		case 't':
 			value = MODE_TOPIC;
+			break;
+		case 'T':
+			value = MODE_T2;
 			break;
 		case 'z':		/* Erf/TS4 "zapped" */
 			value = MODE_Z;
