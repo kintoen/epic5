@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.93 2006/09/24 16:03:58 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.94 2006/09/30 01:36:08 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -143,6 +143,9 @@ static int	add_biv (const char *name, int bucket, int type, void (*func) (void *
 IrcVariable *	clone_biv (IrcVariable *old)
 {
 	IrcVariable *var;
+
+	if (!old)
+		return NULL;		/* Take THAT! */
 
 	var = (IrcVariable *)new_malloc(sizeof(IrcVariable));
 	var->type = old->type;
