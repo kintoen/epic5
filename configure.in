@@ -869,6 +869,15 @@ AC_ARG_WITH(warns,
    AC_MSG_RESULT(no)
 )
 
+AC_MSG_CHECKING(whether your compiler supports -Wno-pointer-sign)
+old_cflags="$CFLAGS"
+CFLAGS="$CFLAGS -Wno-pointer-sign"
+AC_TRY_COMPILE(, [exit(0);], 
+	AC_MSG_RESULT(yes),
+        AC_MSG_RESULT(no)
+	CFLAGS="$old_cflags"
+)
+
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 AC_SUBST(RUBYDOTOH)

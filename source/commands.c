@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.160 2007/01/27 18:47:03 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.161 2007/01/31 03:24:04 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -3591,7 +3591,7 @@ static	unsigned 	level = 0;
 		const char *alias = NULL;
 		void	*arglist = NULL;
 		void	(*builtin) (const char *, char *, const char *) = NULL;
-		const char *prevcmd;
+		const char *prevcmd = NULL;
 
 		if (subargs != NULL)
 			cmd = expand_alias(stmt, subargs); 
