@@ -1,4 +1,4 @@
-/* $EPIC: alist.c,v 1.12 2005/10/30 01:51:20 jnelson Exp $ */
+/* $EPIC: alist.c,v 1.13 2006/06/23 05:03:11 jnelson Exp $ */
 /*
  * alist.c -- resizeable arrays.
  *
@@ -140,7 +140,7 @@ array_item *array_lookup (array *a, const char *name, int wild, int rem)
 static void check_array_size (array *a)
 {
 	if (a->total_max && (a->total_max < a->max))
-		panic("array->max < array->total_max");
+		panic(1, "array->max < array->total_max");
 
 	if (a->total_max == 0)
 	{

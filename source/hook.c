@@ -1,4 +1,4 @@
-/* $EPIC: hook.c,v 1.68 2006/09/24 16:03:58 jnelson Exp $ */
+/* $EPIC: hook.c,v 1.69 2006/10/13 21:58:02 jnelson Exp $ */
 /*
  * hook.c: Does those naughty hook functions. 
  *
@@ -738,7 +738,7 @@ int 	do_hook (int which, const char *format, ...)
 		va_end(args);
 	}
 	else
-		panic("do_hook: format is NULL");
+		panic(1, "do_hook: format is NULL");
 
 	/*
 	 * Set current_hook
@@ -947,7 +947,7 @@ int 	do_hook (int which, const char *format, ...)
 		va_end(args);
 	    }
 	    else
-		panic("do_hook: format is NULL");
+		panic(1, "do_hook: format is NULL");
 	}
 
 	malloc_sprintf(&func_call, "cparse(\"%s\" $*)", 

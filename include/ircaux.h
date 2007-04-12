@@ -83,7 +83,7 @@ FILE *	uzfopen 		(char **, const char *, int, struct stat *);
 int	end_strcmp 		(const char *, const char *, size_t);
 char*   exec_pipe		(const char *, char *, size_t *, char *const *);
 FILE **	open_exec		(const char *executable, char * const *args);
-void	panic 			(const char *, ...) __A(1) __N;
+void	panic 			(int, const char *, ...) __A(2) __N;
 int	fw_strcmp 		(comp_len_func *, char *, char *);
 int	lw_strcmp 		(comp_func *, char *, char *);
 int	open_to 		(char *, int, int);

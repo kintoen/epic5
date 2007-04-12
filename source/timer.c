@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.50 2006/05/27 18:45:59 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.51 2006/10/13 21:58:03 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -119,7 +119,7 @@ BUILT_IN_COMMAND(timercmd)
 		else if (*ptr)
 			say("The timer \"%s\" doesn't exist!", ptr);
 		else
-			panic("how did timercmd get here?");
+			panic(1, "how did timercmd get here?");
 
 		return;
 	    }

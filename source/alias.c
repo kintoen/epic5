@@ -1,4 +1,4 @@
-/* $EPIC: alias.c,v 1.82 2006/11/23 06:23:23 jnelson Exp $ */
+/* $EPIC: alias.c,v 1.83 2007/03/27 00:20:53 jnelson Exp $ */
 /*
  * alias.c -- Handles the whole kit and caboodle for aliases.
  *
@@ -872,7 +872,7 @@ void	prepare_alias_call (void *al, char **stuff)
 				do_dequote_it = 0;
 				break;
 			default:
-				panic("Alias list argument [%d] has unsupported typed [%d]", i, args->types[i]);
+				panic(1, "Alias list argument [%d] has unsupported typed [%d]", i, args->types[i]);
 				/* NOTREACHED */
 				return;
 		}
