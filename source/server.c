@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.221 2007/04/12 03:24:14 jnelson Exp $ */
+/* $EPIC: server.c,v 1.222 2007/04/13 03:45:21 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -210,7 +210,7 @@ static	int	str_to_serverinfo (char *str, ServerInfo *s)
 				fieldnum = TYPE;
 			else if (!my_strnicmp(descstr, "PR", 2))
 				fieldnum = PROTO;
-			else if (!my_strnicmp(descstr, "V", 2))
+			else if (!my_strnicmp(descstr, "V", 1))
 				fieldnum = VHOST;
 			else
 			{
