@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.180 2007/04/04 00:40:40 jnelson Exp $ */
+/* $EPIC: window.c,v 1.181 2007/04/12 03:24:14 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -1412,7 +1412,7 @@ static	int	restart;
 	if (do_input_too)
 	{
 		do_input_too = 0;
-		update_input(UPDATE_ALL);
+		update_input(NULL, UPDATE_ALL);
 	}
 
 	tmp = NULL;
@@ -1990,7 +1990,7 @@ void 	set_prompt_by_refnum (unsigned refnum, const char *prompt)
 	if (!(tmp = get_window_by_refnum(refnum)))
 		tmp = current_window;
 	malloc_strcpy(&tmp->prompt, prompt);
-	update_input(UPDATE_ALL);
+	update_input(NULL, UPDATE_ALL);
 }
 
 /* get_prompt_by_refnum: returns the prompt for the given window refnum */

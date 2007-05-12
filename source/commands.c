@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.164 2007/04/12 03:34:07 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.165 2007/04/25 05:24:56 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -2477,7 +2477,7 @@ BUILT_IN_COMMAND(sendlinecmd)
 	display = window_display;
 	window_display = 1;
 	parse_statement(args, 1, NULL);
-	update_input(UPDATE_ALL);
+	update_input(NULL, UPDATE_ALL);
 	window_display = display;
 	from_server = server;
 }
