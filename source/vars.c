@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.95 2007/03/27 00:20:53 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.96 2007/04/12 03:24:14 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -329,7 +329,9 @@ void 	init_variables_stage1 (void)
 	VAR(RANDOM_SOURCE, INT,  NULL);
 #define DEFAULT_REALNAME NULL
 	VAR(REALNAME, STR,  NULL);
+#if 0
 	VAR(REVERSE_STATUS_LINE, BOOL, build_status);
+#endif
 	VAR(SCREEN_OPTIONS, STR,  NULL);
 	VAR(SCROLLBACK, INT,  set_scrollback_size);
 	VAR(SCROLLBACK_RATIO, INT,  NULL);
