@@ -1,4 +1,4 @@
-/* $EPIC: who.c,v 1.57 2006/05/27 18:14:08 jnelson Exp $ */
+/* $EPIC: who.c,v 1.58 2006/11/17 20:10:03 jnelson Exp $ */
 /*
  * who.c -- The WHO queue.  The ISON queue.  The USERHOST queue.
  *
@@ -1616,7 +1616,7 @@ void userhostbase (int refnum, char *args, const char *subargs, void (*line) (in
 			char *my_nick = next_arg(ptr, &ptr);
 			const char *ouh = fetch_userhost(refnum, NULL, my_nick);
 			char *uh, *host;
-			UserhostItem item = {NULL, 0, 0, 0, NULL, NULL};
+			UserhostItem item = {NULL, 0, 0, 0, NULL, NULL, NULL};
 
 			uh = LOCAL_COPY(ouh);
 			item.nick = my_nick;

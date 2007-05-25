@@ -1,4 +1,4 @@
-/* $EPIC: parse.c,v 1.86 2007/04/12 02:37:24 jnelson Exp $ */
+/* $EPIC: parse.c,v 1.87 2007/04/12 03:24:14 jnelson Exp $ */
 /*
  * parse.c: handles messages from the server.   Believe it or not.  I
  * certainly wouldn't if I were you. 
@@ -93,7 +93,7 @@ int 	is_channel (const char *to)
  * is_to_channel: determines if the argument is a channel target for
  * privmsg/notice.  STATUSMSG can appear before CHANTYPES on 005 servers.
  */
-int	is_target_channel_wall (const char *to)
+static int	is_target_channel_wall (const char *to)
 {
 	const char *	statusmsg;
 
