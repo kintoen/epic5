@@ -261,5 +261,6 @@ typedef struct Bucket Bucket;
 /********************/
 size_t	transform_string (int, int, const char *, const char *, size_t, char *, size_t);
 int	lookup_transform (const char *, int *);
+char *	valid_transforms (void);
 
 #endif /* _IRCAUX_H_ */
