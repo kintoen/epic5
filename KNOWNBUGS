@@ -38,3 +38,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix inability to /query an /exec'd process. (rb Godlkworth)
 * Add support for +T by special request.
 * Fix crash for /parsekey type_text
+* Add $windowctl(GET <refnum> CHANNELS) in kindness to BlackJac.

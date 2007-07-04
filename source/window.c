@@ -1,4 +1,4 @@
-/* $EPIC: window.c,v 1.98 2006/12/16 15:40:01 jnelson Exp $ */
+/* $EPIC: window.c,v 1.99 2007/07/04 13:39:33 jnelson Exp $ */
 /*
  * window.c: Handles the organzation of the logical viewports (``windows'')
  * for irc.  This includes keeping track of what windows are open, where they
@@ -5714,6 +5714,8 @@ char 	*windowctl 	(char *input)
 		RETURN_STR(w->waiting_channel);
 	    } else if (!my_strnicmp(listc, "BIND_CHANNEL", len)) {
 		RETURN_STR(w->bind_channel);
+	    } else if (!my_strnicmp(listc, "CHANNELS", len)) {
+		RETURN_MSTR(window_all_channels(w->refnum, w->server));
 	    } else if (!my_strnicmp(listc, "QUERY_NICK", len)) {
 		RETURN_STR(w->query_nick);
 	    } else if (!my_strnicmp(listc, "NICKLIST", len)) {

@@ -61,5 +61,6 @@
 	void	channel_check_windows	(void);
 	void	cant_join_channel	(Char *, int);
 	Char *	window_current_channel	(int, int);
+	char *	window_all_channels	(int, int);
 
 #endif /* _NAMES_H_ */

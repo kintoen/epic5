@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.47 2007/01/20 18:33:46 jnelson Exp $ */
+/* $EPIC: names.c,v 1.48 2007/07/04 13:39:33 jnelson Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -1366,6 +1366,21 @@ const char *  window_current_channel (int window, int server)
         if (!(tmp = window_current_channel_internal(window, server)))
                 return NULL;
         return tmp->channel;
+}
+
+char *  window_all_channels (int window, int server)
+{
+	char *str = NULL;
+	Channel *tmp = NULL; 
+	size_t  clue = 0;
+
+	while (traverse_all_channels(&tmp, server, 1))
+	{
+	    if (tmp->winref != window) 
+		continue;
+	    malloc_strcat_word_c(&str, space, tmp->channel, &clue);
+	}
+	return str;
 }
 
 void 	change_server_channels (int old_s, int new_s)
