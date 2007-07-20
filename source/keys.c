@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.53 2007/04/25 05:24:56 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.54 2007/04/26 04:30:28 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -246,7 +246,7 @@ struct Key	*construct_keymap	(struct Key *);
 int		clean_keymap		(struct Key *);
 unsigned char	*bind_string_compress	(const unsigned char *, int *);
 unsigned char	*bind_string_decompress	(unsigned char *, const unsigned char *, int);
-static int	bind_string		(const u_char *, const char *, char *);
+static int	bind_string		(const unsigned char *, const char *, char *);
 struct Key	*find_sequence		(const unsigned char *, int);
 void		show_all_bindings	(struct Key *, const unsigned char *, size_t);
 void		show_all_rbindings	(struct Key *, const unsigned char *, int, struct Binding *);
