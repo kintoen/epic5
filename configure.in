@@ -64,12 +64,16 @@ AC_ARG_WITH(threaded-stdout,
 		with_threaded_stdout="no"
 	elif test "x$withval" = "xy" ; then
 		with_threaded_stdout="yes"
+		CFLAGS="$CFLAGS -pthread"
 	elif test "x$withval" = "xY" ; then
 		with_threaded_stdout="yes"
+		CFLAGS="$CFLAGS -pthread"
 	elif test "x$withval" = "xyes" ; then
 		with_threaded_stdout="yes"
+		CFLAGS="$CFLAGS -pthread"
 	elif test "x$withval" = "xYES" ; then
 		with_threaded_stdout="yes"
+		CFLAGS="$CFLAGS -pthread"
 	else
 		with_threaded_stdout="no"
 	fi
