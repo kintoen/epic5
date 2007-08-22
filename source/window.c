@@ -4675,7 +4675,6 @@ static int	new_search_term (const char *arg)
 		regerror(errcode, last_regex, errstr, sizeof(errstr));
 		say("The regex [%s] isn't acceptable because [%s]", 
 				arg, errstr);
-		new_free((char **)&last_regex);
 		return -1;
 	}
 	return 0;
