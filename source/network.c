@@ -1,4 +1,4 @@
-/* $EPIC: network.c,v 1.79 2006/10/25 23:40:42 jnelson Exp $ */
+/* $EPIC: network.c,v 1.80 2007/06/25 22:09:29 jnelson Exp $ */
 /*
  * network.c -- handles stuff dealing with connecting and name resolving
  *
@@ -881,6 +881,7 @@ void	marshall_getaddrinfo (int fd, AI *results)
 
 	/* Why do I know I'm gonna regret this? */
 	ptr = retval = new_malloc(len + 1);
+	memset(retval, 0, len + 1);
 	for (result = results; result; result = result->ai_next)
 	{
 		copy = (AI *)ptr;

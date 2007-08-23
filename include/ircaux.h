@@ -207,7 +207,7 @@ void    dequoter                (char **, size_t *, int, int, const char *);
 #define my_isdigit(x) \
 	(isdigit(*x) || ((*x == '-' || *x == '+') && isdigit(x[1])))
 
-int	vmy_strnicmp		(int, char *, ...);
+int	vmy_strnicmp		(size_t, char *, ...);
 char *	substitute_string	(const char *, const char *, const char *, int, int);
 
 /* ---------------- */
