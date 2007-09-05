@@ -263,4 +263,6 @@ size_t	transform_string (int, int, const char *, const char *, size_t, char *, s
 int	lookup_transform (const char *, int *);
 char *	valid_transforms (void);
 
+extern int 	num_code_points (const char *);
+
 #endif /* _IRCAUX_H_ */
