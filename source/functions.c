@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.156 2006/06/18 17:33:51 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.157 2007/09/06 20:54:49 howl Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -378,6 +378,7 @@ static	char
 	*function_stripc 	(char *),
 	*function_stripcrap	(char *),
 	*function_strlen	(char *),
+	*function_strtol	(char *),
 	*function_substr	(char *),
 	*function_tan		(char *),
 	*function_tanh		(char *),
@@ -386,6 +387,7 @@ static	char
 #ifdef TCL
 	*function_tcl		(char *),
 #endif
+	*function_tobase	(char *),
 	*function_tow		(char *),
 	*function_translate 	(char *),
 	*function_truncate 	(char *),
@@ -695,6 +697,7 @@ static BuiltInFunctions	built_in_functions[] =
 	{ "STRIPC",		function_stripc		},
 	{ "STRIPCRAP",		function_stripcrap	},
 	{ "STRLEN",		function_strlen		},
+	{ "STRTOL",		function_strtol		},
 	{ "SUBSTR",		function_substr		},
 	{ "TAN",		function_tan		},
 	{ "TANH",		function_tanh		},
@@ -705,6 +708,7 @@ static BuiltInFunctions	built_in_functions[] =
 	{ "TDIFF2",		function_tdiff2 	},
 	{ "TIME",		function_time 		},
 	{ "TIMERCTL",		function_timerctl	},
+	{ "TOBASE",		function_tobase 	},
 	{ "TOLOWER",		function_tolower 	},
 	{ "TOUPPER",		function_toupper 	},
 	{ "TOW",                function_tow 		},
@@ -6936,5 +6940,100 @@ BUILT_IN_FUNCTION(function_numlines, input)
 	prepare_display(strval, cols, &numl, 0);
 	new_free(&strval);
 	RETURN_INT(numl+1);
+}
+
+/*
+ * $strtol(<base> <number>)
+ * Returns the decimal value of <number>, where number is a number
+ * in base <base>. <base> must be higher than, or equal to 2, or
+ * lower than, or equal to 36, or 0.
+ * Returns empty on errors.
+ * Written by howl
+ *
+ * 2007/09/06: Copied/ported from epic5 to epic4, on request from |Rain|.
+ */
+BUILT_IN_FUNCTION(function_strtol, input)
+{
+	int	base;
+	char *	number;
+	intmax_t	retval;
+	char *	after;
+
+	if (!input || !*input) 
+		RETURN_EMPTY;
+	GET_INT_ARG(base, input);
+	if (!input || !*input || (base != 0 && (base < 2 || base > 36)))
+		RETURN_EMPTY;
+
+#if 0
+		GET_FUNC_ARG(number, input);	/* Must not use GET_INT_ARG */
+#endif
+	/* 
+	 * I dunno why I added the last comment. I'll try and use 
+	 * GET_STR_ARG instead!
+	 */
+	GET_STR_ARG(number, input);
+	
+	retval = strtoimax(number, &after, base);
+	/* Argh -- do we want to return error if invalid char found? */
+	RETURN_INT(retval);
+}
+
+/*
+ * $tobase(<base> <number>)
+ * Returns the string value of decimal number <number>, converted to base
+ * <base>. <base> must be higher than, or equal to 2, or lower than, or 
+ * equal to 36.
+ * Written by howl, from http://www.epicsol.org/~jnelson/base
+ *
+ * 2007/09/06: Copied/ported from epic5 to epic4, on request from |Rain|.
+ */
+BUILT_IN_FUNCTION(function_tobase, input)
+{
+	int	c, base, len = 0, pos = 0;
+	intmax_t	n, num;
+	char *	string;
+	char 	table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char *	number, *after;
+
+	len = pos = 0;
+	
+	if (!input || !*input)
+		RETURN_EMPTY;
+	GET_INT_ARG(base, input);
+
+	if (!input || !*input || base < 2 || base > 36)
+		RETURN_EMPTY;
+#if 0
+	GET_FUNC_ARG(number, input);
+#endif
+	/* 
+	 * Apparently I found GET_STR_ARG dangerous back in the days.
+	 */
+
+	GET_STR_ARG(number, input);
+
+	num = strtoimax(number, &after, 10);	/* Must not use GET_INT_ARG */
+
+	while (pow(base, len) <= num)
+		len++;
+
+	if (!len)
+		RETURN_EMPTY;
+
+	string = new_malloc(len + 1);
+	string[len] = 0;
+
+
+	while (len-- > 0)
+	{
+		n = (intmax_t)pow(base, len),
+		c = floor(num / n);
+		string[pos] = table[c];
+		pos++;
+		num -= n * c;
+	}
+
+	return string;
 }
 

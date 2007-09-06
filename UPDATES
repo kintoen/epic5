@@ -1,5 +1,11 @@
 EPIC4-2.8
 
+*** News 09/06/2007 -- New functions $strtol() and $tobase.
+	$strtol(b s) converts string s to an integer, as if the string
+	is a number of the base b. $strtol(16 f) will return 15.
+	$tobase(b i) converts integer i to base b.
+	Backported from EPIC5 for |Rain|.
+
 *** News 07/04/2007 -- New $windowctl() option, $windowctl(GET refnum CHANNELS)
         You can now fetch all of the channels in a window by using
                 $windowctl(GET <refnum> CHANNELS)
