@@ -259,6 +259,7 @@ typedef struct Bucket Bucket;
 #define NUMSTR(x) (intmaxtoa((intmax_t)(x)))
 
 /********************/
+void	init_transforms (void);
 size_t	transform_string (int, int, const char *, const char *, size_t, char *, size_t);
 int	lookup_transform (const char *, int *);
 char *	valid_transforms (void);
