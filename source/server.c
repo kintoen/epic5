@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.231 2007/09/07 18:07:29 jnelson Exp $ */
+/* $EPIC: server.c,v 1.232 2007/10/03 06:44:21 crazyed Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -1384,7 +1384,8 @@ return_from_ssl_detour:
 			    if (*end == '\r')
 				*end-- = '\0';
 
-			    l2 = message_from(NULL, LEVEL_OTHER);
+			    /* XXX We set message_from above. */
+			    /* l2 = message_from(NULL, LEVEL_OTHER); */
 			    if (x_debug & DEBUG_INBOUND)
 				yell("[%d] <- [%s]", 
 					s->des, buffer);
@@ -1394,7 +1395,7 @@ return_from_ssl_detour:
 			    parsing_server_index = i;
 			    parse_server(buffer, sizeof buffer);
 			    parsing_server_index = NOSERV;
-			    pop_message_from(l2);
+			    /* pop_message_from(l2); */
 			    break;
 		        }
 		    }
