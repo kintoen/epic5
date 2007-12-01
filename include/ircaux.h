@@ -16,6 +16,7 @@
 #include "compat.h"
 #include "network.h"
 #include "words.h"
+#include "zip.h"
 
 struct metric_time {
 	long mt_days;
@@ -79,7 +80,7 @@ char *	malloc_strcat_ues_c	(char **, const char *, const char *, size_t *);
 char *	strlopencat		(char *, size_t, ...);
 ssize_t	stristr 		(const char *, const char *);
 ssize_t	rstristr 		(const char *, const char *);
-FILE *	uzfopen 		(char **, const char *, int, struct stat *);
+struct epic_loadfile *	uzfopen 		(char **, const char *, int, struct stat *);
 int	end_strcmp 		(const char *, const char *, size_t);
 char*   exec_pipe		(const char *, char *, size_t *, char *const *);
 FILE **	open_exec		(const char *executable, char * const *args);

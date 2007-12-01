@@ -160,6 +160,10 @@ if test -z "$libsocket"; then
 	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket",)
 fi
 
+AC_CHECK_LIB(archive, archive_read_new, 
+[LIBS="$LIBS -larchive"
+ AC_DEFINE(HAVE_LIBARCHIVE)],)
+
 AC_ARG_WITH(ssl,
 [  --with-ssl[=PATH]       Include SSL support (DIR is OpenSSL's install dir).],[
 	if test -z "$withval"; then

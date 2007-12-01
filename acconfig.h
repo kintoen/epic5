@@ -401,3 +401,6 @@
 /* Define this if you have iconv_open() */
 #undef HAVE_ICONV
 
+/* Define this if you have iconv_open() */
+#undef HAVE_LIBARCHIVE
+
