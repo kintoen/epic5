@@ -16,7 +16,6 @@
 #include "compat.h"
 #include "network.h"
 #include "words.h"
-#include "zip.h"
 
 struct metric_time {
 	long mt_days;
