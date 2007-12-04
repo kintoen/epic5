@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.185 2007/09/20 04:00:11 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.186 2007/12/01 04:52:05 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -50,8 +50,6 @@
 #include "ctcp.h"
 #include "server.h"
 #include "sedcrypt.h"
-#include "archive.h"
-#include "archive_entry.h"
 #include "elf.h"
 
 /*
