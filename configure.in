@@ -10,6 +10,8 @@ AC_REVISION($Revision$)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
+unset GREP_OPTIONS
+
 dnl ----------------------------------------------------------
 dnl
 dnl grok the version number - from source/irc.c
