@@ -32,9 +32,18 @@ on ^set "hold_mode *" {
 on ^set "hold_mode_interval *" {
 	@ default_hold_mode_interval = [$1]
 	fe ($winrefs()) x {
-		window $x hold_mode_interval $default_hold_mode_interval
+		window $x hold_interval $default_hold_mode_interval
 	}
 	xecho -b SET HOLD_MODE_INTERVAL set to $default_hold_mode_interval
 }
+
+on ^set "hold_interval *" {
+	@ default_hold_mode_interval = [$1]
+	fe ($winrefs()) x {
+		window $x hold_interval $default_hold_mode_interval
+	}
+	xecho -b SET HOLD_INTERVAL set to $default_hold_mode_interval
+}
+
 
 #hop'y2k3

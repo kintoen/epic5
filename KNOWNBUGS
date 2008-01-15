@@ -9,36 +9,5 @@ KNOWN ERRATA (eg, bugs, or unresolved requests):
 
 THE CHANGELOG SINCE THE LAST RELEASE:
 -------------------------------------
-* Fix null deref when you do /window flush while not in hold mode.
-* Fix /away -all
-* Fix /window <refnum> scroll_[backwards|forwards]
-* Fix 353 numeric so channels w/o users on ratbox aren't "odd"
-* Fix problems with translation, particular for zlonix.
-* A tab between [ref] and pattern in /ignore is visually jarring. Use space.
-* Fix problems with LOG_REWRITE and window refnum -1.
-* Fix bug with deleting user-created bind functions (wd)
-* Fix 'get_local_server_port', add $serverctl(GET * LOCALPORT). (fudd)
-* Fix /while et al to not do LOCAL_COPY within an infinite loop, from epic5.
-* Fix error messages when you /exec -direct asdf, from epic5.
-* Add more gracious support for unique id's and nickname 0, from epic5.
-* Fix output from exec to go to correct server
-* Fix two 64-bit pointer errors (one in dcc.c, and one in who.c)
-* Fix refresh_a_screen() to not pass NULL to recalculate_windows().
-* Fix crash caused by out of bounds numeric (only bug found by ircfuzz!)
-* Fix two more larnification bugs found by ircfuzz.
-* Release epic4-2.4 (Languish)
-* Fix crash caused by /NICK <unique id> on ircnet.
-* Add support for maildir mail boxes, which must be selected at compile time.
-* Add a missing cast for printf when sending a dcc handshake.
-* Support isfinite() for hpux/c99 alongside finite() for bsd.
-* Fix bug where SIGCHLD can be blocked and never unblocked.
-* Fixes to support socks5 again, at least on freebsd.
-* Fix crash with $xdebug() with no arguments.
-* Release epic4-2.6 (Plebiscite)
-* Fix inability to /query an /exec'd process. (rb Godlkworth)
-* Add support for +T by special request.
-* Fix crash for /parsekey type_text
-* Add $windowctl(GET <refnum> CHANNELS) in kindness to BlackJac.
-* Fix brain-o in a previous fix.
-* Port $strtol() and $tobase() from epic5. On request from |Rain|.
-* Fix $tobase() bug - $tobase() now supports negative integers. 
+* New version of /load hold_mode (implements /set hold_interval)
+* Fix crash with $write(w<number> text)
