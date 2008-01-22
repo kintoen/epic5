@@ -1,4 +1,4 @@
-/* $EPIC: exec.c,v 1.40 2006/10/19 22:21:31 jnelson Exp $ */
+/* $EPIC: exec.c,v 1.41 2007/06/25 22:09:29 jnelson Exp $ */
 /*
  * exec.c: handles exec'd process for IRCII 
  *
@@ -500,6 +500,12 @@ say("Output from process %d (%s) now going to you", i, proc->name);
 		{
 		case -1:
 			say("Couldn't start new process!");
+			close(p0[0]);
+			close(p0[1]);
+			close(p1[0]);
+			close(p1[1]);
+			close(p2[0]);
+			close(p2[1]);
 			break;
 
 		/*
