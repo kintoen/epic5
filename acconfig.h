@@ -404,3 +404,6 @@
 /* Define this if you have iconv_open() */
 #undef HAVE_LIBARCHIVE
 
+/* Define this if you have strptime() */
+#undef HAVE_STRPTIME
+
