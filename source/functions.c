@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.158 2007/09/06 21:40:44 howl Exp $ */
+/* $EPIC: functions.c,v 1.159 2008/02/08 03:37:19 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -6956,7 +6956,7 @@ BUILT_IN_FUNCTION(function_strtol, input)
 {
 	int	base;
 	char *	number;
-	intmax_t	retval;
+	long	retval;
 	char *	after;
 
 	if (!input || !*input) 
@@ -6974,7 +6974,7 @@ BUILT_IN_FUNCTION(function_strtol, input)
 	 */
 	GET_STR_ARG(number, input);
 	
-	retval = strtoimax(number, &after, base);
+	retval = strtol(number, &after, base);
 	/* Argh -- do we want to return error if invalid char found? */
 	RETURN_INT(retval);
 }
@@ -6991,7 +6991,7 @@ BUILT_IN_FUNCTION(function_strtol, input)
 BUILT_IN_FUNCTION(function_tobase, input)
 {
 	int	c, base, len = 0, pos = 0, negate = 0;
-	intmax_t	n, num;
+	long	n, num;
 	char *	string;
 	char 	table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char *	number, *after;
@@ -7019,7 +7019,7 @@ BUILT_IN_FUNCTION(function_tobase, input)
 		number++;
 	}
 
-	num = strtoimax(number, &after, 10);	/* Must not use GET_INT_ARG */
+	num = strtol(number, &after, 10);	/* Must not use GET_INT_ARG */
 
 	while (pow(base, len) <= num)
 		len++;
@@ -7042,7 +7042,7 @@ BUILT_IN_FUNCTION(function_tobase, input)
 
 	while (len-- > 0)
 	{
-		n = (intmax_t)pow(base, len),
+		n = (long)pow(base, len),
 		c = floor(num / n);
 		string[pos] = table[c];
 		pos++;
