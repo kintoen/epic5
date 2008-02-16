@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.72 2004/12/01 23:47:51 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.73 2008/02/16 23:59:11 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -179,7 +179,7 @@ static	int	ok_to_output (Window *window);
  * on, or off, or what to do when it sees a toggle, we instead have one 
  * function (normalize_string) which walks the string *once* and outputs a
  * completely normalized output string.  The end result of this change is
- * that what were formally "toggle" attributes now are "always-on" attributes,
+ * that what were formerly "toggle" attributes now are "always-on" attributes,
  * and to turn off an attribute, you need to do an ALL_OFF (^O) and then
  * turn on whatever attributes are left.  This is *significantly* easier
  * to parse, and yeilds much better results, at the expense of a few extra
@@ -1803,14 +1803,21 @@ const 	u_char	*ptr;
 				if (indent > max_cols / 3)
 					indent = max_cols / 3;
 
-				if (do_indent && 
-					((int)strlen(cont_ptr) < indent))
+				/* refined this to use proper logic to 
+				** decide the length of cont. - pegasus
+				*/
+				char *copy = LOCAL_COPY(cont_ptr);
+				copy = normalize_string(copy, 0);
+				size_t cont_len = output_with_count(copy, 0, 0);
+				if (do_indent && (cont_len < indent))
 				{
-					size_t size = indent + 10;;
+					size_t size = indent + 1 +
+						strlen(cont_ptr) -
+						cont_len;
 
-					cont = alloca(size);    /* sb pana */
-					snprintf(cont, size, 
-						"%-*s", indent, cont_ptr);
+					cont = alloca(size);	/* sb pana */
+					snprintf(cont, size,
+						"%-*s", size, cont_ptr);
 				}
 
 				/*

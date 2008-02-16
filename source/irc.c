@@ -1,4 +1,4 @@
-/* $EPIC: irc.c,v 1.759 2008/02/08 03:37:19 jnelson Exp $ */
+/* $EPIC: irc.c,v 1.760 2008/02/16 23:59:11 jnelson Exp $ */
 /*
  * ircII: a new irc client.  I like it.  I hope you will too!
  *
@@ -815,6 +815,17 @@ static	void	parse_args (int argc, char **argv)
 	return;
 }
 
+/* fire scripted signal events -pegasus */
+void do_signals(void)
+{
+	int sig_no;
+
+	signals_caught[0] = 0;
+	for (sig_no = 0; sig_no < NSIG; sig_no++)
+		while (signals_caught[sig_no])
+			do_hook(SIGNAL_LIST, "%d %d", sig_no, signals_caught[sig_no]--);
+}
+
 /* 
  * io() is a ONE TIME THROUGH loop!  It simply does ONE check on the
  * file descriptors, and if there is nothing waiting, it will time
@@ -933,6 +944,8 @@ static 	const Timeval	right_away = { 0, 0 };
 		} 
 	}
 
+	if (signals_caught[0] != 0)
+		do_signals();
 	ExecuteTimers();
 	get_child_exit(-1);
 	if (level == 1 && need_defered_commands)
@@ -1138,6 +1151,14 @@ int 	main (int argc, char *argv[])
 	/* If we're a bot, do the bot thing. */
 	if (!use_input && fork())
 		_exit(0);
+
+	/* make sure we don't start with spurious signals events firing */
+	bzero(&signals_caught, NSIG * sizeof(int));
+	/* hook all signals! */
+	hook_all_signals();
+	/* we *might* want to check for SIG_ERR from the above function.
+	 * i leave it to hop to decide what to do on SIG_ERR. -pegasus 
+	 */
 
 	/* these should be taken by both dumb and smart displays */
 	my_signal(SIGSEGV, coredump);

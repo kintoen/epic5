@@ -164,4 +164,8 @@ const	char *	current_filename	(void);  /* XXX command.c */
 const	char *	current_loader		(void);	 /* XXX command.c */
 	int	current_line		(void);	 /* XXX command.c */
 	char *	current_package		(void);  /* XXX command.c */
+
+/* keep track of signals for scripted events */
+volatile int     signals_caught[NSIG];
+
 #endif /* __irc_h */

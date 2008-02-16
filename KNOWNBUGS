@@ -12,3 +12,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * New version of /load hold_mode (implements /set hold_interval)
 * Fix crash with $write(w<number> text)
 * Fix the build on systems without intmax_t/strtoimax().
+* Add /on signal (pegasus)
+* Fix /set indent if /set continued_line contains ^C stuff (pegasus)
