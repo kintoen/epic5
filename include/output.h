@@ -22,7 +22,7 @@ struct ScreenStru;
 	void	say 			(const char *, ...) __A(1);
 	void	yell 			(const char *, ...) __A(1);
 	void    privileged_yell 	(const char *, ...) __A(1);
-	void	syserr			(int, const char *, ...) __A(1);
+	void	syserr			(int, const char *, ...) __A(2);
 
 	void	error			(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);

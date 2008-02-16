@@ -499,10 +499,10 @@ case $# in
 esac
 
 sig_name="ZERO $*"
-if test -f source/sig.inc; then
-  /bin/rm -f source/sig.inc
+if test -f include/sig.inc; then
+  /bin/rm -f include/sig.inc
 fi
-[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> source/sig.inc]
+[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> include/sig.inc]
 fi
 
 dnl ----------------------------------------------------------
