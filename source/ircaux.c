@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.189 2008/01/23 04:05:55 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.190 2008/02/16 03:38:28 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -1504,7 +1504,7 @@ static	FILE *	file_pointers[3];
 	return file_pointers;
 }
 
-struct epic_loadfile *	open_compression (char *executable, char *filename)
+static struct epic_loadfile *	open_compression (char *executable, char *filename)
 {
 	struct epic_loadfile *	elf;
 	int 	pipes[2] = {-1, -1};
