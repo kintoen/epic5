@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.233 2007/10/20 16:10:11 jnelson Exp $ */
+/* $EPIC: server.c,v 1.234 2008/01/22 06:44:15 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2269,6 +2269,7 @@ void  server_is_registered (int refnum, const char *itsname, const char *ourname
 					get_server_itsname(from_server));
 	window_check_channels();
 	set_server_status(refnum, SERVER_ACTIVE);
+	isonbase(from_server, NULL, NULL);
 }
 
 void	server_is_unregistered (int refnum)

@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.31 2005/07/26 20:43:24 crazyed Exp $ */
+/* $EPIC: notify.c,v 1.32 2006/11/17 20:10:03 jnelson Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -375,7 +375,7 @@ void 	do_notify (void)
 				yell("Server [%d]'s notify list is"
 					"empty and it shouldn't be.",
 						servnum);
-			rebuild_all_ison();
+			rebuild_notify_ison(servnum);
 		}
 		else if (x_debug & DEBUG_NOTIFY)
 			yell("Server [%d]'s notify list is empty.",
