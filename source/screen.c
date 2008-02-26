@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.129 2008/01/22 04:03:40 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.131 2008/02/16 03:38:28 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -1696,7 +1696,7 @@ const	unsigned char	*cont_ptr;
 
 				/* Because Blackjac asked me to */
 				/* The test against 0 is for lines w/o spaces */
-				if (indent > max_cols / 3 || indent == 0)
+				if (indent > max_cols / 3 || indent <= 0)
 					indent = max_cols / 3;
 
 				if (do_indent)
