@@ -1,4 +1,4 @@
-/* $EPIC: notify.c,v 1.32 2006/11/17 20:10:03 jnelson Exp $ */
+/* $EPIC: notify.c,v 1.33 2008/02/19 13:13:12 crazyed Exp $ */
 /*
  * notify.c: a few handy routines to notify you when people enter and leave irc 
  *
@@ -367,7 +367,8 @@ void 	do_notify (void)
 		{
 			isonbase(servnum, NOTIFY_LIST(s)->ison, ison_notify);
 			if (x_debug & DEBUG_NOTIFY)
-			    yell("Notify ISON issued for server [%d]", servnum);
+			    yell("Notify ISON issued for server [%d] with [%s]"
+				, servnum, NOTIFY_LIST(s)->ison);
 		}
 		else if (NOTIFY_MAX(s))
 		{
