@@ -15,3 +15,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add /on signal (pegasus)
 * Fix /set indent if /set continued_line contains ^C stuff (pegasus)
 * Patch from larne to fix build on interix
+* sig.inc should be created in the include directory. (rb larne)
+* Fix build on systems where CFLAGS doesn't get set (larne)
