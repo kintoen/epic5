@@ -361,4 +361,12 @@ typedef struct hostent		Hostent;
 typedef struct timeval		Timeval;
 typedef struct stat		Stat;
 
+/*
+ * Interix's getpgrp() does not take an argument, but the configure script
+ * detects it wrongly.
+ */
+#ifdef __INTERIX
+# define GETPGRP_VOID
+#endif
+
 #endif /* __irc_std_h */
