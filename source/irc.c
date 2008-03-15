@@ -1,4 +1,4 @@
-/* $EPIC: irc.c,v 1.762 2008/03/14 22:18:39 jnelson Exp $ */
+/* $EPIC: irc.c,v 1.763 2008/03/15 01:40:06 jnelson Exp $ */
 /*
  * ircII: a new irc client.  I like it.  I hope you will too!
  *
@@ -52,7 +52,7 @@ const char internal_version[] = "20070916";
 /*
  * In theory, this number is incremented for every commit.
  */
-const unsigned long	commit_id = 763;
+const unsigned long	commit_id = 764;
 
 /*
  * As a way to poke fun at the current rage of naming releases after
@@ -1153,7 +1153,7 @@ int 	main (int argc, char *argv[])
 		_exit(0);
 
 	/* make sure we don't start with spurious signals events firing */
-	bzero(&signals_caught, NSIG * sizeof(int));
+	memset(&signals_caught, 0, NSIG * sizeof(int));
 	/* hook all signals! */
 	hook_all_signals();
 	/* we *might* want to check for SIG_ERR from the above function.

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# From configure.in Revision: 1.40 # Guess values for system-dependent variables and create Makefiles.
+# From configure.in Revision: 1.41 # Guess values for system-dependent variables and create Makefiles.
 # Generated automatically using autoconf version 2.13 
 # Copyright (C) 1992, 93, 94, 95, 96 Free Software Foundation, Inc.
 #
@@ -4556,10 +4556,10 @@ case $# in
 esac
 
 sig_name="ZERO $*"
-if test -f include/sig.inc; then
-  /bin/rm -f include/sig.inc
+if test -f sig.inc; then
+  /bin/rm -f sig.inc
 fi
-echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> include/sig.inc
+echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> sig.inc
 fi
 
 
@@ -5464,6 +5464,10 @@ chmod +x $CONFIG_STATUS
 rm -fr confdefs* $ac_clean_files
 test "$no_create" = yes || ${CONFIG_SHELL-/bin/sh} $CONFIG_STATUS || exit 1
 
+
+if test -f sig.inc ; then
+    mv sig.inc include/
+fi
 
 
 

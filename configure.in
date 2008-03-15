@@ -4,9 +4,9 @@ dnl except those bits attributed otherwise.
 dnl thanks to the screen 3.3 configure.in for giving me examples to
 dnl work from and steal ;)
 dnl
-dnl @(#)$Id: configure.in,v 1.41 2008/03/14 22:18:37 jnelson Exp $
+dnl @(#)$Id: configure.in,v 1.42 2008/03/15 01:40:04 jnelson Exp $
 
-AC_REVISION($Revision: 1.41 $)dnl
+AC_REVISION($Revision: 1.42 $)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
@@ -407,10 +407,10 @@ case $# in
 esac
 
 sig_name="ZERO $*"
-if test -f include/sig.inc; then
-  /bin/rm -f include/sig.inc
+if test -f sig.inc; then
+  /bin/rm -f sig.inc
 fi
-[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> include/sig.inc]
+[echo $sig_name | sed -e 's/$/"};/' -e 's/ /", "/g' -e 's/^/static char *sys_siglist[] = { "/' >> sig.inc]
 fi
 
 dnl ----------------------------------------------------------
@@ -737,6 +737,11 @@ AC_SUBST(program_prefix)
 AC_SUBST(mandir)
 
 AC_OUTPUT(Makefile source/Makefile source/info.c.sh)
+
+dnl ---- BLAH BLAH BLAH ---
+if test -f sig.inc ; then
+    mv sig.inc include/
+fi
 
 
 dnl ----------------------------------------------------------
