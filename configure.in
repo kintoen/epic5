@@ -4,9 +4,9 @@ dnl except those bits attributed otherwise.
 dnl thanks to the screen 3.3 configure.in for giving me examples to
 dnl work from and steal ;)
 dnl
-dnl @(#)$Id: configure.in,v 1.42 2008/03/15 01:40:04 jnelson Exp $
+dnl @(#)$Id: configure.in,v 1.43 2008/03/15 20:47:35 jnelson Exp $
 
-AC_REVISION($Revision: 1.42 $)dnl
+AC_REVISION($Revision: 1.43 $)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
@@ -488,6 +488,8 @@ AC_ARG_WITH(ipv6,
 	if test "x$withval" = "xno" ; then
 		AC_MSG_RESULT(no)
 		AC_DEFINE(DO_NOT_USE_IPV6)
+	else
+		AC_MSG_RESULT(yes)
 	fi
 ],[AC_MSG_RESULT(yes)])
 
