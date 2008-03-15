@@ -88,6 +88,13 @@ typedef struct _SHA256_CTX {
  * <machine/endian.h> where the appropriate definitions are actually
  * made).
  */
+/* Workarounds for HP-UX */
+#if defined(__hpux) && !defined(BYTE_ORDER)                                    
+# define LITTLE_ENDIAN 1234                                                    
+# define BIG_ENDIAN 4321                                                       
+# define BYTE_ORDER BIG_ENDIAN                                                 
+#endif                                                                         
+
 /* Workarounds for solaris */
 #if !defined(BYTE_ORDER) || (BYTE_ORDER != LITTLE_ENDIAN && BYTE_ORDER != BIG_ENDIAN)
 # ifdef _LITTLE_ENDIAN

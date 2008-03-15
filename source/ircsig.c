@@ -1,4 +1,4 @@
-/* $EPIC: ircsig.c,v 1.4 2002/07/29 22:27:05 jnelson Exp $ */
+/* $EPIC: ircsig.c,v 1.5 2008/02/26 03:46:18 jnelson Exp $ */
 /*
  * ircsig.c: has a `my_signal()' that uses sigaction().
  *
@@ -125,7 +125,7 @@ sigfunc *my_signal (int sig_no, sigfunc *sig_handler)
 
 	/* Well this is certainly simpler. - pegasus */
 	old = signal_handlers[sig_no];
-	signal_handlers[sig_no] = sig_handler;
+	signal_handlers[sig_no] = (volatile sigfunc *)sig_handler;
 
 	return old;
 }
