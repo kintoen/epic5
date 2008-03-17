@@ -80,10 +80,10 @@ extern	char	*TI_backcolors[];
 #endif
 
 extern	int	termfeatures;
-extern	struct	term	*current_term;
+extern	struct	my_term	*current_term;
 
 /*      Our variable name   Cap / Info      Description */
-struct term {
+struct my_term {
 	int TI_bw;	 /* bw  / bw        cub1 wraps from column 0 to last column */
 	int TI_am;	 /* am  / am        terminal has automatic margins */
 	int TI_xsb;	 /* xb  / xsb       beehive (f1=escape, f2=ctrl C) */

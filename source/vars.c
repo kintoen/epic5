@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.49 2006/06/18 17:33:51 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.50 2008/03/17 03:42:46 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -47,7 +47,7 @@
 #include "vars.h"
 #include "input.h"
 #include "ircaux.h"
-#include "term.h"
+#include "termx.h"
 #include "output.h"
 #include "stack.h"
 #include "dcc.h"

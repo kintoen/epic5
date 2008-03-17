@@ -1,4 +1,4 @@
-/* $EPIC: help.c,v 1.13 2004/07/24 00:02:31 jnelson Exp $ */
+/* $EPIC: help.c,v 1.14 2008/03/17 03:42:46 jnelson Exp $ */
 /*
  * help.c: handles the help stuff for irc 
  *
@@ -54,7 +54,7 @@
 #include "output.h"
 #include "screen.h"
 #include "server.h"
-#include "term.h"
+#include "termx.h"
 #include "vars.h"
 #include "window.h"
 #include "glob.h"

@@ -4,9 +4,9 @@ dnl except those bits attributed otherwise.
 dnl thanks to the screen 3.3 configure.in for giving me examples to
 dnl work from and steal ;)
 dnl
-dnl @(#)$Id: configure.in,v 1.43 2008/03/15 20:47:35 jnelson Exp $
+dnl @(#)$Id: configure.in,v 1.44 2008/03/17 03:42:40 jnelson Exp $
 
-AC_REVISION($Revision: 1.43 $)dnl
+AC_REVISION($Revision: 1.44 $)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
@@ -180,7 +180,7 @@ dnl
 dnl Checking for headers, functions, and a type declarations
 dnl
 
-AC_CHECK_HEADERS(fcntl.h netdb.h regex.h sys/fcntl.h sys/file.h sys/select.h sys/syslimits.h sys/un.h sys/time.h termcap.h sys/filio.h sys/sysctl.h inttypes.h stdint.h)
+AC_CHECK_HEADERS(fcntl.h netdb.h regex.h sys/fcntl.h sys/file.h sys/select.h sys/syslimits.h sys/un.h sys/time.h termcap.h sys/filio.h sys/sysctl.h inttypes.h stdint.h term.h)
 
 if test $termcap -eq 0 ; then
 	AC_CHECK_FUNC(setupterm, AC_DEFINE(HAVE_TERMINFO),)
@@ -199,7 +199,6 @@ AC_CHECK_FUNC(fpathconf, AC_DEFINE(HAVE_FPATHCONF),)
 AC_CHECK_FUNC(strerror, AC_DEFINE(HAVE_STRERROR),)
 AC_CHECK_FUNC(memmove, AC_DEFINE(HAVE_MEMMOVE),)
 AC_CHECK_FUNC(setsid, AC_DEFINE(HAVE_SETSID),)
-AC_CHECK_FUNC(tparm, AC_DEFINE(HAVE_TPARM),)
 AC_CHECK_FUNC(getlogin, AC_DEFINE(HAVE_GETLOGIN),)
 AC_CHECK_FUNC(fchdir, AC_DEFINE(HAVE_FCHDIR),)
 AC_CHECK_FUNC(realpath, AC_DEFINE(HAVE_REALPATH),)
@@ -216,6 +215,28 @@ AC_CHECK_FUNC(strtoll, AC_DEFINE(HAVE_STRTOLL),)
 AC_CHECK_FUNC(atoq, AC_DEFINE(HAVE_ATOQ),)
 AC_CHECK_FUNC(finite, AC_DEFINE(HAVE_FINITE),)
 AC_CHECK_FUNC(isfinite, AC_DEFINE(HAVE_ISFINITE),)
+AC_CHECK_FUNC(tparm, AC_DEFINE(HAVE_TPARM),)
+
+dnl -- Oh why does this have to be so painful? --
+AC_MSG_CHECKING(whether c90 function prototypes work)
+AC_TRY_RUN([
+extern int foozle (const char *, ...);
+
+main ()
+{
+	extern int foozle();
+
+	foozle("blah blah");
+	exit(0);
+}
+
+int foozle (const char *strval, ...)
+{
+	exit(0);
+}
+],
+  AC_MSG_RESULT(yes),
+  AC_MSG_RESULT(no, bummer) , :)
 
 AC_HEADER_STDC
 AC_HEADER_TIME

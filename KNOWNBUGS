@@ -18,3 +18,9 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * sig.inc should be created in the include directory. (rb larne)
 * Fix build on systems where CFLAGS doesn't get set (larne)
 * More changes for larne's cross-building project.
+* Move "term.h" out of the way so we can #include <term.h> (mv'd to termx.h)
+* This makes it possible to avoid empty decls for tparm()
+* Which is supposed to fix the build for larne on who-only-knows-what.
+* Rename tparm() to my_tparm().
+* Do a make depend since i changed the name of a header file. ugh.
+* Change the name of (struct term) to (struct my_term) for freebsd sake. ugh.

@@ -339,5 +339,8 @@
 /* Define if you have the <sys/un.h> header file.  */
 #undef HAVE_SYS_UN_H
 
+/* Define if you have the <term.h> header file.  */
+#undef HAVE_TERM_H
+
 /* Define if you have the <termcap.h> header file.  */
 #undef HAVE_TERMCAP_H

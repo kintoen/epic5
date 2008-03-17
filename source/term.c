@@ -1,4 +1,4 @@
-/* $EPIC: term.c,v 1.12 2003/12/03 22:17:40 jnelson Exp $ */
+/* $EPIC: term.c,v 1.13 2008/03/17 03:42:46 jnelson Exp $ */
 /*
  * term.c -- termios and (termcap || terminfo) handlers
  *
@@ -43,7 +43,7 @@
 #include "irc.h"
 #include "ircaux.h"
 #include "vars.h"
-#include "term.h"
+#include "termx.h"
 #include "window.h"
 #include "screen.h"
 #include "output.h"
@@ -77,25 +77,36 @@ static	struct	termios	oldb, newb;
  * either.  You have been warned!
  */
 #ifdef HAVE_TERMINFO
-extern	int		setupterm();
-extern	char		*tigetstr();
-extern	int		tigetnum();
-extern	int		tigetflag();
-#define Tgetstr(x, y) 	tigetstr(x.iname)
-#define Tgetnum(x) 	tigetnum(x.iname);
-#define Tgetflag(x) 	tigetflag(x.iname);
+# ifdef HAVE_TERM_H
+#  include <term.h>
+# else
+	extern	int		setupterm();
+	extern	char *		tigetstr();
+	extern	int		tigetnum();
+	extern	int		tigetflag();
+#  ifdef HAVE_TPARM
+	extern	char *		tparm();
+#  endif
+# endif
+# define Tgetstr(x, y) 	tigetstr(x.iname)
+# define Tgetnum(x) 	tigetnum(x.iname);
+# define Tgetflag(x) 	tigetflag(x.iname);
 #else
-extern	int		tgetent();
-extern	char		*tgetstr();
-extern	int		tgetnum();
-extern	int		tgetflag();
-#define Tgetstr(x, y) 	tgetstr(x.tname, &y)
-#define Tgetnum(x) 	tgetnum(x.tname)
-#define Tgetflag(x) 	tgetflag(x.tname)
+# ifdef HAVE_TERM_H
+#  include <term.h>
+# else
+	extern	int		tgetent();
+	extern	char		*tgetstr();
+	extern	int		tgetnum();
+	extern	int		tgetflag();
+#  ifdef HAVE_TPARM
+	extern	char *		tparm();
+#  endif
+# endif
+# define Tgetstr(x, y) 	tgetstr(x.tname, &y)
+# define Tgetnum(x) 	tgetnum(x.tname)
+# define Tgetflag(x) 	tgetflag(x.tname)
 #endif
-
-extern	char	*getenv();
-extern	char	*tparm();
 
 /*
  * The old code assumed termcap. termcap is almost always present, but on
@@ -117,7 +128,7 @@ typedef struct cap2info
 	void *		ptr;
 } cap2info;
 
-struct	term	TI;
+struct	my_term	TI;
 
 cap2info tcaps[] =
 {
@@ -621,7 +632,7 @@ cap2info tcaps[] =
 };
 
 
-struct term *	current_term = &TI;
+struct my_term *current_term = &TI;
 static	int	numcaps = sizeof(tcaps) / sizeof(cap2info);
 static	int	term_echo_flag = 1;
 static	int	li;
