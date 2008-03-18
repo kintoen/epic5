@@ -1,5 +1,5 @@
 /*
- * @(#)$Id: acconfig.h,v 1.26 2006/10/19 22:25:27 jnelson Exp $
+ * @(#)$Id: acconfig.h,v 1.27 2008/03/18 04:23:58 jnelson Exp $
  */
 
 /*
@@ -325,4 +325,10 @@
 
 /* Define this if you have isfinite() */
 #undef HAVE_ISFINITE
+
+/* Define this if your <term.h> requires <curses.h> (x/open curses) */
+#undef TERM_H_REQUIRES_CURSES_H
+
+/* Define this if your <term.h> can't be used */
+#undef DONT_USE_TERM_H
 

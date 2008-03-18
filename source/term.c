@@ -1,4 +1,4 @@
-/* $EPIC: term.c,v 1.13 2008/03/17 03:42:46 jnelson Exp $ */
+/* $EPIC: term.c,v 1.14 2008/03/18 04:24:01 jnelson Exp $ */
 /*
  * term.c -- termios and (termcap || terminfo) handlers
  *
@@ -65,48 +65,83 @@
 #include <sys/ioctl.h>
 
 volatile	int		need_redraw;
-static	int		tty_des;		/* descriptor for the tty */
-static	struct	termios	oldb, newb;
-	char		my_PC, *BC, *UP;
-	int		BClen, UPlen;
+static		int		tty_des;	/* descriptor for the tty */
+static		struct termios	oldb, newb;
 
 /*
- * Systems can't seem to agree where to put these.
- * System's can't seem to agree if (char *) is spelled (unsigned char *)
- * or (const char *) or (const unsigned char *), so don't prototype these
- * either.  You have been warned!
+ * XXX -- Supporting this correctly is a hack, but it's not my fault.
+ * 
+ * Configure has already determined if <term.h> can be used to get
+ * prototypes for these functions.  It has also determined whether it is 
+ * X/OPEN curses, and therefore requires us to include <termio.h> and 
+ * <curses.h> before including <term.h>.
+ *
+ * For those systems that do not have a usable <term.h>, we will set forth
+ * some empty decl prototypes for the functions, just to establish the 
+ * return value.  All systems have either the terminfo functions or the 
+ * termcap functions, but not all systems have tparm(), so to avoid clashing
+ * with the my_tparm() decl in "compat.h", we only decl tparm() if we are
+ * using the system's (and not our) tparm().
+ */
+#if defined(HAVE_TERM_H) && !defined(DONT_USE_TERM_H)
+# if defined(TERM_H_REQUIRES_CURSES_H)
+#  include <termio.h>
+#  include <curses.h>
+# endif
+# include <term.h>
+#else
+# ifdef HAVE_TERMINFO
+	extern	int	setupterm();
+	extern	char *	tigetstr();
+	extern	int	tigetnum();
+	extern	int	tigetflag();
+# else
+	extern	int	tgetent();
+	extern	char *	tgetstr();
+	extern	int	tgetnum();
+	extern	int	tgetflag();
+# endif
+# ifdef HAVE_TPARM
+	extern	char *	tparm();
+# endif
+#endif
+
+/*
+ * We use macro wrappers to hide the difference between terminfo and termcap.
  */
 #ifdef HAVE_TERMINFO
-# ifdef HAVE_TERM_H
-#  include <term.h>
-# else
-	extern	int		setupterm();
-	extern	char *		tigetstr();
-	extern	int		tigetnum();
-	extern	int		tigetflag();
-#  ifdef HAVE_TPARM
-	extern	char *		tparm();
-#  endif
-# endif
 # define Tgetstr(x, y) 	tigetstr(x.iname)
 # define Tgetnum(x) 	tigetnum(x.iname);
 # define Tgetflag(x) 	tigetflag(x.iname);
 #else
-# ifdef HAVE_TERM_H
-#  include <term.h>
-# else
-	extern	int		tgetent();
-	extern	char		*tgetstr();
-	extern	int		tgetnum();
-	extern	int		tgetflag();
-#  ifdef HAVE_TPARM
-	extern	char *		tparm();
-#  endif
-# endif
 # define Tgetstr(x, y) 	tgetstr(x.tname, &y)
 # define Tgetnum(x) 	tgetnum(x.tname)
 # define Tgetflag(x) 	tgetflag(x.tname)
 #endif
+
+/*
+ * And for the final inanity, X/OPEN curses uses
+ *	char *tparm (char *, int, int, int, int, int, int, int, int, int);
+ * but everyone else (including ncurses and solaris) uses
+ *	char *tparm (const char *, ...);
+ * and there's no way to cover those two arglists with one prototype, so
+ * we're left with these idiot wrapper functions.
+ */
+char *tparm1 (const char *str, int l1)
+{
+	return tparm(str, l1, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+
+char *tparm2 (const char *str, int l1, int l2)
+{
+	return tparm(str, l1, l2, 0, 0, 0, 0, 0, 0, 0);
+}
+
+char *tparm4 (const char *str, int l1, int l2, int l3, int l4)
+{
+	return tparm(str, l1, l2, l3, l4, 0, 0, 0, 0, 0);
+}
+
 
 /*
  * The old code assumed termcap. termcap is almost always present, but on
@@ -718,7 +753,7 @@ void	term_reset (void)
 	tcsetattr(tty_des, TCSADRAIN, &oldb);
 
 	if (current_term->TI_csr)
-		tputs_x(tparm(current_term->TI_csr, 0, main_screen->li - 1));
+		tputs_x(tparm2(current_term->TI_csr, 0, main_screen->li - 1));
 	term_gotoxy(0, main_screen->li - 1);
 #if use_alt_screen
 	if (current_term->TI_rmcup)
@@ -834,22 +869,6 @@ int 	term_init (void)
 				*(char * *)tcaps[i].ptr = cval;
 		}
 	}
-
-	BC = malloc_strdup(current_term->TI_cub1);
-	UP = malloc_strdup(current_term->TI_cuu1);
-	if (current_term->TI_pad)
-		my_PC = current_term->TI_pad[0];
-	else
-		my_PC = 0;
-
-	if (BC)
-		BClen = strlen(BC);
-	else
-		BClen = 0;
-	if (UP)
-		UPlen = strlen(UP);
-	else
-		UPlen = 0;
 
 	li = current_term->TI_lines;
 	co = current_term->TI_cols;
@@ -1022,9 +1041,9 @@ int 	term_init (void)
 
 		*cbuf = 0;
 		if (current_term->TI_setaf) 
-		    strlcat(cbuf, tparm(current_term->TI_setaf, i & 0x07, 0), sizeof cbuf);
+		    strlcat(cbuf, tparm2(current_term->TI_setaf, i & 0x07, 0), sizeof cbuf);
 		else if (current_term->TI_setf)
-		    strlcat(cbuf, tparm(current_term->TI_setf, i & 0x07, 0), sizeof cbuf);
+		    strlcat(cbuf, tparm2(current_term->TI_setf, i & 0x07, 0), sizeof cbuf);
 		else
 		    snprintf(cbuf, sizeof cbuf, "\033[%dm", (i & 0x07) + 30);
 
@@ -1032,9 +1051,9 @@ int 	term_init (void)
 
 		*cbuf = 0;
 		if (current_term->TI_setab)
-		    strlcat(cbuf, tparm(current_term->TI_setab, i & 0x07, 0), sizeof cbuf);
+		    strlcat(cbuf, tparm2(current_term->TI_setab, i & 0x07, 0), sizeof cbuf);
 		else if (current_term->TI_setb)
-		    strlcat(cbuf, tparm(current_term->TI_setb, i & 0x07, 0), sizeof cbuf);
+		    strlcat(cbuf, tparm2(current_term->TI_setb, i & 0x07, 0), sizeof cbuf);
 		else
 		    snprintf(cbuf, sizeof cbuf, "\033[%dm", (i & 0x07) + 40);
 
@@ -1219,11 +1238,11 @@ void	set_meta_8bit (const void *stuff)
 void	term_gotoxy (int col, int row)
 {
 	if (current_term->TI_cup)
-		tputs_x(tparm(current_term->TI_cup, row, col));
+		tputs_x(tparm2(current_term->TI_cup, row, col));
 	else
 	{
-		tputs_x(tparm(current_term->TI_hpa, col));
-		tputs_x(tparm(current_term->TI_vpa, row));
+		tputs_x(tparm1(current_term->TI_hpa, col));
+		tputs_x(tparm1(current_term->TI_vpa, row));
 	}
 }
 
@@ -1250,7 +1269,7 @@ void	term_clrscr (void)
 	/* We can also clear by deleteing lines ... */
 	else if (current_term->TI_dl)
 	{
-		tputs_x(tparm(current_term->TI_dl, current_term->TI_lines));
+		tputs_x(tparm1(current_term->TI_dl, current_term->TI_lines));
 		return;
 	}
 	/* ... in this case one line at a time */
@@ -1263,7 +1282,7 @@ void	term_clrscr (void)
 	/* As a last resort we can insert lines ... */
 	else if (current_term->TI_il)
 	{
-		tputs_x (tparm(current_term->TI_il, current_term->TI_lines));
+		tputs_x (tparm1(current_term->TI_il, current_term->TI_lines));
 		term_gotoxy (0, 0);
 		return;
 	}
@@ -1284,9 +1303,9 @@ void	term_left (int num)
 	if (num == 1 && current_term->TI_cub1)
 		tputs_x(current_term->TI_cub1);
 	else if (current_term->TI_cub)
-		tputs_x (tparm(current_term->TI_cub, num));
+		tputs_x (tparm1(current_term->TI_cub, num));
 	else if (current_term->TI_mrcup)
-		tputs_x (tparm(current_term->TI_mrcup, -num, 0));
+		tputs_x (tparm2(current_term->TI_mrcup, -num, 0));
 	else if (current_term->TI_cub1)
 		while (num--)
 			tputs_x(current_term->TI_cub1);
@@ -1303,9 +1322,9 @@ void	term_right (int num)
 	if (num == 1 && current_term->TI_cuf1)
 		tputs_x(current_term->TI_cuf1);
 	else if (current_term->TI_cuf)
-		tputs_x (tparm(current_term->TI_cuf, num));
+		tputs_x (tparm1(current_term->TI_cuf, num));
 	else if (current_term->TI_mrcup)
-		tputs_x (tparm(current_term->TI_mrcup, num, 0));
+		tputs_x (tparm2(current_term->TI_mrcup, num, 0));
 	else if (current_term->TI_cuf1)
 		while (num--)
 			tputs_x(current_term->TI_cuf1);
@@ -1321,7 +1340,7 @@ void	term_delete (int num)
 		tputs_x(current_term->TI_smdc);
 
 	if (current_term->TI_dch)
-		tputs_x (tparm (current_term->TI_dch, num));
+		tputs_x (tparm1(current_term->TI_dch, num));
 	else if (current_term->TI_dch1)
 		while (num--)
 			tputs_x (current_term->TI_dch1);
@@ -1340,7 +1359,7 @@ void	term_insert (unsigned char c)
 	else if (current_term->TI_ich1)
 		tputs_x (current_term->TI_ich1);
 	else if (current_term->TI_ich)
-		tputs_x (tparm(current_term->TI_ich, 1));
+		tputs_x (tparm1(current_term->TI_ich, 1));
 
 	term_putchar (c);
 
@@ -1354,7 +1373,7 @@ void	term_insert (unsigned char c)
 void	term_repeat (unsigned char c, int rep)
 {
 	if (current_term->TI_rep)
-		tputs_x(tparm (current_term->TI_rep, (int)c, rep));
+		tputs_x(tparm2(current_term->TI_rep, (int)c, rep));
 	else
 		while (rep--)
 			putchar_x (c);
@@ -1393,8 +1412,8 @@ void	term_scroll (int top, int bot, int n)
 		 * region was the full screen.  That test *always* fails,
 		 * because we never scroll the bottom line of the screen.
 		 */
-		strlcpy(start, tparm(current_term->TI_csr, top, bot), sizeof start);
-		strlcpy(final, tparm(current_term->TI_csr, 0, current_term->TI_lines-1), sizeof final);
+		strlcpy(start, tparm2(current_term->TI_csr, top, bot), sizeof start);
+		strlcpy(final, tparm2(current_term->TI_csr, 0, current_term->TI_lines-1), sizeof final);
 
 		if (n > 0)
 		{
@@ -1403,7 +1422,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_indn)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_indn, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_indn, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_ind, sizeof thing);
@@ -1415,7 +1434,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_rin)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_rin, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_rin, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_ri, sizeof thing);
@@ -1424,8 +1443,8 @@ void	term_scroll (int top, int bot, int n)
 
 	else if (current_term->TI_wind && (current_term->TI_ri || current_term->TI_rin) && (current_term->TI_ind || current_term->TI_indn))
 	{
-		strlcpy(start, tparm(current_term->TI_wind, top, bot, 0, current_term->TI_cols-1), sizeof start);
-		strlcpy(final, tparm(current_term->TI_wind, 0, current_term->TI_lines-1, 0, current_term->TI_cols-1), sizeof final);
+		strlcpy(start, tparm4(current_term->TI_wind, top, bot, 0, current_term->TI_cols-1), sizeof start);
+		strlcpy(final, tparm4(current_term->TI_wind, 0, current_term->TI_lines-1, 0, current_term->TI_cols-1), sizeof final);
 
 		if (n > 0)
 		{
@@ -1434,7 +1453,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_indn)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_indn, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_indn, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_ind, sizeof thing);
@@ -1446,7 +1465,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_rin)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_rin, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_rin, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_ri, sizeof thing);
@@ -1463,7 +1482,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_dl)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_dl, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_dl, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_dl1, sizeof thing);
@@ -1471,7 +1490,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_il)
 			{
 				oneshot = 1;
-				strlcpy(final, tparm(current_term->TI_il, rn, rn), sizeof final);
+				strlcpy(final, tparm2(current_term->TI_il, rn, rn), sizeof final);
 			}
 			else
 				strlcpy(final, current_term->TI_il1, sizeof final);
@@ -1483,7 +1502,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_il)
 			{
 				oneshot = 1;
-				strlcpy(thing, tparm(current_term->TI_il, rn, rn), sizeof thing);
+				strlcpy(thing, tparm2(current_term->TI_il, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(thing, current_term->TI_il1, sizeof thing);
@@ -1491,7 +1510,7 @@ void	term_scroll (int top, int bot, int n)
 			if (current_term->TI_dl)
 			{
 				oneshot = 1;
-				strlcpy(final, tparm(current_term->TI_dl, rn, rn), sizeof thing);
+				strlcpy(final, tparm2(current_term->TI_dl, rn, rn), sizeof thing);
 			}
 			else
 				strlcpy(final, current_term->TI_dl1, sizeof thing);
@@ -1582,7 +1601,7 @@ const char *	term_getsgr (int opt, int fore, int back)
 			break;
 		case TERM_SGR_GCHAR:
 			if (current_term->TI_dispc)
-				ret = tparm(current_term->TI_dispc, fore);
+				ret = tparm1(current_term->TI_dispc, fore);
 			break;
 		default:
 			panic ("Unknown option '%d' to term_getsgr", opt);

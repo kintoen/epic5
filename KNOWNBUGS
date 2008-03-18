@@ -24,3 +24,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Rename tparm() to my_tparm().
 * Do a make depend since i changed the name of a header file. ugh.
 * Change the name of (struct term) to (struct my_term) for freebsd sake. ugh.
+* Resolve build conflicts between x/open curses and ncurses. ugh.
