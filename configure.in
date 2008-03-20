@@ -4,9 +4,9 @@ dnl except those bits attributed otherwise.
 dnl thanks to the screen 3.3 configure.in for giving me examples to
 dnl work from and steal ;)
 dnl
-dnl @(#)$Id: configure.in,v 1.45 2008/03/18 04:23:58 jnelson Exp $
+dnl @(#)$Id: configure.in,v 1.46 2008/03/20 04:20:49 jnelson Exp $
 
-AC_REVISION($Revision: 1.45 $)dnl
+AC_REVISION($Revision: 1.46 $)dnl
 AC_INIT(source/irc.c)
 AC_CONFIG_HEADER(include/defs.h)
 
@@ -241,9 +241,9 @@ main ()
 }
   ],
   AC_MSG_RESULT(yes)
-  AC_MSG_RESULT(TERM_H_REQUIRES_CURSES_H),
+  AC_DEFINE(TERM_H_REQUIRES_CURSES_H),
   AC_MSG_RESULT(no, ugh)
-  AC_MSG_RESULT(DONT_USE_TERM_H), :), :)
+  AC_DEFINE(DONT_USE_TERM_H), :), :)
 
 AC_HEADER_STDC
 AC_HEADER_TIME

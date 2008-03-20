@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.160 2008/03/17 03:42:46 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.161 2008/03/20 04:20:51 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -331,6 +331,7 @@ static	char
 	*function_read 		(char *),
 	*function_realpath	(char *),
 	*function_regcomp	(char *),
+	*function_regcomp_cs	(char *),
 	*function_regexec	(char *),
 	*function_regerror	(char *),
 	*function_regfree	(char *),
@@ -644,6 +645,7 @@ static BuiltInFunctions	built_in_functions[] =
 	{ "READ",		function_read 		},
 	{ "REALPATH",		function_realpath	},
 	{ "REGCOMP",		function_regcomp	},
+	{ "REGCOMP_CS",		function_regcomp_cs	},
 	{ "REGERROR",		function_regerror	},
 	{ "REGEXEC",		function_regexec	},
 	{ "REGFREE",		function_regfree	},
@@ -4483,6 +4485,11 @@ BUILT_IN_FUNCTION(function_cexist, input)
  * 		assigning to a variable.  The return value of this
  *		function must at some point be passed to $regfree()!
  *
+ * $regcomp_cs(<pattern>) 	(case sensitive $regcomp())
+ *	will return an $encode()d string that is suitable for
+ * 		assigning to a variable.  The return value of this
+ *		function must at some point be passed to $regfree()!
+ *
  * $regexec(<compiled> <string>)
  *	Will return "0" or "1" depending on whether or not the given string
  *		was matched by the previously compiled string.  The value
@@ -4502,6 +4509,15 @@ BUILT_IN_FUNCTION(function_cexist, input)
 
 #ifdef HAVE_REGEX_H
 static int last_regex_error = 0; 		/* XXX */
+
+BUILT_IN_FUNCTION(function_regcomp_cs, input)
+{
+	regex_t preg;
+
+	memset(&preg, 0, sizeof(preg)); 	/* make valgrind happy */
+	last_regex_error = regcomp(&preg, input, REG_EXTENDED);
+	return encode((char *)&preg, sizeof(regex_t));
+}
 
 BUILT_IN_FUNCTION(function_regcomp, input)
 {
