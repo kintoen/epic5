@@ -27,3 +27,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Resolve build conflicts between x/open curses and ncurses. ugh.
 * Fix brain-o -- AC_MSG_RESULT is not the same as AC_DEFINE, dummy.
 * Add $regcomp_cs() from epic5 as a special favor to blackjac.
+* EPIC4-2.10 was released here (Ineluctable) (Commit 769)
