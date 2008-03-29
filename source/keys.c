@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.54 2007/04/26 04:30:28 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.55 2007/07/20 22:29:32 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -44,7 +44,7 @@
 #include "output.h"
 #include "screen.h"
 #include "stack.h"
-#include "term.h"
+#include "termx.h"
 #include "vars.h"
 #include "window.h"
 #include "timer.h"

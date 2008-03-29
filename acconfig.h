@@ -407,3 +407,8 @@
 /* Define this if you have strptime() */
 #undef HAVE_STRPTIME
 
+/* Define this if your <term.h> requires <curses.h> (x/open curses) */
+#undef TERM_H_REQUIRES_CURSES_H
+
+/* Define this if your <term.h> can't be used */
+#undef DONT_USE_TERM_H

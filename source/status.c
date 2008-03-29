@@ -1,4 +1,4 @@
-/* $EPIC: status.c,v 1.71 2007/07/20 22:29:33 jnelson Exp $ */
+/* $EPIC: status.c,v 1.72 2007/09/14 02:55:54 jnelson Exp $ */
 /*
  * status.c: handles the status line updating, etc for IRCII 
  *
@@ -38,7 +38,7 @@
 #define __need_putchar_x__
 #include "irc.h"
 #include "dcc.h"
-#include "term.h"
+#include "termx.h"
 #include "status.h"
 #include "server.h"
 #include "vars.h"

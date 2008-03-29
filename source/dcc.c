@@ -1,4 +1,4 @@
-/* $EPIC: dcc.c,v 1.150 2007/09/20 04:00:10 jnelson Exp $ */
+/* $EPIC: dcc.c,v 1.151 2007/12/01 04:59:23 jnelson Exp $ */
 /*
  * dcc.c: Things dealing client to client connections. 
  *
@@ -48,7 +48,7 @@
 #include "status.h"
 #include "vars.h"
 #include "window.h"
-#include "term.h"
+#include "termx.h"
 #include "reg.h"
 #include "alias.h"
 

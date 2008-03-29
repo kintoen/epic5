@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.175 2008/01/22 06:44:15 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.176 2008/02/16 23:42:05 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -64,7 +64,7 @@
 #include "screen.h"
 #include "status.h"
 #include "stack.h"
-#include "term.h"
+#include "termx.h"
 #include "timer.h"
 #include "vars.h"
 #include "window.h"
