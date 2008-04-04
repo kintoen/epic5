@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.267 2008/01/23 04:05:55 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.268 2008/03/29 19:00:16 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -73,10 +73,10 @@
 #include "timer.h"
 #define need_static_functions
 #include "functions.h"
-#include "options"
+#include "options.h"
 #include "words.h"
 #include "reg.h"
-#include "if.h"
+#include "ifcmd.h"
 #include "ssl.h"
 #include "levels.h"
 #include "extlang.h"

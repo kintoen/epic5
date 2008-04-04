@@ -1,4 +1,4 @@
-/* $EPIC: queue.c,v 1.13 2004/08/24 23:27:24 jnelson Exp $ */
+/* $EPIC: queue.c,v 1.14 2006/06/06 05:08:48 jnelson Exp $ */
 /*
  *  queue.c - The queue command
  *
@@ -40,7 +40,7 @@
 #include "irc.h"
 #include "alias.h"
 #include "commands.h"
-#include "if.h"
+#include "ifcmd.h"
 #include "ircaux.h"
 #include "queue.h"
 #include "output.h"
