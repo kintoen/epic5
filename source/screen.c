@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.136 2008/04/22 23:56:01 howl Exp $ */
+/* $EPIC: screen.c,v 1.137 2008/05/09 16:26:34 alex Exp $ */
 /*
  * screen.c
  *
@@ -2345,7 +2345,7 @@ static void 	add_to_window (Window *window, const unsigned char *str)
 	{
 	    const char *type = NULL;
 
-	    /* /WINDOW BEEP_ALWAYS added for archon.  */
+            /* /WINDOW BEEP_ALWAYS added for archon.  */
 	    if (window->beep_always && strchr(str, '\007'))
 	    {
 		type = "Beep";
