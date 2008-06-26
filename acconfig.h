@@ -412,3 +412,13 @@
 
 /* Define this if your <term.h> can't be used */
 #undef DONT_USE_TERM_H
+
+/* Define this if you have tcsetpgrp() */
+#undef HAVE_TCSETPGRP
+
+/* Define this if you have no posix-like job control */
+#undef NO_JOB_CONTROL
+
+/* Define this if you want wserv support */
+#undef WSERV_SUPPORT
+
