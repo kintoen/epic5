@@ -28,3 +28,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Fix brain-o -- AC_MSG_RESULT is not the same as AC_DEFINE, dummy.
 * Add $regcomp_cs() from epic5 as a special favor to blackjac.
 * EPIC4-2.10 was released here (Ineluctable) (Commit 769)
+* Signal fix from epic5 for SIG_IGN/SIG_DFL (ie, SIGPIPE) causing segafults
