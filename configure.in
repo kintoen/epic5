@@ -63,7 +63,7 @@ dnl Checking for solaris cc
 dnl
 AC_MSG_CHECKING(for solaris cc)
 ( $CC -V 2>&1 | grep 'Sun C' > /dev/null ) && \
-	sun_compiler="yes"
+	sun_compiler="yes" \
 	CFLAGS="$CFLAGS -erroff=E_ARG_INCOMPATIBLE_WITH_ARG,E_ASSIGNMENT_TYPE_MISMATCH"
 AC_MSG_RESULT(ok)
 
