@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.195 2008/04/05 00:20:38 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.196 2008/06/26 04:23:11 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -4910,9 +4910,9 @@ char *	fix_string_width (const char *orig_str, int justify, char fillchar, size_
 	else if (len > newlen)		/* Truncate it */
 	{
 		unsigned char **prepared = NULL;
-		int	lines = 1;
+		int	my_lines = 1;
 
-		prepared = prepare_display(-1, word, newlen-1, &lines, 
+		prepared = prepare_display(-1, word, newlen-1, &my_lines, 
 						PREPARE_NOWRAP);
 		retval = denormalize_string(prepared[0]);
 	}

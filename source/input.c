@@ -1,4 +1,4 @@
-/* $EPIC: input.c,v 1.58 2008/08/25 23:58:57 jnelson Exp $ */
+/* $EPIC: input.c,v 1.59 2008/10/15 16:07:55 alex Exp $ */
 /*
  * input.c: does the actual input line stuff... keeps the appropriate stuff
  * on the input line, handles insert/delete of characters/words... the whole
@@ -1405,7 +1405,7 @@ BUILT_IN_KEYBINDING(toggle_insert_mode)
 }
 
 /* This keybinding should be scripted. */
-BUILT_IN_KEYBINDING(clear_screen)
+BUILT_IN_KEYBINDING(my_clear_screen)
 {
 	clear_window_by_refnum(0, 1);
 }
