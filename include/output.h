@@ -24,7 +24,7 @@ struct ScreenStru;
 	void    privileged_yell 	(const char *, ...) __A(1);
 	void	syserr			(int, const char *, ...) __A(2);
 
-	void	error			(const char *, ...) __A(1);
+	void	my_error		(const char *, ...) __A(1);
 	SIGNAL_HANDLER(sig_refresh_screen);
 	void	redraw_all_screens 	(void);
 	BUILT_IN_KEYBINDING(refresh_screen);
