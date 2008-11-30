@@ -1,4 +1,4 @@
-/* $EPIC: alias.c,v 1.84 2007/04/12 03:24:14 jnelson Exp $ */
+/* $EPIC: alias.c,v 1.85 2008/11/28 16:28:03 jnelson Exp $ */
 /*
  * alias.c -- Handles the whole kit and caboodle for aliases.
  *
@@ -715,6 +715,9 @@ ArgList	*parse_arglist (char *arglist)
 	char *	modifier, *value;
 	int	arg_count = 0;
 	ArgList *args = new_malloc(sizeof(ArgList));
+
+	if (arglist == NULL)
+		panic(1, "parse_arglist: arglist is NULL and it shouldn't be.");
 
 	args->void_flag = args->dot_flag = 0;
 	for (this_term = arglist; *this_term; this_term = next_term)
