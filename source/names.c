@@ -1,4 +1,4 @@
-/* $EPIC: names.c,v 1.78 2007/04/12 03:24:14 jnelson Exp $ */
+/* $EPIC: names.c,v 1.79 2007/05/30 02:26:23 jnelson Exp $ */
 /*
  * names.c: This here is used to maintain a list of all the people currently
  * on your channel.  Seems to work 
@@ -1387,6 +1387,16 @@ int 	get_channel_voice (const char *channel, int server)
 		return chan->voice;
 	else
 		return 0;
+}
+
+int	get_channel_limit (const char *channel, int server)
+{
+	Channel *chan;
+
+	if ((chan = find_channel(channel, server)))
+		return chan->limit;
+	else
+		return -1;
 }
 
 int	get_channel_winref (const char *channel, int server)
