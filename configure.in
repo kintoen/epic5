@@ -912,7 +912,7 @@ else
 #include <XSUB.h>
 ], [
 	   /* I "borrowed" this from the perlembed(1) man page */
-           static PerlInterpreter *my_perl;
+           PerlInterpreter *my_perl;
            int main(int argc, char **argv, char **env)
            {
                PERL_SYS_INIT3(&argc,&argv,&env);
@@ -985,7 +985,7 @@ else
 #include <tcl.h>
 ], [
 	   Tcl_Interp *my_tcl;
-	   static int Tcl_echoCmd (ClientData clientData, Tcl_Interp *interp, int objc, const char **objv)
+	   int Tcl_echoCmd (ClientData clientData, Tcl_Interp *interp, int objc, const char **objv)
 	   {
 		return TCL_OK;
 	   }
@@ -1055,7 +1055,7 @@ else
 	    AC_TRY_LINK([
 #include <ruby.h>
 ], [
-    static VALUE epic_echo (VALUE module, VALUE string)
+    VALUE epic_echo (VALUE module, VALUE string)
     {
 	VALUE x;
 	char *my_string;
