@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.197 2008/11/26 03:26:34 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.198 2008/12/21 06:32:58 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -41,6 +41,8 @@
 #include <sys/wait.h>
 #include <math.h>
 #include <stddef.h>
+#include <fcntl.h>
+#include <ieeefp.h>
 #include "ircaux.h"
 #include "output.h"
 #include "termx.h"
