@@ -422,3 +422,6 @@
 /* Define this if you want wserv support */
 #undef WSERV_SUPPORT
 
+/* Define this if you have <ieeefp.h> */
+#undef HAVE_IEEEFP_H
+

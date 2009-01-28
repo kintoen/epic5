@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.198 2008/12/21 06:32:58 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.199 2009/01/24 15:58:58 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -42,7 +42,9 @@
 #include <math.h>
 #include <stddef.h>
 #include <fcntl.h>
+#ifdef HAVE_IEEEFP_H
 #include <ieeefp.h>
+#endif
 #include "ircaux.h"
 #include "output.h"
 #include "termx.h"
