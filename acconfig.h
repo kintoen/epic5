@@ -425,3 +425,6 @@
 /* Define this if you have <ieeefp.h> */
 #undef HAVE_IEEEFP_H
 
+/* Define this if you need strtoll() */
+#undef NEED_STRTOLL
+

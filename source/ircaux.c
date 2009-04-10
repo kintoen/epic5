@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.199 2009/01/24 15:58:58 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.200 2009/01/28 14:46:57 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -2813,8 +2813,12 @@ static 	char 	*mystuff = NULL;
 		*at, 
 		*adot = NULL;
 
-	/* Dont bother with channels, theyre ok. */
-	if (*nuh == '#' || *nuh == '&' || strchr(nuh, '.'))
+	/* Dont bother with channels, they're ok. */
+	if (*nuh == '#' || *nuh == '&')
+		return -1;
+
+	/* Don't bother with servers, they're ok */
+	if (strchr(nuh, '.') && !strchr(nuh, '!') && !strchr(nuh, '@'))
 		return -1;
 
 	malloc_strcpy(&mystuff, nuh);
