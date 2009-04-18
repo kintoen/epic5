@@ -1,4 +1,4 @@
-/* $EPIC: compat.c,v 1.33 2007/09/20 04:00:10 jnelson Exp $ */
+/* $EPIC: compat.c,v 1.34 2008/03/29 19:00:16 jnelson Exp $ */
 /*
  * Everything that im not directly responsible for I put in here.  Almost
  * all of this stuff is either borrowed from somewhere else (for you poor
@@ -1452,18 +1452,22 @@ char *	my_realpath (const char *pathname, char resolved_path[MAXPATHLEN])
 }
 #endif
 
+/*
 #ifdef NEED_STRTOLL
 long long	strtoll (const char *nptr, char **endptr, int base)
 {
 }
 #endif
+*/
 
+/*
 #ifndef HAVE_STRTOIMAX
 long		strtoimax (const char *nptr, char **endptr, int base)
 {
 	return (long)strtol(nptr, endptr, base);
 }
 #endif
+*/
 
 /**** END MISC PUBLIC DOMAIN STUFF ****/
 
