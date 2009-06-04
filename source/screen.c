@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.140 2008/11/25 04:06:52 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.141 2008/11/26 03:26:34 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -2479,6 +2479,8 @@ static void 	scroll_window (Window *window)
 		if ((scroll = window->scroll_lines) <= 0)
 		    if ((scroll = get_int_var(SCROLL_LINES_VAR)) <= 0)
 			scroll = 1;
+		if (scroll > window->display_lines)
+			scroll = window->display_lines;
 
 		/* Adjust the top of the physical display */
 		if (window->screen && foreground && window->display_lines)
