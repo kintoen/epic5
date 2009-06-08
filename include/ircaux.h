@@ -268,4 +268,14 @@ char *	valid_transforms (void);
 
 extern int 	num_code_points (const char *);
 
+#ifdef HAVE_ICONV
+extern struct Iconv_stuff {
+	char *stuff;
+	iconv_t forward; /* I dunno  */
+	iconv_t reverse; /* Alright! */
+} **iconv_list;
+extern size_t iconv_list_size;
+extern int my_iconv_open (iconv_t *, iconv_t *, char *);
+#endif
+
 #endif /* _IRCAUX_H_ */
