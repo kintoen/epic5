@@ -274,8 +274,8 @@ extern struct Iconv_stuff {
 	iconv_t forward; /* I dunno  */
 	iconv_t reverse; /* Alright! */
 } **iconv_list;
-extern size_t iconv_list_size;
-extern int my_iconv_open (iconv_t *, iconv_t *, char *);
+extern ssize_t iconv_list_size;
+extern int my_iconv_open (iconv_t *, iconv_t *, const char *);
 #endif
 
 #endif /* _IRCAUX_H_ */

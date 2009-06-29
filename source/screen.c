@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.141 2008/11/26 03:26:34 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.142 2009/06/04 02:40:40 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -61,6 +61,7 @@
 #include "commands.h"
 #include "parse.h"
 #include "newio.h"
+#include <sys/ioctl.h>
 
 #define CURRENT_WSERV_VERSION	4
 
