@@ -984,6 +984,8 @@ int startup_perl(int argc, char **argv, char **env)
 			AC_DEFINE(PERLLDFLAGS)
 			PERLDOTOH="perl.o"
 		else
+			PERLCFLAGS=""
+			PERLLDFLAGS=""
 			AC_MSG_RESULT(no, sorry)
 		fi
 	fi
