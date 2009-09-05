@@ -1,3 +1,10 @@
+EPIC4-2.10.1
+
+*** News 09/04/2009 -- Release just for the signal bug
+	There was a signal bug in epic4-2.10 caused by the new signal
+	handling code.  A small release was done to give people something
+	to download instead of having to cvs update to pick up the fix.
+
 EPIC4-2.8
 
 *** News 09/06/2007 -- New functions $strtol() and $tobase.

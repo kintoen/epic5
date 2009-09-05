@@ -21,6 +21,13 @@ any GNU software (however, this is _not_ GNU software)
 
 		./configure --prefix=/usr/home/jnelson
 
+  o  You must not try to compile epic with "gcc -O2" because -O2 will
+     generate bad code that leads to random crashes.  When you use -O2,
+     gcc assumes the source is conformant to ISO C99's requirements about
+     alias-safety, and EPIC, being a C90 program, does not conform, so the
+     result is undefined behavior (which means it crashes randomly.)  This
+     is not a bug in EPIC.  You must only compile epic with -O.
+
   o  EPIC's build infrastructure fully supports all the bells and whistles
      that configure provides for compiling in different places and for
      different systems and all that esoteric stuff only used by package
