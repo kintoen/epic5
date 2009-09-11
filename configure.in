@@ -987,6 +987,8 @@ int startup_perl(int argc, char **argv, char **env)
 			PERLCFLAGS=""
 			PERLLDFLAGS=""
 			AC_MSG_RESULT(no, sorry)
+			PERLCFLAGS=""
+			PERLLDFLAGS=""
 		fi
 	fi
 fi
