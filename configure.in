@@ -199,6 +199,9 @@ if test -z "$libsocket"; then
 	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket",)
 fi
 
+dnl XXXX
+dnl XXXX This is lame -- we need to check to see if it actually works
+dnl XXXX
 AC_CHECK_LIB(archive, archive_read_new, 
 [LIBS="$LIBS -larchive"
  AC_DEFINE(HAVE_LIBARCHIVE)],)
@@ -864,8 +867,9 @@ else
 			continue
 		fi
 
-		if test -f "$iconvdir/include/iconv.h" &&
-			test -f "$iconvdir/lib/libiconv.a"; then
+dnl		if test -f "$iconvdir/include/iconv.h" &&
+dnl			test -f "$iconvdir/lib/libiconv.a"; then
+		if test -f "$iconvdir/include/iconv.h" ; then
 		    CFLAGS="$saved_CFLAGS -I$iconvdir/include"
 		    LIBS="$saved_LIBS -L$iconvdir/lib -liconv"
 		    AC_TRY_LINK([#include <iconv.h>],
