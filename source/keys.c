@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.57 2008/11/26 03:26:34 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.58 2009/06/18 04:46:53 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -1095,6 +1095,7 @@ BUILT_IN_COMMAND(bindcmd) {
     if (*seq == '-') {
 	if (!my_strnicmp(seq + 1, "DEFAULTS", 1)) {
 	    remove_bindings();
+	    init_binds();
 	    init_keys();
 	    init_termkeys();
 	    return;
