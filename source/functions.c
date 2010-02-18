@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.284 2009/09/14 04:49:57 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.285 2009/10/29 07:37:32 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -2816,7 +2816,7 @@ BUILT_IN_FUNCTION(function_fix_width, word)
                 RETURN_EMPTY;
 
         GET_FUNC_ARG(justify, word);
-	if (!my_strnicmp(justify, "l", 1))
+	if (!my_strnicmp(justify, "left", 1))
 		justifynum = -1;
 	else
 		RETURN_EMPTY;
