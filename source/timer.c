@@ -1,4 +1,4 @@
-/* $EPIC: timer.c,v 1.52 2007/04/12 03:24:14 jnelson Exp $ */
+/* $EPIC: timer.c,v 1.53 2010/02/18 07:45:44 jnelson Exp $ */
 /*
  * timer.c -- handles timers in ircII
  *
@@ -165,7 +165,7 @@ BUILT_IN_COMMAND(timercmd)
 	    else if (!my_strnicmp(flag + 1, "UPDATE", 1))	/* UPDATE */
 		update = 1;
 
-	    else if (!my_strnicmp(flag + 1, "L", 1))	/* LIST */
+	    else if (!my_strnicmp(flag + 1, "LIST", 1))	/* LIST */
 	    {
 		list_timers(command);
 		return;
