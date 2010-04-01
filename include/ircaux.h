@@ -52,6 +52,7 @@ char *	upper 			(char *);
 char *	lower 			(char *);
 char *	sindex			(char *, const char *);
 char *	rsindex 		(char *, char *, char *, int);
+ssize_t	findchar_quoted		(const char *, int);
 int	path_search 		(const char *, const char *, Filename);
 char *	double_quote 		(const char *, const char *, char *);
 char *	malloc_strcat_c		(char **, const char *, size_t *);
