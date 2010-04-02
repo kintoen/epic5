@@ -1,4 +1,4 @@
-/* $EPIC: perl.c,v 1.21 2008/11/28 16:28:03 jnelson Exp $ */
+/* $EPIC: perl.c,v 1.22 2009/09/11 21:02:02 jnelson Exp $ */
 /*
  * perl.c -- The perl interfacing routines.
  *
@@ -31,12 +31,12 @@
  * SUCH DAMAGE.
  */
 
-#include "extlang.h"
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
 #define __no_timeval_stuff__
 #include "irc.h"
+#include "extlang.h"
 #include "ircaux.h"
 #include "array.h"
 #include "alias.h"

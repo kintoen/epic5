@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.244 2010/03/26 00:13:45 jnelson Exp $ */
+/* $EPIC: server.c,v 1.245 2010/04/01 23:09:07 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -3792,6 +3792,7 @@ int	which_server_altname (int refnum, const char *name)
 	return -1;
 }
 
+#if 0
 /*
  * This calculates how long a privmsg/notice can be on 'server' that we send
  * to 'target'.
@@ -3815,4 +3816,5 @@ size_t	get_server_message_limit (int server, const char *target)
 	overhead += strlen(target);
 	return 512 - overhead;
 }
+#endif
 
