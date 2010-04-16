@@ -1367,6 +1367,15 @@ AC_TRY_COMPILE(, [exit(0);],
 	CFLAGS="$old_cflags"
 )
 
+AC_MSG_CHECKING(whether your compiler supports -fno-strict-aliasing)
+old_cflags="$CFLAGS"
+CFLAGS="$CFLAGS -fno-strict-aliasing"
+AC_TRY_COMPILE(, [exit(0);], 
+	AC_MSG_RESULT(yes),
+        AC_MSG_RESULT(no)
+	CFLAGS="$old_cflags"
+)
+
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 AC_SUBST(RUBYDOTOH)
