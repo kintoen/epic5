@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.195 2010/02/19 03:21:47 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.196 2010/03/13 14:40:37 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -436,8 +436,10 @@ BUILT_IN_COMMAND(cd)
 			say("CD: %s", strerror(errno));
 	}
 
-	getcwd(dir, sizeof(dir));
-	say("Current directory: %s", dir);
+	if ((getcwd(dir, sizeof(dir))))
+		say("Current directory: %s", dir);
+	else
+		say("The current directory is invalid.");
 }
 
 /* clear: the CLEAR command.  Figure it out */
