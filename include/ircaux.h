@@ -273,6 +273,7 @@ int	lookup_transform (const char *, int *, int *, int *);
 char *	valid_transforms (void);
 char *	transform_string_dyn (const char *, const char *, size_t, size_t *);
 
+extern	int	NONE_xform;
 extern	int	URL_xform;
 extern	int	ENC_xform;
 extern	int	B64_xform;
