@@ -92,6 +92,7 @@ AC_CHECK_LIB([cext], [setenv], [LIBS="$LIBS -lcext"],)
 
 dnl
 dnl Checking for Macintosh OS X (Written by Zach)
+dnl Please note -- MAC OS X perl support only works with macports!
 dnl
 AC_MSG_CHECKING([for Macintosh OS X])
 ( $CC --version 2>&1 | grep 'apple-darwin' > /dev/null ) && \
