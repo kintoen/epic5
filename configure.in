@@ -993,12 +993,11 @@ dnl ----------------------------------------------------------
 dnl
 dnl Valgrind assistance support?
 dnl
-with_valgrind=no
 AC_MSG_CHECKING(whether to include Valgrind Memcheck support)
 AC_ARG_WITH(valgrind,
-[  --with-valgrind[=yes]   Include support for Valgrind Memcheck ],
+[  --with-valgrind         Include support for Valgrind Memcheck ],
 [],
-[with_valgrind=yes])
+[with_valgrind=no])
 if test "x$with_valgrind" != "xno"; then
 	AC_MSG_RESULT(yes)
 	AC_CHECK_HEADERS([valgrind/memcheck.h])
