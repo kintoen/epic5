@@ -1,4 +1,4 @@
-/* $EPIC: glob.c,v 1.12 2007/07/20 22:29:32 jnelson Exp $ */
+/* $EPIC: glob.c,v 1.13 2008/04/04 04:51:05 jnelson Exp $ */
 #include "config.h"
 #ifdef NEED_GLOB
 
@@ -78,11 +78,15 @@
 #include <unistd.h>
 #include "irc.h"
 #include "compat.h"
-#ifndef MAXPATHLEN
-# ifndef PATHSIZE
-#  define MAXPATHLEN 1024
+#ifndef PATH_MAX
+# ifndef MAXPATHLEN
+#  ifndef PATHSIZE
+#   define PATH_MAX 1024
+#  else
+#   define PATH_MAX PATHSIZE
+#  endif
 # else
-#  define MAXPATHLEN PATHSIZE
+#  define PATH_MAX MAXPATHLEN
 # endif
 #endif
 

@@ -545,7 +545,7 @@ AC_TRY_RUN([
 #include <stdlib.h>
 main ()
 {
-	char resolved_path[MAXPATHLEN];
+	char resolved_path[PATH_MAX];
 
 	if (realpath("/etc/filethatdoesnotexist", resolved_path) == 0)
 		exit(1);

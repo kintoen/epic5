@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.246 2010/04/02 23:14:45 jnelson Exp $ */
+/* $EPIC: server.c,v 1.247 2010/06/27 02:40:24 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -787,7 +787,7 @@ static int 	read_server_file (const char *file_path)
  */
 int 	read_default_server_file (void)
 {
-	char	file_path[MAXPATHLEN + 1];
+	char	file_path[PATH_MAX + 1];
 
 	if (getenv("IRC_SERVERS_FILE"))
 		strlcpy(file_path, getenv("IRC_SERVERS_FILE"), sizeof file_path);
