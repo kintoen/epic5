@@ -29,3 +29,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add $regcomp_cs() from epic5 as a special favor to blackjac.
 * EPIC4-2.10 was released here (Ineluctable) (Commit 769)
 * Signal fix from epic5 for SIG_IGN/SIG_DFL (ie, SIGPIPE) causing segafults
+* When saving /bind's, surround the sequence in double quotes (caf)
