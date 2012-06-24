@@ -1,4 +1,4 @@
-/* $EPIC: newio.c,v 1.68 2008/04/04 04:51:05 jnelson Exp $ */
+/* $EPIC: newio.c,v 1.69 2011/04/02 07:59:42 crazyed Exp $ */
 /*
  * newio.c:  Passive, callback-driven IO handling for sockets-n-stuff.
  *
@@ -243,6 +243,8 @@ int	dgets_buffer (int channel, void *data, ssize_t len)
  * 2) buf    - A buffer into which to copy the data from the file descriptor
  * 3) buflen - The size of 'buf'.
  * 4) buffer - The type of buffering to perform.
+ *	-2	Fully buffered.  Don't return anything if there aren't buflen
+		bytes free.
  *	-1	No line buffering, return everything.
  *	 0	Partial line buffering.  Return a line of data if there is
  *		one; Return everything if there isn't one.
