@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.224 2010/11/22 04:18:07 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.225 2012/06/11 02:39:30 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -3367,7 +3367,11 @@ char *	switch_hostname (const char *new_hostname)
 		else
 		    malloc_strcpy(&v4_error, "see above");
 	    }
+	    else
+		malloc_strcpy(&v4_error, "see above");
 	}
+	else
+		malloc_strcpy(&v4_error, "not specified");
 
 #ifdef INET6
 	if (v6 && *v6)
@@ -3384,7 +3388,11 @@ char *	switch_hostname (const char *new_hostname)
 		else
 		    malloc_strcpy(&v6_error, "see above");
 	    }
+	    else
+		malloc_strcpy(&v6_error, "see above");
 	}
+	else
+		malloc_strcpy(&v6_error, "not specified");
 #endif
 
 summary:

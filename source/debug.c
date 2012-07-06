@@ -1,4 +1,4 @@
-/* $EPIC: debug.c,v 1.27 2008/02/19 13:13:12 crazyed Exp $ */
+/* $EPIC: debug.c,v 1.28 2008/02/26 03:46:18 jnelson Exp $ */
 /*
  * debug.c -- controll the values of x_debug.
  *
@@ -63,7 +63,7 @@ static struct debug_opts opts[] =
 	{ "MEMORY",		0 },
 	{ "SERVER_CONNECT",	DEBUG_SERVER_CONNECT },
 	{ "CRASH",		DEBUG_CRASH },
-	{ "COLOR",		0 },
+	{ "NO_COLOR",		DEBUG_NO_COLOR },
 	{ "NOTIFY",		DEBUG_NOTIFY },
 	{ "REGEX",		DEBUG_REGEX },
 	{ "REGEX_DEBUG",	DEBUG_REGEX_DEBUG },
