@@ -1,4 +1,4 @@
-/* $EPIC: ircaux.c,v 1.225 2012/06/11 02:39:30 jnelson Exp $ */
+/* $EPIC: ircaux.c,v 1.226 2012/07/06 22:38:21 jnelson Exp $ */
 /*
  * ircaux.c: some extra routines... not specific to irc... that I needed 
  *
@@ -172,7 +172,8 @@ void *	really_new_malloc (size_t size, const char *fn, int line)
 	char	*ptr;
 
 	if (!(ptr = (char *)malloc(size + sizeof(MO))))
-		panic(1, "Malloc() failed from [%s/%d], giving up!", fn, line);
+		panic(1, "Malloc(%d) failed from [%s/%d], giving up!", 
+				size, fn, line);
 
 	/* Store the size of the allocation in the buffer. */
 	ptr += sizeof(MO);
