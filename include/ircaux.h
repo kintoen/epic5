@@ -295,6 +295,6 @@ extern ssize_t iconv_list_size;
 extern int my_iconv_open (iconv_t *, iconv_t *, const char *);
 #endif
 
-extern	int	recode_with_iconv (char *from, char *to, char **data, size_t *numbytes);
+extern	int	recode_with_iconv (const char *from, const char *to, char **data, size_t *numbytes);
 
 #endif /* _IRCAUX_H_ */
