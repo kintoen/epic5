@@ -1,4 +1,4 @@
-/* $EPIC: if.c,v 1.41 2008/11/30 19:09:23 jnelson Exp $ */
+/* $EPIC: if.c,v 1.42 2012/11/23 16:04:49 jnelson Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -318,7 +318,14 @@ BUILT_IN_COMMAND(whilecmd)
 	exp = LOCAL_COPY(ptr);
 
 	if (!(ptr = next_expr_failok(&args, '{')))
-		ptr = args;
+	{
+		if (!(ptr = args))
+		{
+			my_error("WHILE: Missing body");
+			return;
+		}
+	}
+
 	body = LOCAL_COPY(ptr);
 
 	will_catch_break_exceptions++;
