@@ -1,4 +1,4 @@
-/* $EPIC: lastlog.c,v 1.90 2012/10/04 01:18:19 jnelson Exp $ */
+/* $EPIC: lastlog.c,v 1.91 2012/11/18 01:37:51 jnelson Exp $ */
 /*
  * lastlog.c: handles the lastlog features of irc. 
  *
@@ -748,7 +748,6 @@ BUILT_IN_COMMAND(lastlog)
 restart:
 		result = NULL;
 		exempt = 0;
-		matching = 0;
 
 		/* Under any "context" situation, we unconditionally show it */
 		if (exempt_counter > 0)
@@ -942,7 +941,6 @@ restart:
 restart2:
 		result = NULL;
 		exempt = 0;
-		matching = 0;
 
 		/* Under any "context" situation, we unconditionally show it */
 		if (exempt_counter > 0)
@@ -1738,7 +1736,8 @@ static void	expire_lastlog_entries (void)
 		{
 			window_scrollback_needs_rebuild(l->winref);
 			remove_lastlog_item(l);
-			l = lastlog_oldest;	/* Start over */
+			if (!(l = lastlog_oldest))	/* Start over */
+				break;
 		}
 	}
 }

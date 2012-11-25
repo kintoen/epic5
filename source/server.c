@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.253 2012/07/13 03:05:02 jnelson Exp $ */
+/* $EPIC: server.c,v 1.254 2012/07/24 04:20:06 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -162,6 +162,9 @@ static	int	str_to_serverinfo (char *str, ServerInfo *s)
 	ssize_t span;
 	char *	after;
 	enum serverinfo_fields	fieldnum;
+
+	if (!str)
+		panic(1, "str_to_serverinfo: str == NULL");
 
 	if (!s->clean)
 		panic(1, "str_to_serverinfo: serverinfo is not clean!");
