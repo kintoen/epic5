@@ -1,4 +1,4 @@
-/* $EPIC: vars.c,v 1.110 2012/07/06 04:52:26 jnelson Exp $ */
+/* $EPIC: vars.c,v 1.111 2012/11/18 01:37:51 jnelson Exp $ */
 /*
  * vars.c: All the dealing of the irc variables are handled here. 
  *
@@ -545,7 +545,6 @@ void 	set_var_value (int svv_index, const char *value, int noisy)
 int 	set_variable (const char *name, IrcVariable *var, const char *orig_value, int noisy)
 {
 	char	*rest;
-	int	old;
 	int	changed = 0;
 	char	*value;
 	int	retval = 0;
@@ -561,7 +560,6 @@ int 	set_variable (const char *name, IrcVariable *var, const char *orig_value, i
 	    {
 		if (value && *value && (value = next_arg(value, &rest)))
 		{
-			old = var->data->integer;
 			if (do_boolean(value, &(var->data->integer))) {
 			    say("Value must be either ON, OFF, or TOGGLE");
 			    retval = -1;
