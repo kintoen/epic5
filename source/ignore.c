@@ -1,4 +1,4 @@
-/* $EPIC: ignore.c,v 1.34 2008/03/10 06:29:39 crazyed Exp $ */
+/* $EPIC: ignore.c,v 1.35 2008/06/26 04:23:11 jnelson Exp $ */
 /*
  * ignore.c: handles the ingore command for irc 
  *
@@ -441,7 +441,7 @@ static int	change_ignore_mask_by_desc (const char *type, Mask *do_mask, Mask *do
 	int	len;
 	Mask	*mask = NULL, *del1, *del2, *del3;
 	char *	copy;
-	int	bit = LEVEL_NONE;
+	int	bit;
 	int	i;
 
 	copy = LOCAL_COPY(type);
