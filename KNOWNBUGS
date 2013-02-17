@@ -3,6 +3,7 @@ EPIC4 Projects, Bugs, and other Errata:
 KNOWN ERRATA (eg, bugs, or unresolved requests):
 ------------------------------------------------
 * Roll back the /set new_server_lastlog_level changes from epic5.
+* /window commands disappear to /lastlog because they are LEVEL_NONE. doh
 
 [See http://www.epicsol.org/PROJECTS for things to come in the future]
 [See http://www.epicsol.org/CHANGELOG for things that changed in the past]
@@ -30,3 +31,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * EPIC4-2.10 was released here (Ineluctable) (Commit 769)
 * Signal fix from epic5 for SIG_IGN/SIG_DFL (ie, SIGPIPE) causing segafults
 * When saving /bind's, surround the sequence in double quotes (caf)
+* Apparently USERIP is 340 instead of 307 these days (rb jm)

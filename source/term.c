@@ -1,4 +1,4 @@
-/* $EPIC: term.c,v 1.14 2008/03/18 04:24:01 jnelson Exp $ */
+/* $EPIC: term.c,v 1.15 2013/02/17 13:04:18 jnelson Exp $ */
 /*
  * term.c -- termios and (termcap || terminfo) handlers
  *
@@ -889,7 +889,7 @@ int 	term_init (void)
 	{
 		if (current_term->TI_sgr0 && 
 		    strcmp(current_term->TI_rmso, current_term->TI_sgr0))
-			strlcat(current_term->TI_normal, current_term->TI_rmso, sizeof current_term->TI_sgr0);
+			strlcat(current_term->TI_normal, current_term->TI_rmso, sizeof current_term->TI_normal);
 	}
 	if (current_term->TI_rmul)
 	{
