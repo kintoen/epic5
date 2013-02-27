@@ -32,3 +32,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Signal fix from epic5 for SIG_IGN/SIG_DFL (ie, SIGPIPE) causing segafults
 * When saving /bind's, surround the sequence in double quotes (caf)
 * Apparently USERIP is 340 instead of 307 these days (rb jm)
+* Fix an important memory leak (rb |Rain|)

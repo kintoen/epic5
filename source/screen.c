@@ -1,4 +1,4 @@
-/* $EPIC: screen.c,v 1.74 2008/03/17 03:42:46 jnelson Exp $ */
+/* $EPIC: screen.c,v 1.75 2013/02/27 23:38:57 jnelson Exp $ */
 /*
  * screen.c
  *
@@ -1574,6 +1574,7 @@ const 	u_char	*ptr;
 	Attribute	a;
 	Attribute	saved_a;
 	u_char	*cont_free = NULL;
+	char *	free_me_later = NULL;
 
 	if (recursion)
 		panic("prepare_display() called recursively");
@@ -1807,7 +1808,7 @@ const 	u_char	*ptr;
 				** decide the length of cont. - pegasus
 				*/
 				char *copy = LOCAL_COPY(cont_ptr);
-				copy = normalize_string(copy, 0);
+				free_me_later = copy = normalize_string(copy, 0);
 				size_t cont_len = output_with_count(copy, 0, 0);
 				if (do_indent && (cont_len < indent))
 				{
@@ -1939,6 +1940,8 @@ const 	u_char	*ptr;
 	recursion--;
 	new_free(&output[line]);
 	new_free(&cont_free);
+	if (free_me_later)
+		new_free(&free_me_later);
 	*lused = line - 1;
 	return output;
 }
