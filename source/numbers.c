@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.71 2013/02/17 13:04:18 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.72 2013/06/14 18:30:23 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -252,22 +252,26 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 				*version = NULL, 
 				*umodes = NULL;
 
+		/* The 004 numeric is too import to "odd server stuff" over. */
+		/* So if the reply is useless, we'll just wing it */
 		if (!(server = ArgList[0]))
-			{ rfc1459_odd(from, comm, ArgList); goto END; }
+			server = version = umodes = NULL;
 		else if (!(version = ArgList[1]))
-			{ rfc1459_odd(from, comm, ArgList); goto END; }
+			server = version = umodes = NULL;
 		else if (!(umodes = ArgList[2]))
-			{ rfc1459_odd(from, comm, ArgList); goto END; }
-
-		/* Work around ratbox-1.2-3. */
-		if (!my_stricmp(umodes, "(brown"))
-		 if (ArgList[3] && !my_stricmp(ArgList[3], "paper"))
-		  if (ArgList[4] && !my_stricmp(ArgList[4], "bag"))
-		   if (ArgList[5] && !my_stricmp(ArgList[5], "release)"))
-		   {
+			server = version = umodes = NULL;
+		else
+		{
+		  /* Work around ratbox-1.2-3. */
+		  if (!my_stricmp(umodes, "(brown"))
+		   if (ArgList[3] && !my_stricmp(ArgList[3], "paper"))
+		    if (ArgList[4] && !my_stricmp(ArgList[4], "bag"))
+		     if (ArgList[5] && !my_stricmp(ArgList[5], "release)"))
+		     {
 			if (!(umodes = ArgList[6]))
 				{ rfc1459_odd(from, comm, ArgList); goto END; }
-		   }
+		     }
+		}
 
 		got_initial_version_28(server, version, umodes);
 		break;

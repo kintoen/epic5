@@ -33,3 +33,4 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * When saving /bind's, surround the sequence in double quotes (caf)
 * Apparently USERIP is 340 instead of 307 these days (rb jm)
 * Fix an important memory leak (rb |Rain|)
+* Work around Harzilein's irc bouncer with a mangled 004 numeric
