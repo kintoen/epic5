@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.114 2006/06/17 04:11:18 jnelson Exp $ */
+/* $EPIC: server.c,v 1.115 2013/07/16 01:03:57 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -2956,6 +2956,7 @@ void set_server_005 (int refnum, char *setting, char *value)
 		(*new_005).value = malloc_strdup(value);
 		add_to_array((array*)(&s->a005), (array_item*)new_005);
 	}
+	update_all_status();
 }
 
 

@@ -30,7 +30,11 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Add $regcomp_cs() from epic5 as a special favor to blackjac.
 * EPIC4-2.10 was released here (Ineluctable) (Commit 769)
 * Signal fix from epic5 for SIG_IGN/SIG_DFL (ie, SIGPIPE) causing segafults
+* EPIC5-2.10.1 released here (Commit 771)
 * When saving /bind's, surround the sequence in double quotes (caf)
 * Apparently USERIP is 340 instead of 307 these days (rb jm)
 * Fix an important memory leak (rb |Rain|)
 * Work around Harzilein's irc bouncer with a mangled 004 numeric
+* Sort the supported rfc1459 protocol commands (caf)
+* Add status expando %G, to show the 005 NETWORK value (caf)
+* EPIC5-2.10.2 released here (Commit 776)
