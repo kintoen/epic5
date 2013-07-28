@@ -1,4 +1,4 @@
-/* $EPIC: if.c,v 1.44 2012/11/24 18:53:36 jnelson Exp $ */
+/* $EPIC: if.c,v 1.45 2012/11/25 05:56:28 jnelson Exp $ */
 /*
  * if.c: the IF, WHILE, FOREACH, DO, FE, FEC, and FOR commands for IRCII 
  *
@@ -333,6 +333,12 @@ BUILT_IN_COMMAND(whilecmd)
 	newexp = alloca(strlen(exp) + 2);
 	while (1)
 	{
+		/* 
+		 * We do this to get a fresh copy of "exp"
+		 * every time thorugh the loop.
+		 * parse_inline() will mangle our string
+		 * The use of strlen(exp)+1 is intentional.
+		 */
 		strlcpy(newexp, exp, strlen(exp) + 1);
 		ptr = parse_inline(newexp, subargs);
 		if (check_val(ptr) != whileval)

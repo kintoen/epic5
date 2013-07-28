@@ -458,7 +458,7 @@ static void 	SHA256_Final (sha2_byte *digest, SHA256_CTX *context)
 	}
 
 	/* Clean up state data: */
-	MEMSET_BZERO(context, sizeof(context));
+	MEMSET_BZERO(context, sizeof(*context));
 	usedspace = 0;
 }
 
@@ -481,7 +481,7 @@ static char *	SHA256_End (SHA256_CTX *context, char *buffer)
 		}
 		*buffer = (char)0;
 	} else {
-		MEMSET_BZERO(context, sizeof(context));
+		MEMSET_BZERO(context, sizeof(*context));
 	}
 	MEMSET_BZERO(digest, SHA256_DIGEST_LENGTH);
 	return buffer;

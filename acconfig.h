@@ -428,3 +428,9 @@
 /* Define this if you need strtoll() */
 #undef NEED_STRTOLL
 
+/* Define this if you have <termios.h> */
+#undef HAVE_TERMIOS_H
+
+/* Define this if you have <sys/termios.h> */
+#undef HAVE_SYS_TERMIOS_H
+

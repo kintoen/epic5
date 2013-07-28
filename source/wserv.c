@@ -1,4 +1,4 @@
-/* $EPIC: wserv.c,v 1.16 2010/01/01 01:45:46 jnelson Exp $ */
+/* $EPIC: wserv.c,v 1.17 2012/11/27 22:50:57 jnelson Exp $ */
 /*
  * wserv.c -- A little program to act as a pipe between the ircII process
  * 	      and an xterm window or GNU screen.
@@ -45,10 +45,12 @@
 #include "config.h"
 #include "irc_std.h"
 #include <sys/ioctl.h>
-#ifdef _ALL_SOURCE
-#include <termios.h>
+#ifdef HAVE_TERMIOS_H
+# include <termios.h>
 #else
-#include <sys/termios.h>
+# ifdef HAVE_SYS_TERMIOS_H
+#  include <sys/termios.h>
+# endif
 #endif
 
 
