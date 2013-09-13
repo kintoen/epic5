@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.296 2012/11/25 05:56:28 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.297 2012/11/26 05:09:35 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -700,6 +700,7 @@ static BuiltInFunctions	built_in_functions[] =
 	{ "STARTUPFILE",	function_startupfile	},
 	{ "STAT",		function_stat		},
 	{ "STATUS",		function_status		},
+	{ "STATUS_ONEOFF",	function_status_oneoff	},
 	{ "STIME",		function_stime 		},
 	{ "STRFTIME",		function_strftime	},
 	{ "STRIP",		function_strip 		},
