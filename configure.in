@@ -1174,7 +1174,7 @@ AC_ARG_WITH(ruby,
 	rubyexe=$withval
 ],
 	rubyexe=yes
-	for i in ruby ruby20 ruby19 ruby18 ; do
+	for i in ruby ruby20 ruby19 ruby18 ruby2.0 ruby1.9.1 ruby1.9 ruby1.8; do
 		$i -h 2>&1 >/dev/null && rubyexe=$i && break
 	done
 	if test "x$rubyexe" = "xyes"; then

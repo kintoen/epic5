@@ -1,4 +1,4 @@
-/* $EPIC: server.c,v 1.256 2012/11/26 05:09:35 jnelson Exp $ */
+/* $EPIC: server.c,v 1.257 2013/07/28 23:16:14 jnelson Exp $ */
 /*
  * server.c:  Things dealing with that wacky program we call ircd.
  *
@@ -313,6 +313,10 @@ static	int	str_to_serverinfo (char *str, ServerInfo *s)
 		else if (fieldnum == LASTFIELD)
 			break;
 	    }
+
+		/* I don't see how this is possible, but clang says it is */
+		if (descstr == NULL)
+			break;
 
 		/* And advance to the next field */
 		if ((span = findchar_quoted(descstr, ':')) >= 0)
