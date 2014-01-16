@@ -38,3 +38,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * Sort the supported rfc1459 protocol commands (caf)
 * Add status expando %G, to show the 005 NETWORK value (caf)
 * EPIC5-2.10.2 released here (Commit 776)
+* Reject inbound protocol messages with invalid nicknames
+* EPIC5-2.10.3 released here (Commit 777)

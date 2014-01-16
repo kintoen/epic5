@@ -1,4 +1,4 @@
-/* $EPIC: parse.c,v 1.53 2013/07/16 01:03:57 jnelson Exp $ */
+/* $EPIC: parse.c,v 1.54 2014/01/16 19:39:06 jnelson Exp $ */
 /*
  * parse.c: handles messages from the server.   Believe it or not.  I
  * certainly wouldn't if I were you. 
@@ -1301,6 +1301,11 @@ protocol_command rfc1459[] = {
 #define NUMBER_OF_COMMANDS (sizeof(rfc1459) / sizeof(protocol_command)) - 2;
 int 	num_protocol_cmds = -1;
 
+#define islegal(c) ((((c) >= 'A') && ((c) <= '}')) || \
+                    (((c) >= '0') && ((c) <= '9')) || \
+                     ((c) & 0x80))
+
+
 /*
  * parse_server: parses messages from the server, doing what should be done
  * with them 
@@ -1347,6 +1352,12 @@ void 	parse_server (const char *orig_line, size_t orig_line_size)
 	{ 
 		rfc1459_odd(from, comm, ArgList);
 		return;		/* Serious protocol violation -- ByeBye */
+	}
+
+	if (*from && !islegal(*from))
+	{ 
+		rfc1459_odd(from, comm, ArgList);
+		return;         
 	}
 
 	/* 
