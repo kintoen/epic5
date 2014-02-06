@@ -298,4 +298,14 @@ extern int my_iconv_open (iconv_t *, iconv_t *, const char *);
 
 extern	int	recode_with_iconv (const char *from, const char *to, char **data, size_t *numbytes);
 
+/***********************/
+extern	int	codepoint_numcolumns 	(int);
+extern	int	next_code_point 	(const unsigned char **);
+extern	int	display_column_count 	(const unsigned char *);
+extern	int	input_column_count 	(const unsigned char *);
+extern	int	ucs_to_utf8 		(u_32int_t, unsigned char *, size_t);
+extern	int	grab_codepoint 		(const unsigned char *x);
+
+extern	int	strext2		(unsigned char **, unsigned char *, int , int);
+
 #endif /* _IRCAUX_H_ */
