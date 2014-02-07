@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.61 2012/11/26 05:09:35 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.62 2014/02/06 17:14:24 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -1134,6 +1134,11 @@ static int	bind_compressed_string (char *keyseq, int slen, const char *bindstr, 
 
 	for (s = keyseq, map = head_keymap; slen > 0; slen--, s++)
 	{
+		if (*s < 0)
+		{
+			yell("Cannot bind sequences containing high bit chars");
+			return 0;
+		}
 		node = &map[*s];
 
 		/*
