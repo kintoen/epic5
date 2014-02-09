@@ -307,5 +307,6 @@ extern	int	ucs_to_utf8 		(u_32int_t, unsigned char *, size_t);
 extern	int	grab_codepoint 		(const unsigned char *x);
 
 extern	int	strext2		(unsigned char **, unsigned char *, int , int);
+extern	int     invalid_utf8str (const unsigned char *utf8str);
 
 #endif /* _IRCAUX_H_ */
