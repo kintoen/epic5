@@ -40,3 +40,5 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * EPIC5-2.10.2 released here (Commit 776)
 * Reject inbound protocol messages with invalid nicknames
 * EPIC5-2.10.3 released here (Commit 777)
+* Add "unicode" script from |Rain|.  Thanks to him!
+* Change Makefile, $(IP) -> $(IP)$(DESTDIR) for freebsd ports

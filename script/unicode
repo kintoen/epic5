@@ -1,0 +1,217 @@
+# unicode - functions to go to UTF-8 ($uchr(), similar to $chr()) and from
+# UTF-8 ($unicode(), similar to $ascii())
+#
+# Copyright © 2004, Ben Winslow <rain bluecherry net>
+# Released under the same license as ircII-EPIC
+#
+# NOTE: $uchr() will not support hexadecimal in EPIC4-2.0 when NEW_MATH
+# is enabled.  This will probably change in the next release of EPIC4,
+# which is slated to include a $strtol() function.
+#
+# A brief description of UTF-8 (RFC 2279):
+# UTF-8 is a transformation of ISO 10646 (UNICODE) that preserves characters
+# in the ASCII range, minimizing compatibility problems when implementing
+# UNICODE support.
+# Characters outside of the ASCII range (over 0x7f) are encoded (bitwise,
+# MSB on left) as follows:
+#
+# An initial octet, with the two highest bits set to 1.  The number of bits
+# set to 1 following the highest bit indicates the number of octets following
+# the header octet, and a bit set to 0 marks the end of the length section.
+# All remaining bits in this octet make up the highest order bits of the
+# codepoint.
+# Example: 11100010 is a start character, and 2 more octets follow this one.
+# Additionally, the most significant bits of the codepoint are '0010'.
+#
+# Continuation octets, with the highest bit set to 1 and the second-to-highest
+# bit set to 0.  The lower 6 bits are codepoint data, with the most
+# significant bits coming first.
+# Example: 10000000 and 10111011 are both continuations in a UTF-8 sequence,
+# with the first octet containing '000000' and the second containing '111011'.
+#
+# These octets, transmitted as '11100010 10000000 10111011', contain the
+# codepoint '0010000000111011', or U+203B.
+
+package unicode
+
+# $uchr(): convert unicode codepoints (in decimal/hex) to UTF-8.
+# analogous to $chr().  characters too large to represent in 31 bits will
+# be dropped, characters below 0 will be handed to $chr() as-is.
+alias uchr {
+	@:outbuf = []
+	
+	stack push set floating_point_math
+	^set floating_point_math on
+
+	fe ($*) char {
+		if (char < 128) {
+			# ASCII character, add as-is
+			push :outbuf $char
+		} else {
+			# UTF-8 character, encode it...
+			@:tmpbuf = []
+
+#			echo \$uchr() IN <- $char
+
+			# first, figure out the minimum number of bits required to represent
+			# this number.  abort if it's out of range.
+			@:width = ceil(${log(${char + 1})/log(2)})
+
+			# there's no need to check for < 8 here because of the char < 128
+			# check above, but if this is split into a separate function (as
+			# it was originally written), that check should be re-added.
+			if (width > 31) {
+#				echo \$uchr() WARNING: codepoint $char is not representable in UTF-8!
+				continue
+			}
+			# then, translate it into the number of UTF-8 octets required
+			# octets = (bits - 6) / 5 is derived from 5 * octets + 6 = UTF-8 data bits
+			# see $unicode() for more details.
+			@:octets = ceil(${(width - 6) / 5})
+
+#			echo \$uchr() $char requires $width bits of storage -> $octets UTF-8 octets
+
+			# set up the header on the first octet: set the high to bits, plus the
+			# following n bits where n is the number of UTF-8 octets after this one.
+			# it looks nasty, but it's just figuring out the bits to set and
+			# then shifting them into place.
+			@:startoctet = (192 | (((1 << (octets - 1)) - 1) << (7 - octets)))
+#			echo \$uchr() start octet before data: $startoctet
+
+			# the easiest way to build the octet sequence is to work in reverse,
+			# building the least significant octets first and working upwards, 6
+			# bits at a time.  the data bits for the starting octet will be added
+			# after the loop, as they're the most significant.
+			while (octets > 0) {
+				@:octet = (128 | (char & 63))
+				unshift :tmpbuf $octet
+				@:octets--
+#				echo \$uchr() added octet $octet \(data: $char\; & 63 = ${char & 63}\), $octets octets left
+				@:char = char >> 6
+			}
+			@:startoctet |= char
+			unshift :tmpbuf $startoctet
+#			echo \$uchr() added start octet: $startoctet \(data: $char\)
+			
+#			echo \$uchr() entire UTF-8 sequence: $tmpbuf
+
+			# add the whole shebang to the output buffer
+			push :outbuf $tmpbuf
+		}
+	}
+
+	stack pop set floating_point_math
+
+#	echo \$uchr() entire uchr() octet sequence: $outbuf
+
+	return $chr($outbuf)
+}
+
+# $unicode(): convert UTF-8 string to unicode codepoints (returned in decimal)
+# analogous to $ascii().  invalid sequences are ignored.
+alias unicode {
+	@:accum = 0
+	@:state = 0
+	@:outbuf = []
+
+	fe ($ascii($*)) char {
+		# the 2 most-significant bits never contain actual data, so we
+		# separate them from the rest of the octet at the start and reuse
+		# that calculation.
+		@:high = char & 192
+		@:low = char & ~192
+
+#		echo \$unicode() IN <- $char \($high + $low)
+
+		switch ($high) {
+			# UTF-8 start character
+			(192) {
+#				if (state != 0) { echo \$unicode() WARNING: starting a new UTF-8 sequence from within a UTF-8 sequence (previous sequence is incomplete) }
+				@:state = 1
+				@:len = 1
+
+				# determine how many octets follow this one
+				while ((low & 32) && len < 6) {
+					@:low = low << 1
+					@:len++
+				}
+				# shift low to the original position...
+				@:low = low >> (len - 1)
+				# ...and & off the header
+				@:accum = low & ((1 << (6 - len)) - 1)
+
+				# figure out the range this character must be within.
+				# the number of data bits available for a sequence is
+				# determined with 6n + 6 - n --> 5n + 6, where n is the
+				# number of octets following the first.  the 6n comes from
+				# each continuation character, which holds 6 bits of data,
+				# while the 6 - n determines bits remaining in the initial
+				# octet (after the marker and character count.)
+				# len == 1 is the special case here, because 0x00 to 0x7f
+				# do not have the 8th bit set and use the 7th bit for data.
+				# see the final octet handler below for details on why this
+				# is calculated.
+				if (len == 1) {
+					@:lowrange = 128
+				} else {
+					@:lowrange = 2 ** ((5 * (len - 1)) + 6)
+				}
+				@:highrange = 2 ** ((5 * len) + 6) - 1
+
+#				echo \$unicode() UTF-8 start: $len octet(s) remaining, char ranges $lowrange - $highrange
+#				echo \$unicode() data in this octet: $accum
+			}
+			
+			(128) {
+				# UTF-8 continuation character
+				if (state != 1) {
+#					echo \$unicode() WARNING: UTF-8 continuation character without a starting character
+					@:len = 0
+					continue
+				}
+
+#				echo \$unicode() data in this octet: $low
+				# shift the existing data and add the data in this octet
+				@:accum = ((accum << 6) | low)
+
+				@:len--
+				if (len <= 0) {
+#					echo \$unicode() end of UTF-8 sequence\; final character: $accum
+
+					# UTF-8 requires that each character be representable in
+					# only one way, so that 0xc0 0x80 is an invalid character
+					# instead of U+0000 (as it could otherwise be interpreted.)
+					if (accum >= lowrange && accum <= highrange) {
+						push :outbuf $accum
+					}
+#					} else {
+#						echo \$unicode() WARNING: invalid UTF-8 sequence!  $accum is out of range \($lowrange - $highrange\)
+#					}					
+
+					@:state = 0
+				}
+			}
+
+			(*) {
+				# within ASCII range, so we can just append it
+#				if (state != 0) { echo \$unicode() WARNING: previous UTF-8 sequence is incomplete! }
+				@:state = 0
+				@:len = 0
+
+				push outbuf $char
+			}
+		}
+	}
+
+#	if (len > 0) { echo \$unicode() WARNING: final UTF-8 sequence is incomplete! }
+#	echo \$unicode() final result: $outbuf
+
+	return $outbuf
+}
+
+# just in case a locale-aware $ascii() is some day implemented, sanity
+# check what it gives us
+if (ascii(÷) != [195 183]) {
+	xecho -b Warning: sanity check failed--your \$ascii() appears to return
+	xecho -b something besides raw octets.  \$unicode() will not work correctly.
+}
