@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.301 2014/02/06 20:31:23 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.302 2014/02/09 15:32:29 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -4892,8 +4892,13 @@ char *	function_cparse (char *input)
 				break;
 			case 'n':
 				output[j++] = '\003';
+				output[j++] = '-';
+				output[j++] = '1';
 				output[j++] = ALL_OFF;
 				break;
+			case 'X':
+				output[j++] = '\030';
+
 			case 'N':
 				noappend = 1;
 				break;

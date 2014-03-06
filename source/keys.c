@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.64 2014/02/11 22:50:57 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.65 2014/03/05 14:40:56 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -601,7 +601,6 @@ void *	handle_keypress (void *lastp, Timeval pressed, u_32int_t keyx, int quote_
 	 */
 	if (keyx > 127 || quote_override)
 	{
-/*yell("Adding keypress %X to the mix", keyx); */
 		input_add_character(keyx, NULL);
 		return NULL;
 	}
