@@ -299,6 +299,7 @@ extern int my_iconv_open (iconv_t *, iconv_t *, const char *);
 #endif
 
 extern	int	recode_with_iconv (const char *from, const char *to, char **data, size_t *numbytes);
+extern	int     recode_with_iconv_t (iconv_t iref, char **data, size_t *numbytes);
 
 /***********************/
 extern	int	codepoint_numcolumns 	(int);
@@ -318,6 +319,7 @@ extern	const char *	find_recoding	(const char *, iconv_t *, iconv_t *);
 extern	char *		recode_message	(const char *from, const char *to, const char *comm, const char **ArgList, int which);
 extern	int     ucs_to_console (u_32int_t key, unsigned char *utf8str, size_t utf8strsiz);
 BUILT_IN_COMMAND(encoding);
-
+extern	const char *	outbound_recode (const char *, int, const char *, char **);
+extern	const char *	inbound_recode (const char *, int, const char *, const char *, char **);
 
 #endif /* _IRCAUX_H_ */
