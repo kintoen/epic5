@@ -1,4 +1,4 @@
-/* $EPIC: commands.c,v 1.220 2014/03/13 15:31:07 jnelson Exp $ */
+/* $EPIC: commands.c,v 1.221 2014/03/15 15:51:44 jnelson Exp $ */
 /*
  * commands.c -- Stuff needed to execute commands in ircII.
  *		 Includes the bulk of the built in commands for ircII.
@@ -3191,7 +3191,10 @@ struct target_type target[4] =
 	    if (!*current_nick)
 		continue;
 
-	    recode_text = outbound_recode(current_nick, from_server, text, &extra);
+	    if (invalid_utf8str(text))
+		recode_text = outbound_recode(current_nick, from_server, text, &extra);
+	    else
+		recode_text = extra = malloc_strdup(text);
 
 	    if (*current_nick == '%')
 	    {
