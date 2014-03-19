@@ -1,4 +1,4 @@
-/* $EPIC: numbers.c,v 1.103 2014/03/12 21:04:11 jnelson Exp $ */
+/* $EPIC: numbers.c,v 1.104 2014/03/15 15:51:44 jnelson Exp $ */
 /*
  * numbers.c: handles all those strange numeric response dished out by that
  * wacky, nutty program we call ircd 
@@ -597,6 +597,7 @@ void 	numbered_command (const char *from, const char *comm, char const **ArgList
 			{ rfc1459_odd(from, comm, ArgList); goto END; }
 		if (!(topic = ArgList[1]))
 			{ rfc1459_odd(from, comm, ArgList); goto END; }
+		break;
 	}
 
 
