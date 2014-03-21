@@ -104,7 +104,7 @@ char *	forcibly_remove_trailing_spaces (char *, size_t *);
 const char *	my_ltoa 		(long);
 const char *	intmaxtoa 		(intmax_t);
 const char *	ftoa			(double);
-char *	strformat 		(char *, const char *, ssize_t, int);
+char *	strformat 		(char *, size_t, const unsigned char *, ssize_t, int);
 char *	chop_word 		(char *);
 char *	skip_spaces		(char *);
 int	split_args		(char *, char **to, size_t);
