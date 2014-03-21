@@ -309,6 +309,7 @@ extern	int	display_column_count 	(const unsigned char *);
 extern	int	input_column_count 	(const unsigned char *);
 extern	int	ucs_to_utf8 		(u_32int_t, unsigned char *, size_t);
 extern	int	grab_codepoint 		(const unsigned char *x);
+extern	int     quick_code_point_count	(const unsigned char *str);
 
 extern	int	strext2		(unsigned char **, unsigned char *, int , int);
 extern	int     invalid_utf8str (unsigned char *utf8str);
