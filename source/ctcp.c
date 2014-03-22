@@ -1,4 +1,4 @@
-/* $EPIC: ctcp.c,v 1.61 2014/03/15 15:51:44 jnelson Exp $ */
+/* $EPIC: ctcp.c,v 1.62 2014/03/21 20:54:58 jnelson Exp $ */
 /*
  * ctcp.c:handles the client-to-client protocol(ctcp). 
  *
@@ -1043,7 +1043,7 @@ void	send_ctcp (int type, const char *to, int datatag, const char *format, ...)
 	putbuf2[len - 2] = CTCP_DELIM_CHAR;
 	putbuf2[len - 1] = 0;
 
-	send_text(from_server, to, putbuf2, ctcp_type[type], 0);
+	send_text(from_server, to, putbuf2, ctcp_type[type], 0, 1);
 	pop_message_from(l);
 }
 
