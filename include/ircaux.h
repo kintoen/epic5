@@ -317,6 +317,9 @@ extern	int	quick_code_point_index	(const unsigned char *, const unsigned char *)
 
 extern	int	strext2		(unsigned char **, unsigned char *, int , int);
 extern	int     invalid_utf8str (unsigned char *utf8str);
+extern	void    create_utf8_locale (void);
+extern	int	mkupper_l	(int);
+extern	int	mklower_l	(int);
 
 /******* recode.c ******/
 extern	void		init_recodings	(void);
