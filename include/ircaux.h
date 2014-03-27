@@ -137,7 +137,7 @@ char *	ov_strcpy		(char *, const char *);
 size_t	ccspan			(const char *, int);
 int	last_char		(const char *);
 char *	next_in_comma_list	(char *, char **);
-char *	next_in_div_list	(char *, char **, char);
+char *	next_in_div_list	(char *, char **, int);
 char *	get_userhost		(void);
 double  time_to_next_interval	(int interval);
 int	charcount		(const char *, char);
