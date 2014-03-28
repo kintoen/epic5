@@ -1,4 +1,4 @@
-/* $EPIC: lastlog.c,v 1.95 2014/02/14 16:29:10 jnelson Exp $ */
+/* $EPIC: lastlog.c,v 1.96 2014/03/02 20:04:51 jnelson Exp $ */
 /*
  * lastlog.c: handles the lastlog features of irc. 
  *
@@ -1648,7 +1648,7 @@ void	move_lastlog_item_by_string (Window *oldwin, Window *newwin, const char *st
 
 	for (l = lastlog_oldest; l; l = l->newer)
 	{
-		if (l->window == oldwin && stristr(l->msg, str))
+		if (l->window == oldwin && stristr(l->msg, str) >= 0)
 			move_lastlog_item(l, newwin);
 	}
 }
