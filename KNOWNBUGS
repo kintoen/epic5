@@ -42,3 +42,6 @@ THE CHANGELOG SINCE THE LAST RELEASE:
 * EPIC5-2.10.3 released here (Commit 777)
 * Add "unicode" script from |Rain|.  Thanks to him!
 * Change Makefile, $(IP) -> $(IP)$(DESTDIR) for freebsd ports
+* EPIC5-2.10.4 released here (Commit 778)
+* Maildir support from  Jari Turkia (Thanks!)
+* EPIC5-2.10.5 released here (Commit 779)

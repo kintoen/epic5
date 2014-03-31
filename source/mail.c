@@ -1,4 +1,4 @@
-/* $EPIC: mail.c,v 1.15 2006/06/18 17:33:51 jnelson Exp $ */
+/* $EPIC: mail.c,v 1.16 2014/03/31 13:57:22 jnelson Exp $ */
 /*
  * mail.c -- a gross simplification of mail checking.
  * Only unix maildrops (``mbox'') are supported.
@@ -353,7 +353,7 @@ static int	init_maildir_checking (void)
 		return 0;
 	}
 
-	maildir_path = malloc_strdup(tmp_maildir_path);
+	maildir_path = malloc_strdup(maildir);
 	maildir_last_changed = -1;
 	return 1;
 }
@@ -375,13 +375,29 @@ static int	maildir_count (void)
 {
 	int	count = 0;
 	DIR *	dir;
+	Filename 	tmp_maildir_path;
+	struct dirent*	dir_data;
 
-	if ((dir = opendir(maildir_path)))
+	strlcpy(tmp_maildir_path, maildir_path, sizeof(Filename));
+	strlcat(tmp_maildir_path, "/new", sizeof(Filename));
+	if ((dir = opendir(tmp_maildir_path)))
 	{
-		while (readdir(dir) != NULL)
-			count++;
+		while ((dir_data = readdir(dir)) != NULL) {
+			if (dir_data->d_name[0] != '.')
+				count++;
+		}
 		closedir(dir);
-		count -= 2;	/* Don't count . or .. */
+	}
+
+	strlcpy(tmp_maildir_path, maildir_path, sizeof(Filename));
+	strlcat(tmp_maildir_path, "/cur", sizeof(Filename));
+	if ((dir = opendir(tmp_maildir_path)))
+	{
+		while ((dir_data = readdir(dir)) != NULL) {
+			if (dir_data->d_name[0] != '.')
+				count++;
+		}
+		closedir(dir);
 	}
 
 	return count;
@@ -398,6 +414,7 @@ static int	poll_maildir_status (void *ptr)
 {
 	Stat	sb;
 	Stat *	stat_buf;
+	Filename 	tmp_maildir_path;
 
 	if (ptr)
 		stat_buf = (Stat *)ptr;
@@ -408,8 +425,11 @@ static int	poll_maildir_status (void *ptr)
 		if (!init_maildir_checking())
 			return 0;		/* Can't find maildir */
 
+	strlcpy(tmp_maildir_path, maildir_path, sizeof(Filename));
+	strlcat(tmp_maildir_path, "/new", sizeof(Filename));
+
 	/* If there is no mailbox, there is no mail! */
-	if (stat(maildir_path, stat_buf) == -1)
+	if (stat(tmp_maildir_path, stat_buf) == -1)
 		return 0;
 
 	/* 
@@ -547,6 +567,10 @@ static void	update_mail_level3_maildir (void)
 	update_mail_level2_maildir();
 	if (status == 2)
 	{
+		Filename 	tmp_maildir_path;
+		strlcpy(tmp_maildir_path, maildir_path, sizeof(Filename));
+		strlcat(tmp_maildir_path, "/new", sizeof(Filename));
+
 		/* XXX Ew.  Evil. Gross. */
 		ts.actime = stat_buf.st_atime;
 		ts.modtime = stat_buf.st_mtime;
@@ -642,6 +666,27 @@ void	set_mail (const void *stuff)
 
 void	set_mail_type (const void *stuff)
 {
-	/* EPIC4 cannot switch mailbox types (yet) */
+	const char *	value;
+	struct mail_checker *new_checker;
+	char	old_mailval[16];
+
+	value = (const char *)stuff;
+
+	if (value == NULL)
+		new_checker = NULL;
+	else if (!my_stricmp(value, "MBOX"))
+		new_checker = &mail_types[0];
+	else if (!my_stricmp(value, "MAILDIR"))
+		new_checker = &mail_types[1];
+	else
+	{
+		say("/SET MAIL_TYPE must be MBOX or MAILDIR.");
+		return;
+	}
+
+	snprintf(old_mailval, sizeof(old_mailval), "%d", get_int_var(MAIL_VAR));
+	set_var_value(MAIL_VAR, zero);
+	checkmail = new_checker;
+	set_var_value(MAIL_VAR, old_mailval);
 }
 
