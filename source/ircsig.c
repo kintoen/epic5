@@ -1,4 +1,4 @@
-/* $EPIC: ircsig.c,v 1.8 2008/04/15 04:49:51 jnelson Exp $ */
+/* $EPIC: ircsig.c,v 1.9 2008/11/28 16:28:03 jnelson Exp $ */
 /*
  * ircsig.c: has a `my_signal()' that uses sigaction().
  *
@@ -117,7 +117,7 @@ sigfunc *	init_signals (void)
 	int sig_no;
 	sigfunc *error = NULL;
 
-	memset(&signals_caught, 0, NSIG * sizeof(int));
+	memset((void *)&signals_caught, 0, NSIG * sizeof(int));
 
 	for (sig_no = 0; sig_no < NSIG; sig_no++)
 	{
