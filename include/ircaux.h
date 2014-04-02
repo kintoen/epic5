@@ -320,6 +320,7 @@ extern	int     invalid_utf8str (unsigned char *utf8str);
 extern	void    create_utf8_locale (void);
 extern	int	mkupper_l	(int);
 extern	int	mklower_l	(int);
+extern	int	sanity_check_encoding (const char *);
 
 /******* recode.c ******/
 extern	void		init_recodings	(void);
