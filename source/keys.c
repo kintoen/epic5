@@ -1,4 +1,4 @@
-/* $EPIC: keys.c,v 1.68 2014/03/28 18:12:33 jnelson Exp $ */
+/* $EPIC: keys.c,v 1.69 2014/04/01 18:11:14 jnelson Exp $ */
 /*
  * keys.c:  Keeps track of what happens whe you press a key.
  *
@@ -2066,4 +2066,15 @@ static void	bindctl_getmap (Key *map, const char *str, int len, char **ret)
 			bindctl_getmap(map[c].map, newstr, len + 1, ret);
 	}
 }
+
+void    help_topics_bind (FILE *f)                                         
+{
+	Binding *b;
+
+	for (b = binding_list; b; b = b->next)
+	{
+		if (b->func)
+			fprintf(f, "bind %s\n", b->name);
+	}
+}                                                                               
 
