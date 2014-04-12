@@ -1,4 +1,4 @@
-/* $EPIC: functions.c,v 1.315 2014/04/09 17:54:14 jnelson Exp $ */
+/* $EPIC: functions.c,v 1.316 2014/04/11 20:38:57 jnelson Exp $ */
 /*
  * functions.c -- Built-in functions for ircII
  *
@@ -7753,7 +7753,7 @@ BUILT_IN_FUNCTION(function_help_topics, word)
 	if (!(f = fopen("help_topics.txt", "w")))
 	{
 		yell("Could not open \"help_topics.txt\"");
-		return;
+		RETURN_EMPTY;
 	}
 
 	help_topics_commands(f);
