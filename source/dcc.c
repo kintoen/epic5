@@ -61,20 +61,21 @@
 #define DCC_RCV_BLOCK_SIZE (1<<16)
 
 /* These are the settings for ``flags'' */
-#define DCC_CHAT	((unsigned) 0x0001)
-#define DCC_FILEOFFER	((unsigned) 0x0002)
-#define DCC_FILEREAD	((unsigned) 0x0003)
-#define	DCC_RAW		((unsigned) 0x0004)
-#define	DCC_RAW_LISTEN	((unsigned) 0x0005)
-#define DCC_TYPES	((unsigned) 0x000f)
-#define DCC_MY_OFFER	((unsigned) 0x0010)
-#define DCC_ACTIVE	((unsigned) 0x0020)
-#define DCC_THEIR_OFFER	((unsigned) 0x0040)
-#define DCC_DELETE	((unsigned) 0x0080)
-#define DCC_TWOCLIENTS	((unsigned) 0x0100)
-#define DCC_REJECTED	((unsigned) 0x0200)
-#define DCC_QUOTED	((unsigned) 0x0400)
-#define DCC_STATES	((unsigned) 0xfff0)
+#define DCC_CHAT	0x0001U
+#define DCC_FILEOFFER	0x0002U
+#define DCC_FILEREAD	0x0003U
+#define DCC_RAW		0x0004U
+#define DCC_RAW_LISTEN	0x0005U
+#define DCC_TYPES	0x000fU
+#define DCC_MY_OFFER	0x0010U
+#define DCC_ACTIVE	0x0020U
+#define DCC_THEIR_OFFER	0x0040U
+#define DCC_DELETE	0x0080U
+#define DCC_TWOCLIENTS	0x0100U
+#define DCC_REJECTED	0x0200U
+#define DCC_QUOTED	0x0400U
+#define DCC_RESUME_REQ	0x1000U
+#define DCC_STATES	0xfff0U
 
 typedef	struct	DCC_struct
 {
@@ -1472,6 +1473,7 @@ static	void	dcc_getfile (char *args, int resume)
 		if (resume && get_int_var(MIRC_BROKEN_DCC_RESUME_VAR) && stat(fullname, &sb) != -1) {
 			dcc->bytes_sent = 0;
 			dcc->bytes_read = dcc->resume_size = sb.st_size;
+			dcc->flags |= DCC_RESUME_REQ;
 		
 			if (((SA *)&dcc->offer)->sa_family == AF_INET)
 				malloc_strcpy(&dcc->othername, 
@@ -3463,6 +3465,13 @@ static	void	dcc_getfile_resume_start (const char *nick, char *filename, char *po
 
 	if (!(Client = dcc_searchlist(DCC_FILEREAD, nick, filename, port, 0)))
 		return;		/* Its fake. */
+
+	if (!(Client->flags & DCC_RESUME_REQ))
+	{
+		if (x_debug & DEBUG_DCC_XMIT)
+			yell("Unsolicited DCC ACCEPT from [%s] [%s]", nick, filename);
+		return;
+	}
 
 	Client->flags |= DCC_TWOCLIENTS;
 	if (dcc_open(Client))
